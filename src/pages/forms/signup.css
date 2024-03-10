@@ -1,0 +1,24 @@
+.sign-up {
+  background-image: url("../../images/banner.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  padding: 10px var(--x-padding) 0;
+}
+.sign-up h1 {
+  font-size: 50px;
+  font-weight: 800;
+}
+.sign-up p {
+  font-size: 18px;
+  opacity: 38%;
+}
+.sign-up p span {
+  padding-left: 15px;
+}
+.sign-up .sign-selection {
+  padding: 50px 10px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}

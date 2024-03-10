@@ -1,0 +1,11 @@
+.navbar {
+  background: var(--main-gradient);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px var(--x-padding);
+}
+.logo {
+  width: 62px;
+  cursor: pointer;
+}

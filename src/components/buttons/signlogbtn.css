@@ -1,0 +1,9 @@
+.sign-log-btn {
+  background-color: transparent;
+  border: 2.71px solid white;
+  border-radius: 20px;
+  color: white;
+  padding: 5px 10px;
+  font-size: 20px;
+  cursor: pointer;
+}

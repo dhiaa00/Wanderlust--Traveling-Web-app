@@ -1,0 +1,22 @@
+.select-wrapper {
+  width: fit-content;
+}
+.select {
+  background: var(--main-gradient);
+  width: 280px;
+  height: 280px;
+  position: relative;
+  border-radius: 24px;
+}
+.select-wrapper img {
+  position: absolute;
+  height: 350px;
+  bottom: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.select-wrapper h2 {
+  font-size: 40px;
+  text-align: center;
+  opacity: 44%;
+}
