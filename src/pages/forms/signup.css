@@ -10,14 +10,15 @@
   font-weight: 800;
 }
 .sign-up p {
-  font-size: 18px;
+  font-size: 19px;
   opacity: 38%;
+  width: 80%;
 }
 .sign-up p span {
   padding-left: 15px;
 }
 .sign-up .sign-selection {
-  padding: 50px 10px 0;
+  padding: 80px 10px 0;
   display: flex;
   align-items: center;
   justify-content: space-around;

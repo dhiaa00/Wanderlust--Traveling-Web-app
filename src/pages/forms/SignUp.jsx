@@ -2,12 +2,12 @@ import React from "react";
 import NavBar from "../../components/navbar/NavBar";
 import Select from "../../components/Sign/Select";
 import select1 from "../../images/select1.png";
+import select2 from "../../images/select2.png";
 import "./signup.css";
 
 const SignUp = () => {
   return (
     <>
-      <NavBar />
       <div className="sign-up">
         <h1>Sign Up To Your Account</h1>
         <p>
@@ -18,7 +18,7 @@ const SignUp = () => {
         </p>
         <div className="sign-selection">
           <Select img={select1} title="Tourist" />
-          <Select img={select1} title="Tourist" />
+          <Select img={select2} title="Agency" />
         </div>
       </div>
     </>

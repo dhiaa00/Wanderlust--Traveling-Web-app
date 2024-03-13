@@ -1,0 +1,13 @@
+.special-input {
+  padding: 10px 5px 10px 0;
+  font-size: 18px;
+  font-weight: 520;
+  color: rgb(0, 0, 0, 0.5);
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  border-bottom: 2px solid rgb(0, 0, 0, 0.5);
+}
+.special-input:focus {
+  outline: none;
+}
