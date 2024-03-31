@@ -2,8 +2,8 @@ import React from "react";
 import tourist from "../../images/signUpTourist.png";
 import InputField from "../../components/Sign/InputField";
 import MainButton from "../../components/buttons/MainButton";
-import "./signuptourist.css";
 import GoogleAuth from "../../components/Sign/GoogleAuth";
+import "./signuptourist.css";
 
 const SignUpTourist = () => {
   return (
