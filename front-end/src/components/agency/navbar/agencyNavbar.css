@@ -1,6 +1,6 @@
 .agency-navbar-container {
   display: flex;
-  padding: 10px 20px;
+  position: sticky;
 }
 .agency-navbar {
   background: rgb(79, 118, 119);
@@ -10,7 +10,6 @@
     rgba(112, 138, 132, 1) 100%
   );
   padding: 10px 20px;
-  position: fixed;
   height: 95vh;
   z-index: 1000;
   display: flex;
@@ -18,7 +17,7 @@
   align-items: center;
   border-radius: 10px;
   .agency-navbar__logo {
-    background-image: url(./agency.png);
+    background-image: url(../../../images/testing/agency.png);
     background-size: cover;
     width: 60px;
     height: 60px;

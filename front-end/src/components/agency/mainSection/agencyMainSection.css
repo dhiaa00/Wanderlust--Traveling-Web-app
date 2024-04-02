@@ -1,0 +1,26 @@
+.agency-main-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin-left: 2rem;
+  .agency-bottom-section {
+    display: flex;
+    gap: 1rem;
+  }
+  .agency-left-side {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 1rem;
+  }
+  .swiper-container {
+    width: 75%;
+    height: 20vh;
+    img {
+      width: 700px;
+    }
+  }
+  .agency-right-side {
+    width: 20%;
+  }
+}
