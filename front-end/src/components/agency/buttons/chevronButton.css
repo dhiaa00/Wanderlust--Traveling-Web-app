@@ -1,0 +1,17 @@
+.chevron-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 9px;
+  color: black;
+  background-color: white;
+  border: none;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  -webkit-text-stroke: 0.4px;
+  -webkit-text-stroke-color: black;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  padding: 0.8rem 1rem;
+}

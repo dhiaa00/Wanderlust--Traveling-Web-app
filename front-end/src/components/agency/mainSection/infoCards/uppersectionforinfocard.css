@@ -1,0 +1,46 @@
+.info-card-upper-section {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: rgba(0, 0, 0, 0.35);
+  h3 {
+    margin: unset;
+    padding: unset;
+  }
+  .three-dots-icon {
+    font-size: 18px;
+    font-weight: bolder;
+    width: 3px;
+    height: 1em;
+    position: relative;
+    cursor: pointer;
+    span {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      width: fit-content;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -70%);
+      stroke-width: 3px;
+      stop-color: black;
+      stroke-opacity: 0.35;
+    }
+    &::after,
+    &::before {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      content: ".";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -90%);
+    }
+    &::before {
+      transform: translate(-50%, -50%);
+    }
+  }
+}

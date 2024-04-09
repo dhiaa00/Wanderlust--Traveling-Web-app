@@ -1,0 +1,31 @@
+.expenses {
+  position: relative;
+  width: 40%;
+  height: 100%;
+  background-color: white;
+  border-radius: 10px;
+  .expense {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .transport-expenses {
+    background-color: rgba(67, 131, 255, 0.76);
+    color: white;
+    transform: translate(-100%, 0%);
+  }
+  .hotels-expenses {
+    background-color: rgba(0, 200, 116, 0.76);
+    color: white;
+    transform: translate(-50%, -80%);
+  }
+  .other-expenses {
+    background-color: rgba(255, 124, 67, 0.76);
+    color: white;
+    transform: translate(50%, 0%);
+  }
+}

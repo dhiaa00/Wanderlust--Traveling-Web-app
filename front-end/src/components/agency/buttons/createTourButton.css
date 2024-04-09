@@ -1,0 +1,39 @@
+.create-tour-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 9px;
+  color: black;
+  background: linear-gradient(180deg, #4f7677 0%, #708a84 100%);
+  color: white;
+  border: none;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  -webkit-text-stroke: 0.4px;
+  -webkit-text-stroke-color: white;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  padding: 0.8rem 0.8rem 0.8rem 3rem;
+  position: relative;
+  &::after {
+    content: "+";
+    position: absolute;
+    top: 50%;
+    left: 5%;
+    transform: translate(100%, -50%);
+  }
+  &::before {
+    content: "";
+    position: absolute;
+    height: 60%;
+    width: 2px;
+    background-color: white;
+    top: 50%;
+    left: 30%;
+    transform: translate(100%, -50%);
+  }
+  &:hover {
+    background: linear-gradient(180deg, #3e6163 0%, #576c67 100%);
+  }
+}

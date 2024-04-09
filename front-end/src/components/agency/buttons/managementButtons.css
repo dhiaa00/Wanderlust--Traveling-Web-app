@@ -1,0 +1,17 @@
+.management-buttons {
+  display: flex;
+  width: 30%;
+  justify-content: space-around;
+  align-items: center;
+  .management-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border: none;
+    box-shadow: var(--basic-shadow);
+  }
+}

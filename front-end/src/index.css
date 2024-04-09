@@ -10,6 +10,7 @@
   --font-family: poppins;
   --base-line-height: 1.6;
   --x-padding: 40px;
+  --basic-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 /* CSS Reset */
 * {
@@ -19,7 +20,7 @@
 }
 
 body {
-  font-family: Arial, sans-serif;
+  font-family: "poppins";
   line-height: 1.6;
   background-image: url("./images/banner.png");
   background-repeat: no-repeat;

@@ -1,0 +1,92 @@
+.agency-tour-info-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 27%;
+  max-height: 150px;
+  padding: 0.5rem 1rem;
+  border-radius: 9px;
+  background-color: white;
+  box-shadow: rgba(32, 32, 56, 0.25) 0px 10px 22px -5px,
+    rgba(0, 0, 0, 0.3) 0px 5px 12px -8px;
+  .info-card-middle-section {
+    font-size: 30px;
+    font-weight: 900;
+    padding: 10px 0;
+    align-self: flex-start;
+  }
+}
+
+.travel-date-info-card {
+  .travel-date-bottom-section {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: center;
+    font-size: 15px;
+    font-weight: 600;
+    align-self: flex-start;
+    width: 100%;
+    img {
+      padding: 0 5%;
+    }
+  }
+}
+
+.clients-info-card {
+  .client-bottom-section {
+    font-size: 18px;
+    color: black;
+    opacity: 0.35;
+    align-self: flex-end;
+    position: relative;
+    padding-right: 10px;
+    cursor: pointer;
+    &::after {
+      content: ">";
+      position: absolute;
+      top: 50%;
+      right: 0;
+      transform: translate(50%, -50%);
+    }
+  }
+}
+
+.destination-info-card {
+  width: 37%;
+  .destination-bottom-section {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .travel-date-bottom-section {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      gap: 1rem;
+      font-weight: 600;
+    }
+    .flight-time {
+      font-size: 15px;
+      display: flex;
+      gap: 5px;
+      font-weight: 700;
+    }
+  }
+  .destination-name {
+    padding-left: 5px;
+    position: relative;
+    &::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translate(-100%, -50%);
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: #ff0000;
+    }
+  }
+}

@@ -1,5 +1,25 @@
 .agency-upper-section {
   padding: 10px 5px;
+  margin-bottom: 1rem;
   width: 100%;
   border-bottom: 1px solid rgba(0, 0, 0, 0.26);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .agency-upper-section-buttons {
+    display: flex;
+    width: 30%;
+    justify-content: space-between;
+    button:hover {
+      background-color: #e0e0e0;
+    }
+  }
+  .search-and-management-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+    width: 40%;
+  }
 }

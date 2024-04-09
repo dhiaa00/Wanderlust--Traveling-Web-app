@@ -1,6 +1,6 @@
 .agency-navbar-container {
   display: flex;
-  position: sticky;
+  position: fixed;
 }
 .agency-navbar {
   background: rgb(79, 118, 119);
