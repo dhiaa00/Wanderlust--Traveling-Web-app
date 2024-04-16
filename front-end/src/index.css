@@ -7,6 +7,11 @@
     rgba(77, 117, 120, 1) 0%,
     rgba(186, 137, 64, 1) 100%
   );
+  --second-gradient: linear-gradient(
+    180deg,
+    rgba(79, 118, 119, 1) 0%,
+    rgba(112, 138, 132, 1) 100%
+  );
   --font-family: poppins;
   --base-line-height: 1.6;
   --x-padding: 40px;
@@ -22,10 +27,20 @@
 body {
   font-family: "poppins";
   line-height: 1.6;
-  background-image: url("./images/banner.png");
+  overflow-x: hidden;
+  position: relative;
+}
+
+.bg-image-container {
+  position: absolute;
+  background-image: url("/src/images/banner.png");
+  width: 100vw;
+  height: 100vh;
   background-repeat: no-repeat;
   background-size: cover;
-  overflow-x: hidden;
+  top: 0;
+  left: 0;
+  z-index: -1;
 }
 
 h1,

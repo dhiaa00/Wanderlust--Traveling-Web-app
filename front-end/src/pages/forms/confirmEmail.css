@@ -1,0 +1,92 @@
+.confirm-email-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.confirm-your-email {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px var(--x-padding);
+  gap: 1rem;
+  width: 40%;
+  text-align: center;
+  img {
+    width: 60%;
+  }
+  .confirmation-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  h1 {
+    padding: 0;
+    font-size: 1.5rem;
+    font-weight: 800;
+  }
+  p {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: rgba(0, 0, 0, 0.39);
+    .email-adresse {
+      background-image: linear-gradient(
+        to right,
+        rgba(80, 118, 119, 1),
+        rgba(167, 134, 75, 1)
+      );
+      background-clip: text; /* Clip the gradient to the text shape */
+      -webkit-text-fill-color: transparent; /* Make the text transparent */
+      color: transparent;
+      /* Additional styles for border */
+      position: relative; /* Enable positioning of child elements */
+      padding-bottom: some-value; /* Add space for the border */
+    }
+
+    .email-adresse::after {
+      content: ""; /* Empty content for pseudo-element */
+      position: absolute;
+      bottom: 0; /* Position at the bottom */
+      left: 0;
+      right: 0;
+      z-index: 1;
+      height: 2px;
+      background-image: inherit; /* Inherit gradient from parent */
+    }
+  }
+  .main-button {
+    padding: 10px 50px;
+    p {
+      font-size: 25px;
+    }
+  }
+  .failed {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    p:first-child {
+      font-size: 1rem;
+      font-weight: 700;
+      color: rgba(0, 0, 0, 0.39);
+    }
+    button {
+      border: none;
+      background-color: transparent;
+      cursor: pointer;
+      p {
+        font-size: 1rem;
+        font-weight: 700;
+        background-image: linear-gradient(
+          to right,
+          rgba(80, 118, 119, 1),
+          rgba(167, 134, 75, 1)
+        );
+        background-clip: text; /* Clip the gradient to the text shape */
+        -webkit-text-fill-color: transparent; /* Make the text transparent */
+        color: transparent;
+      }
+    }
+  }
+}

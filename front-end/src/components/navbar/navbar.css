@@ -3,7 +3,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 10px var(--x-padding);
+  padding: 5px var(--x-padding);
 }
 .logo {
   width: 62px;

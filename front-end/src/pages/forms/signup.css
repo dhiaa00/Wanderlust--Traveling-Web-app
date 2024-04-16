@@ -1,7 +1,4 @@
 .sign-up {
-  background-image: url("../../images/banner.png");
-  background-repeat: no-repeat;
-  background-size: cover;
   height: 100vh;
   padding: 10px var(--x-padding) 0;
 }

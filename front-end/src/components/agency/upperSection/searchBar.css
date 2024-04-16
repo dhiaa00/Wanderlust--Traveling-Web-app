@@ -5,7 +5,7 @@
   gap: 10px;
   background-color: white;
   flex: 1;
-  padding: 0.5rem 1rem;
+  padding: 6px 12px;
   border-radius: 15px;
   box-shadow: var(--basic-shadow);
   .voice-search {
@@ -29,6 +29,23 @@
       top: 50%;
       left: 15%;
       transform: translateY(-50%);
+    }
+  }
+
+  /* responsive */
+  @media (max-width: 1280px) {
+    gap: 5px;
+    padding: 4px 8px;
+    p {
+      font-size: 15px;
+    }
+    img {
+      width: 20px;
+      height: 20px;
+    }
+    .voice-waves-icon {
+      width: 30px;
+      height: 30px;
     }
   }
 }

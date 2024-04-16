@@ -1,0 +1,23 @@
+.confirmation-code {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  /* Optional: Additional styling for a cleaner look */
+  input[type="number"] {
+    -moz-appearance: textfield;
+    width: 4.5rem;
+    height: 5rem;
+    background-color: #d9d9d9;
+    border: none;
+    border-radius: 5px;
+    padding: 1rem 1.5rem;
+    font-size: 2rem;
+  }
+}

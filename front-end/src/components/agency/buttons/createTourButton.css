@@ -36,4 +36,14 @@
   &:hover {
     background: linear-gradient(180deg, #3e6163 0%, #576c67 100%);
   }
+
+  /* responsive */
+  @media (max-width: 920px) {
+    font-size: 10px;
+    padding: 0px 4px;
+  }
+  @media (max-width: 1280px) {
+    padding: 0.6rem 0.6rem 0.6rem 2rem;
+    font-size: 12px;
+  }
 }

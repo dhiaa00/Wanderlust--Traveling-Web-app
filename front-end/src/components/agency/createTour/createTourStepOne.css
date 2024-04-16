@@ -1,0 +1,56 @@
+.create-tour-step {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  .post-background {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 50%;
+    height: 100%;
+    border: 1px solid black;
+    border-radius: 10px 0 0 10px;
+    padding: 10px;
+    padding-top: 3rem;
+    input {
+      align-self: center;
+    }
+  }
+  .post-description-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 1rem;
+    width: 50%;
+    height: 100%;
+    border: 1px solid black;
+    border-radius: 0 10px 10px 0;
+    padding: 10px;
+    .post-description {
+      display: flex;
+      flex-direction: column;
+      margin: 1rem 0;
+      gap: 0.5rem;
+      width: 100%;
+      h2 {
+        font-size: 0.8rem;
+        font-weight: 700;
+      }
+      label {
+        font-size: 0.8rem;
+        font-weight: 700;
+      }
+    }
+    input {
+      width: 100%;
+      padding: 10px 5px;
+      font-size: 0.8rem;
+      border: 1px solid rgba(0, 0, 0, 0.41);
+      border-radius: 0.3rem;
+    }
+  }
+}

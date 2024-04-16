@@ -10,7 +10,11 @@ const SearchBar = () => {
       <div className="voice-search">
         <img src={VoiceSearchIcon1} alt="voice search icon" />
         <p>Voice Search</p>
-        <img src={VoiceSearchIcon2} alt="voice search icon" />
+        <img
+          className="voice-waves-icon"
+          src={VoiceSearchIcon2}
+          alt="voice search icon"
+        />
       </div>
       <div className="agency-search">
         <img src={SearchIcon} alt="search icon" />

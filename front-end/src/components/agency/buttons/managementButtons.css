@@ -2,6 +2,7 @@
   display: flex;
   width: 30%;
   justify-content: space-around;
+  gap: 10px;
   align-items: center;
   .management-button {
     display: flex;
@@ -13,5 +14,17 @@
     border-radius: 50%;
     border: none;
     box-shadow: var(--basic-shadow);
+  }
+
+  /* responsive */
+  @media (max-width: 1280px) {
+    .management-button {
+      width: 30px;
+      height: 30px;
+      img {
+        width: 18px;
+        height: 18px;
+      }
+    }
   }
 }

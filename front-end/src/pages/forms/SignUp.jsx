@@ -8,6 +8,7 @@ import "./signup.css";
 const SignUp = () => {
   return (
     <>
+      <div className="bg-image-container"></div>
       <div className="sign-up">
         <h1>Sign Up To Your Account</h1>
         <p>

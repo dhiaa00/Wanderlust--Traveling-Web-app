@@ -6,13 +6,15 @@ import TravelDateInfoCard from "./infoCards/TravelDateInfoCard";
 import ClientInfoCard from "./infoCards/ClientInfoCard";
 import DestinationInfoCard from "./infoCards/DestinationInfoCard";
 import MapComponent from "./MapComponent";
-import DayTimeline from "./Timeline/DayTimeline";
 import Expenses from "./Expenses";
 
-const AgencyMainSection = () => {
+const AgencyMainSection = ({ createTour, setCreateTour }) => {
   return (
     <div className="agency-main-section">
-      <AgencyUpperSection />
+      <AgencyUpperSection
+        createTour={createTour}
+        setCreateTour={setCreateTour}
+      />
       <div className="agency-bottom-section">
         <div className="agency-left-side">
           <div className="images-and-expenses">
@@ -32,7 +34,6 @@ const AgencyMainSection = () => {
           <div className="right-side-upper-section">
             <h2>Timeline</h2>
           </div>
-          <DayTimeline />
         </div>
       </div>
     </div>

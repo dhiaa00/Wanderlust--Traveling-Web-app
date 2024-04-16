@@ -5,13 +5,16 @@ import CreateTourButton from "../buttons/CreateTourButton";
 import SearchBar from "./SearchBar";
 import ManagementButtons from "../buttons/ManagementButtons";
 
-const AgencyUpperSection = () => {
+const AgencyUpperSection = ({ createTour, setCreateTour }) => {
   return (
     <div className="agency-upper-section">
       <div className="agency-upper-section-buttons">
         <ChevronButton title="My Offers" />
         <ChevronButton title="Clients" />
-        <CreateTourButton />
+        <CreateTourButton
+          createTour={createTour}
+          setCreateTour={setCreateTour}
+        />
       </div>
       <div className="search-and-management-buttons">
         <SearchBar />
