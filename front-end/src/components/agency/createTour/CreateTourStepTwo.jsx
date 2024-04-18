@@ -1,19 +1,15 @@
 import React from "react";
 import "./createTourStepOne.css";
+import ImportButton from "./buttons/ImportButton";
 
 const CreateTourStepTwo = ({ step, prevStep, nextStep }) => {
   return (
     <div className="create-tour-step">
       <div className="post-background">
         <h2>Intro</h2>
-        <input
-          type="file"
-          id="intro-video"
-          name="intro-video"
-          accept="video/mp4, video/mov"
-        />
+        <ImportButton text="Import Video" type="video" />
         <h2>Post Pictures</h2>
-        <input type="image" />
+        <ImportButton text={"Import Images"} />
       </div>
       <div className="post-description-details">
         <div className="post-description">

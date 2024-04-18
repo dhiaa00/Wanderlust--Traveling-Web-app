@@ -3,12 +3,7 @@
   position: fixed;
 }
 .agency-navbar {
-  background: rgb(79, 118, 119);
-  background: linear-gradient(
-    180deg,
-    rgba(79, 118, 119, 1) 0%,
-    rgba(112, 138, 132, 1) 100%
-  );
+  background: var(--main-gradient-up-to-down);
   padding: 0.5rem 1rem;
   height: 95vh;
   z-index: 1000;

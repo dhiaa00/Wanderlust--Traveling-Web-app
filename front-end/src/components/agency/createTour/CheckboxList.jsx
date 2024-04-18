@@ -29,10 +29,14 @@ const CheckboxList = ({ options }) => {
     let checkboxIndex = 0;
 
     while (checkboxIndex < options.length) {
-      const checkboxesInDiv1 = options.slice(checkboxIndex, checkboxIndex + 5);
+      const checkboxesInDiv1 = options.slice(checkboxIndex, checkboxIndex + 3);
       const checkboxesInDiv2 = options.slice(
-        checkboxIndex + 5,
-        checkboxIndex + 10
+        checkboxIndex + 3,
+        checkboxIndex + 6
+      );
+      const checkboxesInDiv3 = options.slice(
+        checkboxIndex + 6,
+        checkboxIndex + 9
       );
 
       checkboxes.push(
@@ -43,10 +47,13 @@ const CheckboxList = ({ options }) => {
           <div className="checkbox-items">
             {renderCheckboxItems(checkboxesInDiv2)}
           </div>
+          <div className="checkbox-items">
+            {renderCheckboxItems(checkboxesInDiv3)}
+          </div>
         </SwiperSlide>
       );
 
-      checkboxIndex += 10;
+      checkboxIndex += 6;
     }
 
     return checkboxes;

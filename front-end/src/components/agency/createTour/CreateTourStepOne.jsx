@@ -2,13 +2,14 @@ import React from "react";
 import "./createTourStepOne.css";
 import CheckboxList from "./CheckboxList";
 import { tripCategoryOptions } from "../../../data/data";
+import ImportButton from "./buttons/ImportButton";
 
 const CreateTourStepOne = ({ step, prevStep, nextStep }) => {
   return (
     <div className="create-tour-step">
       <div className="post-background">
         <h2>Post Background</h2>
-        <input type="image" />
+        <ImportButton text={"Import Image"} />
       </div>
       <div className="post-description-details">
         <div className="post-description">

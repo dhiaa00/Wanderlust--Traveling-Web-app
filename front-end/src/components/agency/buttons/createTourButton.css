@@ -5,7 +5,7 @@
   gap: 10px;
   border-radius: 9px;
   color: black;
-  background: linear-gradient(180deg, #4f7677 0%, #708a84 100%);
+  background: var(--main-gradient-up-to-down);
   color: white;
   border: none;
   font-size: 16px;
@@ -34,7 +34,7 @@
     transform: translate(100%, -50%);
   }
   &:hover {
-    background: linear-gradient(180deg, #3e6163 0%, #576c67 100%);
+    background: linear-gradient(180deg, #00a89f 0%, #004461 100%);
   }
 
   /* responsive */

@@ -11,9 +11,7 @@ const ImageSwiper = () => {
   return (
     <div className="swiper-container">
       <Swiper
-        pagination={{
-          type: "progressbar",
-        }}
+        pagination={{}}
         navigation={true}
         modules={[Pagination, Navigation]}
         className="mySwiper">

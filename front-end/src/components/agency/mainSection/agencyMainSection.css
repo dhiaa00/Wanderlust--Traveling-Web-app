@@ -54,6 +54,10 @@
       margin-top: 5px;
       border-radius: 10px;
       aspect-ratio: 700/300;
+      filter: brightness(65%);
+    }
+    .swiper-pagination-bullet {
+      display: none;
     }
     .swiper-button-prev,
     .swiper-button-next {
