@@ -4,8 +4,14 @@ import ChevronButton from "../buttons/ChevronButton";
 import CreateTourButton from "../buttons/CreateTourButton";
 import SearchBar from "./SearchBar";
 import ManagementButtons from "../buttons/ManagementButtons";
+import EditTourButton from "../buttons/EditTourButton";
 
-const AgencyUpperSection = ({ createTour, setCreateTour }) => {
+const AgencyUpperSection = ({
+  createTour,
+  setCreateTour,
+  editTourOpen,
+  setEditTourOpen,
+}) => {
   return (
     <div className="agency-upper-section">
       <div className="agency-upper-section-buttons">
@@ -14,6 +20,10 @@ const AgencyUpperSection = ({ createTour, setCreateTour }) => {
         <CreateTourButton
           createTour={createTour}
           setCreateTour={setCreateTour}
+        />
+        <EditTourButton
+          editTourOpen={editTourOpen}
+          setEditTourOpen={setEditTourOpen}
         />
       </div>
       <div className="search-and-management-buttons">

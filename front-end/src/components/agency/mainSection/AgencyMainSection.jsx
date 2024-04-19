@@ -8,12 +8,19 @@ import DestinationInfoCard from "./infoCards/DestinationInfoCard";
 import MapComponent from "./MapComponent";
 import Expenses from "./Expenses";
 
-const AgencyMainSection = ({ createTour, setCreateTour }) => {
+const AgencyMainSection = ({
+  createTour,
+  setCreateTour,
+  editTourOpen,
+  setEditTourOpen,
+}) => {
   return (
     <div className="agency-main-section">
       <AgencyUpperSection
         createTour={createTour}
         setCreateTour={setCreateTour}
+        editTourOpen={editTourOpen}
+        setEditTourOpen={setEditTourOpen}
       />
       <div className="agency-bottom-section">
         <div className="agency-left-side">

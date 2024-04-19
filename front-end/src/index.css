@@ -2,7 +2,7 @@
 :root {
   --primary-color: #00ff94;
   --secondary-color: ;
-  --main-gradient: linear-gradient(90deg, #00c1b6 0%, #004b6c 100%);
+  --main-gradient: linear-gradient(180deg, #00c1b6 0%, #004b6c 100%);
   --main-gradient-up-to-down: linear-gradient(180deg, #00c1b6 0%, #004b6c 100%);
   --second-gradient: linear-gradient(
     180deg,

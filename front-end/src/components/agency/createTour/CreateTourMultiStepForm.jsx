@@ -30,11 +30,9 @@ const CreateTourMultiStepForm = () => {
             step={step}
             prevStep={prevStep}
             nextStep={nextStep}
+            closeModal={closeModal}
           />
         );
-      // Add more cases for additional steps
-      default:
-        return null;
     }
   };
 
