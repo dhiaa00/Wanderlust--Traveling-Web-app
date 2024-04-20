@@ -48,11 +48,13 @@
   }
 }
 .edit-tour-button {
+  width: 100px;
+  align-self: flex-end;
   &::after {
     content: "✏️";
     position: absolute;
     top: 50%;
-    left: 5%;
+    left: 8%;
     transform: translate(0, -50%);
   }
 }

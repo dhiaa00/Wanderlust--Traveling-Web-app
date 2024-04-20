@@ -5,6 +5,7 @@ import NavBar from "./components/navbar/NavBar";
 import SignUpAgency from "./pages/forms/SignUpAgency";
 import SingleTourPage from "./pages/Agency/SignleTour/SingleTourPage";
 import ConfirmYourEmail from "./pages/forms/ConfirmYourEmail";
+import AgencyTours from "./pages/Agency/Tours/AgencyTours";
 
 function App() {
   return (
@@ -25,7 +26,11 @@ function App() {
           element={<ConfirmYourEmail email={"test123@gmail.com"} />}
         />
       </Route>
-      <Route path="/agencies/:agencyId" element={<SingleTourPage />} />
+      <Route
+        path="/agencies/:agencyId/tours/:tourId"
+        element={<SingleTourPage />}
+      />
+      <Route path="/agencies/:agencyId/tours" element={<AgencyTours />} />
     </Routes>
   );
 }

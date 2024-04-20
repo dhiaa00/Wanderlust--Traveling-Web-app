@@ -21,10 +21,6 @@ const AgencyUpperSection = ({
           createTour={createTour}
           setCreateTour={setCreateTour}
         />
-        <EditTourButton
-          editTourOpen={editTourOpen}
-          setEditTourOpen={setEditTourOpen}
-        />
       </div>
       <div className="search-and-management-buttons">
         <SearchBar />
