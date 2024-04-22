@@ -1,0 +1,45 @@
+.agency-tour-list-item {
+  background-color: #e9e9e9;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 2rem;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 7px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-size: 1.2rem;
+  font-weight: 700;
+  cursor: pointer;
+  .image-and-id {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    .id {
+      font-size: 1.3rem;
+      font-weight: 700;
+    }
+    .image-container {
+      width: 200px;
+      height: 50px;
+      img {
+        width: 100%;
+        height: 100%;
+        border-radius: 7px;
+        object-fit: cover;
+      }
+    }
+  }
+  .country {
+    text-transform: capitalize;
+  }
+  .tour-list-child {
+    width: 25%;
+    display: flex;
+    justify-content: center;
+  }
+  &:hover {
+    background-color: #d9d9d9;
+    transform: scale(1.01);
+  }
+}

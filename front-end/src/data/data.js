@@ -23,15 +23,15 @@ export const tripCategoryOptions = [
   { value: "family", label: "Family" },
 ];
 
-const tours = [
+export const tours = [
   {
-    Images: [],
-    Country: "Japan",
-    place: "Fuji",
-    Date: {
-      From: "12-09-2024",
-      To: "17-09-2024",
+    images: [],
+    country: "japan",
+    place: "fuji",
+    date: {
+      from: "12-09-2024",
+      to: "17-09-2024",
     },
-    Clients: 52,
+    clients: 52,
   },
 ];

@@ -1,4 +1,24 @@
 .agencyTours {
   display: flex;
   padding: 10px 20px;
+  .agency-tour-list {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+  .tour-list-titles {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    .tour-list-title {
+      width: 25%;
+      display: flex;
+      justify-content: center;
+    }
+  }
 }

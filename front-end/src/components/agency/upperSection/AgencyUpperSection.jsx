@@ -6,12 +6,7 @@ import SearchBar from "./SearchBar";
 import ManagementButtons from "../buttons/ManagementButtons";
 import EditTourButton from "../buttons/EditTourButton";
 
-const AgencyUpperSection = ({
-  createTour,
-  setCreateTour,
-  editTourOpen,
-  setEditTourOpen,
-}) => {
+const AgencyUpperSection = ({ createTour, setCreateTour }) => {
   return (
     <div className="agency-upper-section">
       <div className="agency-upper-section-buttons">

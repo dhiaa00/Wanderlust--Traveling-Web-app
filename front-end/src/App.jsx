@@ -27,10 +27,10 @@ function App() {
         />
       </Route>
       <Route
-        path="/agencies/:agencyId/tours/:tourId"
+        path="/agency/:agencyId/tours/:tourId"
         element={<SingleTourPage />}
       />
-      <Route path="/agencies/:agencyId/tours" element={<AgencyTours />} />
+      <Route path="/agency/:agencyId/tours" element={<AgencyTours />} />
     </Routes>
   );
 }

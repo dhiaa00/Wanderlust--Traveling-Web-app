@@ -8,7 +8,7 @@ import ConfirmationCode from "./ConfirmationCode";
 const ConfirmYourEmail = ({ email }) => {
   const navigate = useNavigate();
   const onClickFunc = () => {
-    navigate("/agencies/1");
+    navigate("/agency/1/tours");
   };
   return (
     <div className="confirm-email-container">
