@@ -6,18 +6,22 @@ import agencyRouter from "./routes/agencyRouter.js";
 import reviewRouter from "./routes/reviewRouter.js";
 import offerRouter from "./routes/offerRouter.js";
 import cookieParser from "cookie-parser";
-
-
-
+import cors from "cors";
 import connectToDb from "./lib/connectToDb.js";
 const app = express();
+
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    credentials: true,
+  })
+);
 app.use(express.json());
 app.use(cookieParser());
 
-
 dotenv.config();
 
-await connectToDb(process.env.DB_STRING_URL);
+connectToDb(process.env.DB_STRING_URL);
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {

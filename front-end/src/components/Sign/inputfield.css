@@ -7,7 +7,24 @@
   border-right: none;
   border-left: none;
   border-bottom: 2px solid rgb(0, 0, 0, 0.5);
+  width: 100%;
 }
 .special-input:focus {
   outline: none;
+}
+.input-field-container {
+  /* Optional for styling */
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.password-toggle-btn {
+  position: absolute; /* Position the button inside the container */
+  right: 0; /* Adjust positioning */
+  top: 50%;
+  transform: translateY(-50%); /* Center vertically */
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: black; /* Adjust icon color */
 }

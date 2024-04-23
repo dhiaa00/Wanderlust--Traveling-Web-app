@@ -1,7 +1,14 @@
 import { Router } from "express";
-import { deleteUser, updateEmail, updatePassword, updateUser } from "../controllers/userControllers.js"
+import {
+  deleteUser,
+  updateEmail,
+  updatePassword,
+  updateUser,
+  verifyUser,
+} from "../controllers/userControllers.js";
 
 const userRouter = Router();
+userRouter.route("/user/verify/:confirmationId").post(verifyUser);
 
 userRouter.route("/update/username/:id").put(updateUser);
 

@@ -27,6 +27,19 @@ const Schema = new mongoose.Schema(
       required: true,
       trim: true,
     },
+    verificationCode: {
+      type: String,
+      length: 6,
+      trim: true,
+    },
+    confirmationId: {
+      type: String,
+      trim: true,
+    },
+    Verified: {
+      type: Boolean,
+      default: false,
+    },
     // profilePhoto: {
     //   type: Object,
     //   default: {
@@ -42,10 +55,10 @@ const Schema = new mongoose.Schema(
     favorites: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Offer'
-      }
+        ref: "Offer",
+      },
     ],
-  
+
     // isAccountVerified: {
     //   type: Boolean,
     //   default: false,
@@ -53,7 +66,6 @@ const Schema = new mongoose.Schema(
   },
   { timestamps: true, toJSON: { virtuals: true }, toObject: { virtuals: true } }
 ); // to add 2 properties created at and updated at
-
 
 const verifySignUp = (object) => {
   const Schema = joi.object({
@@ -89,9 +101,8 @@ const verifyUpdateUser = (obj) => {
   return schema.validate(obj);
 };
 
-const User =  mongoose.model("user", Schema); // mongo db will add s and make it in small case and add document with the name users that have UserSchema
-export {User, verifySignUp, verifyUpdateUser, verifyLogin}
-
+const User = mongoose.model("user", Schema); // mongo db will add s and make it in small case and add document with the name users that have UserSchema
+export { User, verifySignUp, verifyUpdateUser, verifyLogin };
 
 // import mongoose from "mongoose"
 
@@ -124,7 +135,6 @@ export {User, verifySignUp, verifyUpdateUser, verifyLogin}
 // );
 
 // const User = mongoose.model.User ||mongoose.model("User", schema);
-
 
 // export {User}
 
