@@ -47,6 +47,11 @@ const agencySchema = new mongoose.Schema(
       length: 6,
       trim: true,
     },
+    confirmationId: {
+      type: String,
+      trim: true,
+      unique: true,
+    },
     Verified: {
       type: Boolean,
       default: false,

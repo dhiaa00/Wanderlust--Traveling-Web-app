@@ -8,7 +8,7 @@ import {
 } from "../controllers/userControllers.js";
 
 const userRouter = Router();
-userRouter.route("/user/verify/:confirmationId").post(verifyUser);
+userRouter.route("/verify/:confirmationId").post(verifyUser);
 
 userRouter.route("/update/username/:id").put(updateUser);
 

@@ -9,7 +9,7 @@ const ConfirmationCode = ({ setFormData }) => {
     const newCode = event.target.value.slice(0, 1); // Limit to single digit
     setCode((prevCode) => prevCode.slice(0, index) + newCode);
     setFormData({
-      confirmationCode: code,
+      verificationCode: code.slice(0, index) + newCode,
     });
     // Focus on next input if current input is full and not the last one
     if (newCode.length === 1 && index < inputRefs.current.length - 1) {

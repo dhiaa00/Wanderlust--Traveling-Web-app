@@ -6,31 +6,32 @@ import { useNavigate } from "react-router-dom";
 import ConfirmationCode from "./ConfirmationCode";
 import axios from "axios";
 
-const ConfirmYourEmail = ({ email }) => {
+const ConfirmYourEmail = ({ email, type }) => {
   const navigate = useNavigate();
   const confirmationId = window.location.pathname.split("/").pop();
   const [formData, setFormData] = useState({
-    confirmationCode: "",
+    verificationCode: "",
   });
 
-  console.log(formData.confirmationCode);
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     try {
       const response = await axios.post(
-        `http://localhost:8080/user/verify/${confirmationId}`,
+        type === "agency"
+          ? `http://localhost:5000/agency/verify/${confirmationId}`
+          : `http://localhost:8080/user/verify/${confirmationId}`,
         formData,
         {
           withCredentials: true,
         }
       );
-
-      if (response.succes) {
-        console.log(response.data.message);
+      console.log(response.status == 200);
+      if (response.status == 200) {
+        console.log(response);
         navigate("/homepage");
       } else {
-        console.log(response.data.message);
+        console.log("else " + response);
       }
     } catch (error) {
       console.error("Error sending signup data:", error);

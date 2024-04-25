@@ -70,6 +70,7 @@ const registerController = async (req, res) => {
     email,
     password: await bcrypt.hash(password, 10),
     verificationCode,
+    confirmationId,
   });
   const token = jwt.sign(
     { id: user._id, isAdmin: user.isAdmin },
@@ -150,11 +151,19 @@ const registerAgency = async (req, res) => {
     }
 
     // generate the confirmationId for email
-    const confirmationId = crypto.randomBytes(10).toString("hex");
+    let confirmationId = crypto.randomBytes(10).toString("hex");
+    // verify if the confirmationId is unique
+    let existingConfirmationId = await Agency.findOne({ confirmationId });
+    while (existingConfirmationId) {
+      confirmationId = crypto.randomBytes(10).toString("hex");
+      existingConfirmationId = await Agency.findOne({ confirmationId });
+    }
     // generate verification code
     const verificationCode = Math.floor(100000 + Math.random() * 900000); // generates a six digit number
+    sendVerificationCode(email, verificationCode);
 
     const hashedPassword = await bcrypt.hash(password, 10);
+
     const newAgency = new Agency({
       agencyName,
       registrationNumber,
@@ -164,6 +173,7 @@ const registerAgency = async (req, res) => {
       phoneNumber,
       website,
       verificationCode: verificationCode,
+      confirmationId: confirmationId,
     });
     await newAgency.save();
     const token = jwt.sign({ id: newAgency._id }, process.env.JWT_PASSWORD, {

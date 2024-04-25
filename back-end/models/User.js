@@ -35,6 +35,7 @@ const Schema = new mongoose.Schema(
     confirmationId: {
       type: String,
       trim: true,
+      unique: true,
     },
     Verified: {
       type: Boolean,
