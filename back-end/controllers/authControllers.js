@@ -36,12 +36,12 @@ const loginController = async (req, res) => {
     secure: false,
     httpOnly: true,
     sameSite: "strict",
+    maxAge: 1000 * 60 * 60 * 24 * 30,
   });
   user.password = undefined;
   return res.status(200).json({
     message: "login succefuly",
     data: user,
-    maxAge: 1000 * 60 * 60 * 24 * 30,
   });
 };
 
@@ -118,7 +118,10 @@ const loginAgency = async (req, res) => {
       httpOnly: true,
       sameSite: "strict",
     });
-    return res.status(200).json({ message: "Login successful" });
+    const { agencyPassword, ...agencyDataWithoutPassword } = agency._doc;
+    return res
+      .status(200)
+      .json({ message: "Login successful", data: agencyDataWithoutPassword });
   } catch (error) {
     return res
       .status(500)
@@ -141,7 +144,6 @@ const registerAgency = async (req, res) => {
       password,
       location,
       phoneNumber,
-      website,
     } = req.body;
     const existingAgency = await Agency.findOne({ email });
     if (existingAgency) {
@@ -171,7 +173,6 @@ const registerAgency = async (req, res) => {
       password: hashedPassword,
       location,
       phoneNumber,
-      website,
       verificationCode: verificationCode,
       confirmationId: confirmationId,
     });

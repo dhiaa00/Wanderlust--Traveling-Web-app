@@ -8,18 +8,23 @@ import DestinationInfoCard from "./infoCards/DestinationInfoCard";
 import MapComponent from "./MapComponent";
 import Expenses from "./Expenses";
 import EditTourButton from "../buttons/EditTourButton";
+import Collaborations from "./Collaborations";
 
 const AgencyMainSection = ({
   createTour,
   setCreateTour,
   editTourOpen,
   setEditTourOpen,
+  notificationsOpen,
+  setNotificationsOpen,
 }) => {
   return (
     <div className="agency-main-section">
       <AgencyUpperSection
         createTour={createTour}
         setCreateTour={setCreateTour}
+        notificationsOpen={notificationsOpen}
+        setNotificationsOpen={setNotificationsOpen}
       />
       <div className="agency-bottom-section">
         <div className="agency-left-side">
@@ -34,6 +39,7 @@ const AgencyMainSection = ({
           </div>
           <div className="map-and-collaborations">
             <MapComponent />
+            <Collaborations />
           </div>
         </div>
         <div className="agency-right-side">

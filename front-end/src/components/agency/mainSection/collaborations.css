@@ -1,0 +1,73 @@
+.collaborations {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  margin-left: 2rem;
+  justify-content: space-between;
+  h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+  }
+  .titles {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    p {
+      font-size: 1rem;
+      font-weight: 500;
+      color: rgba(0, 0, 0, 0.38);
+      width: 25%;
+      text-align: start;
+    }
+  }
+  .collaborations-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    gap: 0.3rem;
+    max-height: 40%;
+    overflow-y: scroll;
+    /* customize the scroll bar */
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+  .collaboration {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    .collaboration-item {
+      width: 25%;
+      text-align: start;
+      font-size: 1rem;
+      font-weight: 500;
+      color: black;
+    }
+    .priority {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      width: 25%;
+      text-align: center;
+      span {
+        width: 70%;
+        color: white;
+        border-radius: 10px;
+      }
+    }
+  }
+  .main-button {
+    margin-top: 1rem;
+    width: 80%;
+    justify-content: center;
+    justify-self: flex-end;
+    p {
+      font-size: 1rem;
+      font-weight: 600;
+    }
+  }
+}

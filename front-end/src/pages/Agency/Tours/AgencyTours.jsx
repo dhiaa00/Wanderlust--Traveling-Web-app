@@ -1,13 +1,37 @@
 import "./agencyTours.css";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import AgencyNavbar from "../../../components/agency/navbar/AgencyNavbar";
 import CreateTourMultiStepForm from "../../../components/agency/createTour/CreateTourMultiStepForm";
 import AgencyUpperSection from "../../../components/agency/upperSection/AgencyUpperSection";
 import TourListItem from "../../../components/agency/TourListItem/TourListItem";
 import { tours } from "../../../data/data";
+import axios from "axios";
 
 const AgencyTours = () => {
   const [createTour, setCreateTour] = useState(false);
+  const [agencyTours, setAgencyTours] = useState([]);
+  const agencyId = window.location.pathname
+    .split("agency/")
+    .pop()
+    .replace("/tours", "");
+
+  useEffect(() => {
+    const getTours = async () => {
+      try {
+        const response = await axios.get(
+          await axios.get("http://localhost:8080/offer/getAll", {
+            id: agencyId,
+          })
+        );
+        console.log(response.data);
+        setAgencyTours(response.data.offers);
+      } catch (error) {
+        console.error("Error getting tours:", error);
+      }
+    };
+
+    getTours();
+  }, []);
   return (
     <div className="agencyTours">
       <AgencyNavbar />
@@ -23,10 +47,17 @@ const AgencyTours = () => {
           <div className="days tour-list-title">Days</div>
         </div>
         <div className="agency-tour-list">
-          <TourListItem id={1} tour={tours[0]} />
-          <TourListItem id={2} tour={tours[0]} />
-          <TourListItem id={3} tour={tours[0]} />
-          <TourListItem id={4} tour={tours[0]} />
+          {agencyTours.map((tour) => {
+            return (
+              <TourListItem
+                key={tour.id}
+                id={tour.id}
+                country={tour.country}
+                clients={tour.clients}
+                days={tour.days}
+              />
+            );
+          })}
         </div>
       </div>
       {createTour && <CreateTourMultiStepForm />}

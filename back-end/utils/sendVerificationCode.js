@@ -13,7 +13,8 @@ const sendVerificationCode = async (email, verificationCode) => {
     from: '"Wanderlust" test@email.com', // sender address
     to: email, // receiver's email
     subject: "Email Verification", // Subject line
-    text: `Your verification code is ${verificationCode}`, // plain text body
+    // send an html template
+    html: `<p style="font-family: Arial, sans-serif; font-size: 16px; color: #333;">Your verification code is <strong>${verificationCode}</strong></p>`,
   });
 
   return info;

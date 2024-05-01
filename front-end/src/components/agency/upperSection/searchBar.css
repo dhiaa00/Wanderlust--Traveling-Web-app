@@ -179,13 +179,9 @@
   /* some animations for searching */
 
   .voice-search-enabled-p {
-    animation: vanishing 0.5s ease-in-out forwards;
+    display: none;
   }
-  .voice-search-enabled {
-    &::after {
-      left: -200px;
-    }
-  }
+
   .voice-search {
     .voice-search-enabled-input {
       animation: appearing 0.2s ease-in-out forwards;
@@ -206,18 +202,6 @@
   100% {
     width: 100%;
     opacity: 1;
-  }
-}
-
-@keyframes vanishing {
-  0% {
-    opacity: 1;
-    font-size: 15px;
-  }
-  100% {
-    opacity: 0;
-    display: none;
-    font-size: 5px;
   }
 }
 

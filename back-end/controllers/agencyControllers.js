@@ -137,7 +137,10 @@ const verifyAgency = async (req, res) => {
     }
     agency.Verified = true;
     await agency.save();
-    res.status(200).json({ message: "User verified successfully" });
+    agency.password = undefined;
+    res
+      .status(200)
+      .json({ message: "User verified successfully", agency: agency });
   } catch (error) {
     res
       .status(500)

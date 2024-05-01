@@ -1,5 +1,4 @@
-import {Offer} from '../models/Offer.js';
-
+import { Offer } from "../models/Offer.js";
 
 const createOffer = async (req, res) => {
   try {
@@ -12,12 +11,16 @@ const createOffer = async (req, res) => {
       price,
       startDate,
       endDate,
-      agency: agencyId
+      agency: agencyId,
     });
     const savedOffer = await offer.save();
-    res.status(201).json({ message: "Offer created successfully", data: savedOffer });
+    res
+      .status(201)
+      .json({ message: "Offer created successfully", data: savedOffer });
   } catch (error) {
-    res.status(500).json({ message: "Failed to create offer", error: error.message });
+    res
+      .status(500)
+      .json({ message: "Failed to create offer", error: error.message });
   }
 };
 
@@ -25,7 +28,15 @@ const updateOfferById = async (req, res) => {
   try {
     const offerId = req.params._id;
     const agencyId = req.user._id; // Assuming the authenticated user is an agency
-    const { title, description, price, startDate, endDate, temporaryPrice, temporaryPriceDurationDays } = req.body;
+    const {
+      title,
+      description,
+      price,
+      startDate,
+      endDate,
+      temporaryPrice,
+      temporaryPriceDurationDays,
+    } = req.body;
 
     const offer = await Offer.findById(offerId);
     if (!offer) {
@@ -47,7 +58,9 @@ const updateOfferById = async (req, res) => {
     if (temporaryPrice && temporaryPriceDurationDays) {
       const currentDate = new Date();
       const temporaryEndDate = new Date();
-      temporaryEndDate.setDate(currentDate.getDate() + temporaryPriceDurationDays);
+      temporaryEndDate.setDate(
+        currentDate.getDate() + temporaryPriceDurationDays
+      );
 
       offer.temporaryPrice = temporaryPrice;
       offer.temporaryPriceStartDate = currentDate;
@@ -61,9 +74,13 @@ const updateOfferById = async (req, res) => {
 
     const updatedOffer = await offer.save();
 
-    res.status(200).json({ message: "Offer updated successfully", data: updatedOffer });
+    res
+      .status(200)
+      .json({ message: "Offer updated successfully", data: updatedOffer });
   } catch (error) {
-    res.status(500).json({ message: "Failed to update offer", error: error.message });
+    res
+      .status(500)
+      .json({ message: "Failed to update offer", error: error.message });
   }
 };
 
@@ -85,19 +102,25 @@ const deleteOfferById = async (req, res) => {
 
     res.status(200).json({ message: "Offer deleted successfully", data: null });
   } catch (error) {
-    res.status(500).json({ message: "Failed to delete offer", error: error.message });
+    res
+      .status(500)
+      .json({ message: "Failed to delete offer", error: error.message });
   }
 };
 
-
 const getAllOffers = async (req, res) => {
   try {
-    const agencyId = req.user._id; // Assuming the authenticated user is an agency
-
+    const agencyId = req.id; // Assuming the authenticated user is an agency
     const offers = await Offer.find({ agency: agencyId });
-    res.status(200).json({ message: "Offers retrieved successfully", data: offers });
+    console.log(offers);
+    res
+      .status(200)
+      .json({ message: "Offers retrieved successfully", test: offers });
   } catch (error) {
-    res.status(500).json({ message: "Failed to retrieve offers", error: error.message });
+    res.status(500).json({
+      message: "Failed to retrieve offers",
+      error: error.message,
+    });
   }
 };
 
@@ -111,9 +134,13 @@ const getOfferById = async (req, res) => {
       return res.status(404).json({ message: "Offer not found", data: null });
     }
 
-    res.status(200).json({ message: "Offer retrieved successfully", data: offer });
+    res
+      .status(200)
+      .json({ message: "Offer retrieved successfully", data: offer });
   } catch (error) {
-    res.status(500).json({ message: "Failed to retrieve offer", error: error.message });
+    res
+      .status(500)
+      .json({ message: "Failed to retrieve offer", error: error.message });
   }
 };
 
@@ -122,5 +149,5 @@ export {
   getAllOffers,
   updateOfferById,
   deleteOfferById,
-  getOfferById
+  getOfferById,
 };

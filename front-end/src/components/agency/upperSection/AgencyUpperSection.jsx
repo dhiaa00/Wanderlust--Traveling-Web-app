@@ -6,7 +6,12 @@ import SearchBar from "./SearchBar";
 import ManagementButtons from "../buttons/ManagementButtons";
 import EditTourButton from "../buttons/EditTourButton";
 
-const AgencyUpperSection = ({ createTour, setCreateTour }) => {
+const AgencyUpperSection = ({
+  createTour,
+  setCreateTour,
+  notificationsOpen,
+  setNotificationsOpen,
+}) => {
   return (
     <div className="agency-upper-section">
       <div className="agency-upper-section-buttons">
@@ -19,7 +24,10 @@ const AgencyUpperSection = ({ createTour, setCreateTour }) => {
       </div>
       <div className="search-and-management-buttons">
         <SearchBar />
-        <ManagementButtons />
+        <ManagementButtons
+          notificationsOpen={notificationsOpen}
+          setNotificationsOpen={setNotificationsOpen}
+        />
       </div>
     </div>
   );

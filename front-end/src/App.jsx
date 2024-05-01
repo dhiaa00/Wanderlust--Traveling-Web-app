@@ -22,8 +22,8 @@ function App() {
         <Route path="tourist" element={<SignUpTourist />} />
         <Route path="agency" element={<SignUpAgency />} />
         <Route
-          path="confirmation/:confirmationId"
-          element={<ConfirmYourEmail email={"test123@gmail.com"} />}
+          path="confirmation/:type/:confirmationId"
+          element={<ConfirmYourEmail />}
         />
       </Route>
       <Route

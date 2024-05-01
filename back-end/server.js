@@ -31,5 +31,5 @@ app.listen(PORT, () => {
 app.use("/auth", authRouter);
 app.use("/user", userRouter);
 app.use("/agency", agencyRouter);
-app.use("/offer/review", reviewRouter);
 app.use("/offer", offerRouter);
+app.use("/offer/review", reviewRouter);

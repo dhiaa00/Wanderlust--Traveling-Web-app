@@ -14,28 +14,21 @@
 .main-button p {
   font-size: 20px;
   font-weight: 600;
-  background: linear-gradient(
-    to right,
-    rgba(80, 118, 119, 0.5),
-    rgba(167, 134, 75, 0.5)
-  );
+  background: var(--main-gradient);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+  transition: 0.6s;
 }
 
 .main-button::after {
   content: "";
   position: absolute;
-  top: -1.5px;
+  top: -1.2px;
   right: -1.5px;
   bottom: -1.5px;
   left: -1.5px;
-  background: linear-gradient(
-    to right,
-    rgba(80, 118, 119, 0.5),
-    rgba(167, 134, 75, 0.5)
-  );
+  background: var(--main-gradient);
   border-radius: 12px;
   z-index: -1;
 }
@@ -46,15 +39,20 @@
   height: 100%;
   top: 0px;
   left: 0px;
-  background: linear-gradient(
-    to right,
-    rgba(80, 118, 119, 0.5),
-    rgba(167, 134, 75, 0.5)
-  );
+  background: var(--main-gradient);
   border-radius: 9.8px;
   z-index: 0;
-  transition: 0.3s;
+  transition: 0.5s;
 }
 .main-button:hover::before {
   width: 100%;
+}
+.main-button:hover {
+  p {
+    color: white;
+    -webkit-background-clip: unset;
+    background-clip: unset;
+    z-index: 1;
+    background: unset;
+  }
 }

@@ -31,8 +31,7 @@ const SignUpTourist = () => {
         }
       );
 
-      console.log(response.data.message);
-      navigate(`/signup/confirmation/${response.data.confirmationId}`);
+      navigate(`/signup/confirmation/user/${response.data.confirmationId}`);
     } catch (error) {
       console.error("Error sending signup data:", error);
     }

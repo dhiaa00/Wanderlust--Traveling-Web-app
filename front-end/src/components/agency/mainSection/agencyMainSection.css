@@ -118,7 +118,7 @@
     .map-container {
       height: 100%;
       min-height: 200px;
-      width: 300px;
+      width: 30%;
       border-radius: 10px;
       box-shadow: var(--basic-shadow);
       .leaflet-container {

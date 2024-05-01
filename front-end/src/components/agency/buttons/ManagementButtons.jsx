@@ -4,13 +4,17 @@ import chatIcon from "/src/SVGs/chat-icon.svg";
 import notificationIcon from "/src/SVGs/notification-icon.svg";
 import settingsIcon from "/src/SVGs/settings-icon.svg";
 
-const ManagementButtons = () => {
+const ManagementButtons = ({ notificationsOpen, setNotificationsOpen }) => {
+  const handleClickNotification = () => {
+    setNotificationsOpen(!notificationsOpen);
+  };
+
   return (
     <div className="management-buttons">
       <button className="management-button">
         <img src={chatIcon} alt="chat icon" />
       </button>
-      <button className="management-button">
+      <button className="management-button" onClick={handleClickNotification}>
         <img src={notificationIcon} alt="notification icon" />
       </button>
       <button className="management-button">

@@ -24,7 +24,7 @@ const InputField = ({ title, name, value, onChange }) => {
               : "password"
             : "text"
         }
-        placeholder={title}
+        placeholder={name == "confirmPassword" ? "Confirm Password" : title}
         name={name}
         value={value}
         onChange={onChange}

@@ -5,10 +5,15 @@ import MainButton from "../../components/buttons/MainButton";
 import { useNavigate } from "react-router-dom";
 import ConfirmationCode from "./ConfirmationCode";
 import axios from "axios";
+import { saveToLocalStorage } from "../../utils/localStorageOp";
 
-const ConfirmYourEmail = ({ email, type }) => {
+const ConfirmYourEmail = () => {
   const navigate = useNavigate();
   const confirmationId = window.location.pathname.split("/").pop();
+  const typeList = window.location.pathname
+    .replace(confirmationId, "")
+    .split("/");
+  const type = typeList[typeList.length - 2];
   const [formData, setFormData] = useState({
     verificationCode: "",
   });
@@ -19,17 +24,22 @@ const ConfirmYourEmail = ({ email, type }) => {
     try {
       const response = await axios.post(
         type === "agency"
-          ? `http://localhost:5000/agency/verify/${confirmationId}`
+          ? `http://localhost:8080/agency/verify/${confirmationId}`
           : `http://localhost:8080/user/verify/${confirmationId}`,
         formData,
         {
           withCredentials: true,
         }
       );
-      console.log(response.status == 200);
+      console.log(response.data.agency);
       if (response.status == 200) {
-        console.log(response);
-        navigate("/homepage");
+        saveToLocalStorage(
+          type == "agency" ? "agency" : "user",
+          response.data.agency
+        );
+        type == "agency"
+          ? navigate(`/agency/${response.data.agency._id}`)
+          : navigate(`/user/${response.data.agency._id}`);
       } else {
         console.log("else " + response);
       }
@@ -44,7 +54,8 @@ const ConfirmYourEmail = ({ email, type }) => {
         <div className="confirmation-text">
           <h1>Confirm Your Email</h1>
           <p>
-            we have sent email to <span className="email-adresse">{email}</span>
+            we have sent email to{" "}
+            <span className="email-adresse">test@gmail.com</span>
             to confirm the validity of your email adress.
           </p>
           <p>Enter the six numbers sent to your email !</p>

@@ -8,6 +8,12 @@ import axios from "axios";
 
 const SignUpAgency = () => {
   const navigate = useNavigate();
+
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const handleChangeConfirmPassword = (event) => {
+    setConfirmPassword(event.target.value);
+  };
+
   const [formData, setFormData] = useState({
     agencyName: "",
     email: "",
@@ -35,7 +41,7 @@ const SignUpAgency = () => {
       );
 
       console.log(response.data.message);
-      navigate(`/signup/confirmation/${response.data.confirmationId}`);
+      navigate(`/signup/confirmation/agency/${response.data.confirmationId}`);
     } catch (error) {
       console.error("Error sending signup data:", error.response.data.message);
     }
@@ -68,16 +74,17 @@ const SignUpAgency = () => {
                 onChange={handleInputChange}
               />
               <InputField
-                title="Agency Location"
-                name="location"
-                value={formData.location}
-                onChange={handleInputChange}
-              />
-              <InputField
                 title="password"
                 name="password"
                 value={formData.password}
                 onChange={handleInputChange}
+              />
+              <InputField
+                title="password"
+                name="confirmPassword"
+                value={confirmPassword}
+                setConfirmPassword={setConfirmPassword}
+                onChange={handleChangeConfirmPassword}
               />
               <MainButton text="Create" onClickFunc={handleSubmit} />
               <p>
@@ -92,9 +99,9 @@ const SignUpAgency = () => {
                 onChange={handleInputChange}
               />
               <InputField
-                title="Agency Website"
-                name="website"
-                value={formData.website}
+                title="Agency Location"
+                name="location"
+                value={formData.location}
                 onChange={handleInputChange}
               />
             </div>
