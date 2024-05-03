@@ -11,6 +11,7 @@ const AgencyUpperSection = ({
   setCreateTour,
   notificationsOpen,
   setNotificationsOpen,
+  setTourCreated,
 }) => {
   return (
     <div className="agency-upper-section">
@@ -20,6 +21,7 @@ const AgencyUpperSection = ({
         <CreateTourButton
           createTour={createTour}
           setCreateTour={setCreateTour}
+          setTourCreated={setTourCreated}
         />
       </div>
       <div className="search-and-management-buttons">

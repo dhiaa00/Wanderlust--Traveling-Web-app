@@ -5,7 +5,7 @@ import "./createTourForm.css";
 import CreateTourStepTwo from "./CreateTourStepTwo";
 import axios from "axios";
 
-const CreateTourMultiStepForm = () => {
+const CreateTourMultiStepForm = ({ setCreateTour, setTourCreated }) => {
   const agencyId = window.location.pathname
     .split("agency/")
     .pop()
@@ -24,11 +24,15 @@ const CreateTourMultiStepForm = () => {
     endDate: "",
     agencyId: agencyId,
   });
-  console;
-
-  const handleInputChange = (event) => {
+  const handleInputChange = (event, url) => {
     const { name, value } = event.target;
-    setFormData({ ...formData, [name]: value }); // Update state for specific field
+    if (name === "thumbImageUrl" || name === "videoUrl") {
+      setFormData({ ...formData, [name]: url });
+    } else if (name === "otherImagesUrl") {
+      setFormData({ ...formData, [name]: url });
+    } else {
+      setFormData({ ...formData, [name]: value }); // Update state for specific field
+    }
   };
 
   const handleCheckboxChange = (category) => {
@@ -48,7 +52,8 @@ const CreateTourMultiStepForm = () => {
         "http://localhost:8080/offer/create",
         formData
       );
-      console.log(response);
+      setTourCreated(true);
+      setCreateTour(false);
     } catch (error) {
       console.log(error);
     }

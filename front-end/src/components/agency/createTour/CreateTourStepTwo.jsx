@@ -19,9 +19,19 @@ const CreateTourStepTwo = ({
     <div className="create-tour-step">
       <div className="post-background post-background-step-two">
         <h2>Intro</h2>
-        <ImportButton text="Import Video" type="video" />
+        <ImportButton
+          text="Import Video"
+          name="videoUrl"
+          type="video"
+          handleInputChange={handleInputChange}
+        />
         <h2>Post Pictures</h2>
-        <ImportButton text={"Import Images"} />
+        <ImportButton
+          text={"Import Images"}
+          name="otherImagesUrl"
+          type="image"
+          handleInputChange={handleInputChange}
+        />
       </div>
       <div className="post-description-details post-description-details-step-two">
         <div className="post-description">

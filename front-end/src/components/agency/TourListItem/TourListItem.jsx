@@ -27,10 +27,7 @@ const TourListItem = ({ order, tour }) => {
       <div className="image-and-id tour-list-child">
         <div className="id">{order}</div>
         <div className="image-container">
-          <img
-            src={`/src/images/testing/${tour.country}/${tour.country}1.png`}
-            alt="Travel Image"
-          />
+          <img src={tour.thumbImageUrl} alt="Travel Image" />
         </div>
       </div>
       <div className="country tour-list-child">{tour.country}</div>

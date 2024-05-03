@@ -8,6 +8,7 @@ import axios from "axios";
 
 const AgencyTours = () => {
   const [createTour, setCreateTour] = useState(false);
+  const [tourCreated, setTourCreated] = useState(false);
   const [agencyTours, setAgencyTours] = useState([]);
   const agencyId = window.location.pathname
     .split("agency/")
@@ -30,7 +31,7 @@ const AgencyTours = () => {
     };
 
     getTours();
-  }, []);
+  }, [tourCreated]);
   return (
     <div className="agencyTours">
       <AgencyNavbar />
@@ -38,6 +39,7 @@ const AgencyTours = () => {
         <AgencyUpperSection
           createTour={createTour}
           setCreateTour={setCreateTour}
+          setTourCreated={setTourCreated}
         />
         <div className="tour-list-titles">
           <div className="id tour-list-title">Collection</div>
@@ -51,7 +53,12 @@ const AgencyTours = () => {
           })}
         </div>
       </div>
-      {createTour && <CreateTourMultiStepForm />}
+      {createTour && (
+        <CreateTourMultiStepForm
+          setTourCreated={setTourCreated}
+          setCreateTour={setCreateTour}
+        />
+      )}
     </div>
   );
 };

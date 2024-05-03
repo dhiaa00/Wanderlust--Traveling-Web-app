@@ -1,77 +1,67 @@
-import React, { useState } from "react";
+import React, { useRef } from "react";
+import "./importButton.css";
 import axios from "axios";
 
-const ImageUpload = ({ text, onUploadSuccess }) => {
-  const [file, setFile] = useState(null);
-  const [uploadState, setUploadState] = useState({
-    uploading: false,
-    error: null,
-  });
+const ImportButton = ({ text, name, type, handleInputChange }) => {
+  const cloud_name = "djwcvewmf";
+  const ImageFileInput = useRef(null);
 
-  const CLOUDINARY_PRESET = {
-    name: "Social-Media-Posts", // Replace with your desired preset name
-    cloudName: "djwcvewmf", // Replace with your Cloudinary Cloud Name
-    apiKey: "583915189455894", // Replace with your Cloudinary API Key
-    resourceType: ["image", "video"],
-    transformations: {
-      image: {
-        f_auto: true,
-        q_auto: "best",
-      },
-      video: {
-        c_fit: "1280x720",
-        b_auto: true,
-      },
-    },
-    // Define uploadFolder logic based on your needs (optional)
-    // tags: ['social_media', `{year}`], // Enable for dynamic year tag
-    // uploadRestrictions: { // Configure access control if needed (optional)
-    //   signed: true,
-    // },
-  };
+  const handleImageUpload = async (event) => {
+    const files = event.target.files;
+    const formData = new FormData();
+    const urls = [];
 
-  const handleFileChange = (event) => {
-    setFile(event.target.files[0]);
-  };
+    if (name === "otherImagesUrl") {
+      for (let i = 0; i < files.length; i++) {
+        formData.append("file", files[i]);
+        formData.append("upload_preset", "e_travelling");
 
-  const handleUpload = async () => {
-    if (!file) {
-      return;
-    }
+        try {
+          const response = await axios.post(
+            `https://api.cloudinary.com/v1_1/${cloud_name}/upload`,
+            formData
+          );
 
-    setUploadState({ uploading: true, error: null });
-    try {
-      const formData = new FormData();
-      formData.append("file", file);
-      formData.append("upload_preset", CLOUDINARY_PRESET);
-      const response = await axios.post(
-        `https://api.cloudinary.com/v1_1/djwcvewmf/upload`,
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
+          urls.push(response.data.secure_url); // Add the URL to the array
+        } catch (error) {
+          console.error("Error uploading file:", error);
         }
-      );
+      }
+      handleInputChange(event, urls);
+    } else {
+      formData.append("file", files[0]);
+      formData.append("upload_preset", "e_travelling");
+      try {
+        const response = await axios.post(
+          `https://api.cloudinary.com/v1_1/${cloud_name}/upload`,
+          formData
+        );
 
-      onUploadSuccess(response.data.public_id); // Pass the uploaded image/video public ID to parent component
-      setUploadState({ uploading: false, error: null });
-    } catch (error) {
-      console.error("Upload error:", error);
-      setUploadState({ uploading: false, error: error.message });
+        urls.push(response.data.secure_url); // Add the URL to the array
+      } catch (error) {
+        console.error("Error uploading file:", error);
+      }
+      handleInputChange(event, urls[0]);
     }
   };
 
   return (
-    <div>
-      <input type="file" onChange={handleFileChange} />
-      {uploadState.uploading && <p>Uploading...</p>}
-      {uploadState.error && <p>Error: {uploadState.error}</p>}
-      <button onClick={handleUpload} disabled={uploadState.uploading}>
-        {text || "Upload"}
-      </button>
+    <div className="post-import-image-container">
+      <div
+        className="post-import-image"
+        onClick={() => ImageFileInput.current.click()}>
+        <input
+          type="file"
+          name={name}
+          accept={type === "image" ? "image/*" : "video/mp4, video/mov"}
+          ref={ImageFileInput}
+          onChange={handleImageUpload}
+          {...(name === "otherImagesUrl" ? { multiple: true } : {})}
+        />
+        <span>{text}</span>
+      </div>
     </div>
   );
 };
 
-export default ImageUpload;
+export default ImportButton;

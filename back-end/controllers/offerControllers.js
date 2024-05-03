@@ -3,8 +3,18 @@ import { Offer } from "../models/Offer.js";
 
 const createOffer = async (req, res) => {
   try {
-    const { title, country, description, price, startDate, endDate, agencyId } =
-      req.body;
+    const {
+      title,
+      country,
+      description,
+      price,
+      startDate,
+      endDate,
+      thumbImageUrl,
+      otherImagesUrl,
+      videoUrl,
+      agencyId,
+    } = req.body;
     const offer = new Offer({
       title,
       country,
@@ -12,6 +22,9 @@ const createOffer = async (req, res) => {
       price,
       startDate,
       endDate,
+      thumbImageUrl,
+      otherImagesUrl,
+      videoUrl,
       agency: agencyId,
     });
     const savedOffer = await offer.save();
@@ -35,6 +48,9 @@ const updateOfferById = async (req, res) => {
       price,
       startDate,
       endDate,
+      thumbImageUrl,
+      otherImagesUrl,
+      videoUrl,
       temporaryPrice,
       temporaryPriceDurationDays,
     } = req.body;
@@ -54,6 +70,9 @@ const updateOfferById = async (req, res) => {
     offer.price = price;
     offer.startDate = startDate;
     offer.endDate = endDate;
+    offer.thumbImageUrl = thumbImageUrl;
+    offer.otherImagesUrl = otherImagesUrl;
+    offer.videoUrl = videoUrl;
 
     // Handle temporary price update
     if (temporaryPrice && temporaryPriceDurationDays) {

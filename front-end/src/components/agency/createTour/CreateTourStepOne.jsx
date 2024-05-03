@@ -11,17 +11,18 @@ const CreateTourStepOne = ({
   nextStep,
   handleInputChange,
   handleCheckboxChange,
-  // Add this prop to receive uploaded image public ID
-  onImageUploadSuccess,
 }) => {
-  const [uploadedImage, setUploadedImage] = useState(null); // Track uploaded image public ID
-
   return (
     <div className="create-tour-step">
       <div className="post-background">
         <h2>Post Background</h2>
         {/* Image Upload for Background */}
-        <ImageUpload onUploadSuccess={onImageUploadSuccess} />
+        <ImageUpload
+          text="Upload Main Image"
+          name="thumbImageUrl"
+          type="image"
+          handleInputChange={handleInputChange}
+        />
       </div>
       <div className="post-description-details">
         <div className="post-description">
