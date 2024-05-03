@@ -151,9 +151,9 @@ const getAllOffers = async (req, res) => {
 const getOfferById = async (req, res) => {
   try {
     const offerId = req.params.id;
-    const agencyId = req.user._id; // Assuming the authenticated user is an agency
-
+    const agencyId = req.agency._id;
     const offer = await Offer.findOne({ _id: offerId, agency: agencyId });
+    console.log("offer: ", offer);
     if (!offer) {
       return res.status(404).json({ message: "Offer not found", data: null });
     }

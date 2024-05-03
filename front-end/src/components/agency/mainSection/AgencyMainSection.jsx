@@ -17,6 +17,7 @@ const AgencyMainSection = ({
   setEditTourOpen,
   notificationsOpen,
   setNotificationsOpen,
+  tour,
 }) => {
   return (
     <div className="agency-main-section">
@@ -29,16 +30,16 @@ const AgencyMainSection = ({
       <div className="agency-bottom-section">
         <div className="agency-left-side">
           <div className="images-and-expenses">
-            <ImageSwiper />
+            <ImageSwiper tour={tour} />
             <Expenses />
           </div>
           <div className="info-cards">
-            <TravelDateInfoCard />
-            <ClientInfoCard />
-            <DestinationInfoCard />
+            <TravelDateInfoCard tour={tour} />
+            <ClientInfoCard clients={tour.clients} />
+            <DestinationInfoCard tour={tour} />
           </div>
           <div className="map-and-collaborations">
-            <MapComponent />
+            <MapComponent place={tour.country} />
             <Collaborations />
           </div>
         </div>

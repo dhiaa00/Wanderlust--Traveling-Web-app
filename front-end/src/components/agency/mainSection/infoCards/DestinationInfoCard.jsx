@@ -3,8 +3,8 @@ import "./infoCard.css";
 import travelDateIcon from "/src/SVGs/travelDateIcon.svg";
 import UpperSectionForInfoCards from "./UpperSectionForInfoCards";
 
-const DestinationInfoCard = () => {
-  const destination = "Japan";
+const DestinationInfoCard = ({ tour }) => {
+  const destination = tour.country || "";
   const firstDestination = "Fouji";
   const secondDestination = "Fouji";
   const flightTime = { hours: 2, minutes: 25 };

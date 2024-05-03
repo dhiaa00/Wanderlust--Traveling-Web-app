@@ -20,7 +20,6 @@ const SignUpAgency = () => {
     phoneNumber: "",
     location: "",
     registrationNumber: "",
-    website: "",
     password: "",
   });
 

@@ -24,11 +24,6 @@ const agencySchema = new mongoose.Schema(
       required: true,
       trim: true,
     },
-    website: {
-      type: String,
-      trim: true,
-      unique: true, // Ensure website URLs are unique
-    },
     location: {
       type: String,
       required: true,

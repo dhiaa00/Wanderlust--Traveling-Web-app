@@ -17,6 +17,7 @@
     "axios": "^1.6.8",
     "cloudinary-react": "^1.8.1",
     "leaflet": "^1.9.4",
+    "opencage-api-client": "^1.0.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-intersection-observer": "^9.8.1",

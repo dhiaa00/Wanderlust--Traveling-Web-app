@@ -26,10 +26,13 @@
   /* Styling for the image swiper */
   .swiper-container {
     max-width: 500px;
+    min-width: 500px;
+    max-height: 300px;
+    min-height: fit-content;
     padding: 5px;
     position: relative;
-    &::after {
-      content: "Japan";
+    .slide-caption {
+      text-transform: capitalize;
       position: absolute;
       top: 25%;
       left: 5%;
@@ -50,7 +53,7 @@
       z-index: 100000;
     }
     img {
-      object-fit: cover;
+      object-fit: fill;
       margin-top: 5px;
       border-radius: 10px;
       aspect-ratio: 700/300;
