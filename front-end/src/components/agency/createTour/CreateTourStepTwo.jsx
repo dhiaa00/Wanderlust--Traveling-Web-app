@@ -2,7 +2,13 @@ import React, { useRef, useState } from "react";
 import "./createTourStepOne.css";
 import ImportButton from "./buttons/ImportButton";
 
-const CreateTourStepTwo = ({ step, prevStep, nextStep, closeModal }) => {
+const CreateTourStepTwo = ({
+  step,
+  prevStep,
+  nextStep,
+  closeModal,
+  handleInputChange,
+}) => {
   const [visibility, setVisibility] = useState("public");
   const selectVisibility = useRef();
 
@@ -30,10 +36,25 @@ const CreateTourStepTwo = ({ step, prevStep, nextStep, closeModal }) => {
             id="visibility"
             value={visibility}
             ref={selectVisibility}
-            onChange={handleVisibilityChange}>
+            onChange={(event) => {
+              handleVisibilityChange();
+              handleInputChange(event);
+            }}>
             <option value="public">Public</option>
             <option value="private">Private</option>
           </select>
+        </div>
+        <div className="post-description">
+          <label htmlFor="startDate">Start Date</label>
+          <input name="startDate" type="date" onChange={handleInputChange} />
+        </div>
+        <div className="post-description">
+          <label htmlFor="endDate">End Date</label>
+          <input name="endDate" type="date" onChange={handleInputChange} />
+        </div>
+        <div className="post-description">
+          <label htmlFor="country">Country</label>
+          <input name="country" type="text" onChange={handleInputChange} />
         </div>
         <div className="step-navigation">
           <button disabled={step === 1} onClick={prevStep}>

@@ -4,7 +4,6 @@ import AgencyNavbar from "../../../components/agency/navbar/AgencyNavbar";
 import CreateTourMultiStepForm from "../../../components/agency/createTour/CreateTourMultiStepForm";
 import AgencyUpperSection from "../../../components/agency/upperSection/AgencyUpperSection";
 import TourListItem from "../../../components/agency/TourListItem/TourListItem";
-import { tours } from "../../../data/data";
 import axios from "axios";
 
 const AgencyTours = () => {
@@ -18,13 +17,13 @@ const AgencyTours = () => {
   useEffect(() => {
     const getTours = async () => {
       try {
-        const response = await axios.get(
-          await axios.get("http://localhost:8080/offer/getAll", {
+        const response = await axios.post(
+          "http://localhost:8080/offer/getAll",
+          {
             id: agencyId,
-          })
+          }
         );
-        console.log(response.data);
-        setAgencyTours(response.data.offers);
+        setAgencyTours(response.data.data);
       } catch (error) {
         console.error("Error getting tours:", error);
       }
@@ -47,16 +46,8 @@ const AgencyTours = () => {
           <div className="days tour-list-title">Days</div>
         </div>
         <div className="agency-tour-list">
-          {agencyTours.map((tour) => {
-            return (
-              <TourListItem
-                key={tour.id}
-                id={tour.id}
-                country={tour.country}
-                clients={tour.clients}
-                days={tour.days}
-              />
-            );
+          {agencyTours.map((tour, i) => {
+            return <TourListItem key={tour.id} order={i + 1} tour={tour} />;
           })}
         </div>
       </div>

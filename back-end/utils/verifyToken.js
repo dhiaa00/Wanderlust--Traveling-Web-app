@@ -1,42 +1,53 @@
-import jwt from "jsonwebtoken"
+import jwt from "jsonwebtoken";
 import { User } from "../models/User.js";
 
-const verifytoken = async (req,res,next) => {
+const verifytoken = async (req, res, next) => {
   const token = req.cookies.authorization;
   console.log(token);
   if (!token) {
-    return res.status(401).json({ message : "acces denied,no token provided" });
+    return res.status(401).json({ message: "acces denied,no token provided" });
   }
   try {
-    const decodedPayload = jwt.verify(token,process.env.JWT_PASSWORD)
-    req.user = await User.findOne({ _id : decodedPayload.id})
-    
+    const decodedPayload = jwt.verify(token, process.env.JWT_PASSWORD);
+    req.user = await User.findOne({ _id: decodedPayload.id });
+
     next();
   } catch (error) {
-    return res.status(400).json({ message: "accces denied"})
+    return res.status(400).json({ message: "accces denied" });
   }
-}
+};
 const verifyTokenAndUser = (req, res, next) => {
   try {
     if (req.user._id != req.params.id) {
-      return res.status(403).json({ message : "forbidden only user himself" });
+      return res.status(403).json({ message: "forbidden only user himself" });
     }
     next();
   } catch (error) {
     console.error(error);
   }
-}
+};
 const verifyTokenAndAdmin = (req, res, next) => {
   try {
-    console.log(req.user.isAdmin)
+    console.log(req.user.isAdmin);
     if (req.user.isAdmin == false) {
-      return res.status(403).json({ message : "forbidden only admin himself" });
+      return res.status(403).json({ message: "forbidden only admin himself" });
     }
     next();
   } catch (error) {
     console.error(error);
   }
-}
+};
 
+// const verifyTokenAndAgency = (req, res, next) => {
+//   try {
+//     console.log(req.user.)
+//     if (req.user.isAdmin == false) {
+//       return res.status(403).json({ message : "forbidden only admin himself" });
+//     }
+//     next();
+//   } catch (error) {
+//     console.error(error);
+//   }
+// }
 
-export {verifytoken,verifyTokenAndUser,verifyTokenAndAdmin}
+export { verifytoken, verifyTokenAndUser, verifyTokenAndAdmin };

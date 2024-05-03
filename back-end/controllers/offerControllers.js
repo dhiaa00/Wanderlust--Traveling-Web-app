@@ -1,12 +1,13 @@
+import { Agency } from "../models/Agency.js";
 import { Offer } from "../models/Offer.js";
 
 const createOffer = async (req, res) => {
   try {
-    const { title, description, price, startDate, endDate } = req.body;
-    console.log(req.user);
-    const agencyId = req.user.id; // Assuming the authenticated user is an agency
+    const { title, country, description, price, startDate, endDate, agencyId } =
+      req.body;
     const offer = new Offer({
       title,
+      country,
       description,
       price,
       startDate,
@@ -110,16 +111,20 @@ const deleteOfferById = async (req, res) => {
 
 const getAllOffers = async (req, res) => {
   try {
-    const agencyId = req.id; // Assuming the authenticated user is an agency
-    const offers = await Offer.find({ agency: agencyId });
-    console.log(offers);
-    res
+    const { id } = req.body; // Assuming the authenticated user is an agency
+    if (!id) {
+      return res
+        .status(401)
+        .json({ message: "Unauthorized: Missing agency ID" });
+    }
+    const offers = await Offer.find({ agency: id });
+    return res
       .status(200)
-      .json({ message: "Offers retrieved successfully", test: offers });
+      .json({ message: "Offers retrieved successfully", data: offers });
   } catch (error) {
     res.status(500).json({
       message: "Failed to retrieve offers",
-      error: error.message,
+      error: error,
     });
   }
 };

@@ -56,8 +56,13 @@ const agencySchema = new mongoose.Schema(
       default: false,
     },
   },
-  { timestamps: true }
+  { timestamps: true, toJSON: { virtuals: true }, toObject: { virtuals: true } }
 );
+agencySchema.virtual("offers", {
+  ref: "Offer",
+  localField: "_id",
+  foreignField: "agency",
+});
 
 const verifyAgencyLogin = (body) => {
   const { email, password } = body;

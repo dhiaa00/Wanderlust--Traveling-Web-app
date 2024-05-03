@@ -9,10 +9,10 @@ import "./checkboxList.css";
 
 SwiperCore.use([Navigation]);
 
-const CheckboxList = ({ options }) => {
+const CheckboxList = ({ options, handleCheckboxChange }) => {
   const [checkedItems, setCheckedItems] = useState([]);
 
-  const handleCheckboxChange = (event) => {
+  const handleCheckbox = (event) => {
     const { value, checked } = event.target;
 
     setCheckedItems((prevItems) => {
@@ -68,7 +68,10 @@ const CheckboxList = ({ options }) => {
           id={option.value}
           value={option.value}
           checked={checkedItems.includes(option.value)}
-          onChange={handleCheckboxChange}
+          onChange={(event) => {
+            handleCheckbox(event);
+            handleCheckboxChange(event.target.value);
+          }}
         />
         <label htmlFor={option.value}>{option.label}</label>
       </div>
