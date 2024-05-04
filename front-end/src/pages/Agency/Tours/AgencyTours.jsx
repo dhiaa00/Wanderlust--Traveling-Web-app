@@ -5,10 +5,16 @@ import CreateTourMultiStepForm from "../../../components/agency/createTour/Creat
 import AgencyUpperSection from "../../../components/agency/upperSection/AgencyUpperSection";
 import TourListItem from "../../../components/agency/TourListItem/TourListItem";
 import axios from "axios";
+import Notifications from "../../../components/notifications/Notifications";
 
-const AgencyTours = () => {
-  const [createTour, setCreateTour] = useState(false);
-  const [tourCreated, setTourCreated] = useState(false);
+const AgencyTours = ({
+  createTour,
+  setCreateTour,
+  tourCreated,
+  setTourCreated,
+  notificationsOpen,
+  setNotificationsOpen,
+}) => {
   const [agencyTours, setAgencyTours] = useState([]);
   const agencyId = window.location.pathname
     .split("agency/")
@@ -43,6 +49,8 @@ const AgencyTours = () => {
           createTour={createTour}
           setCreateTour={setCreateTour}
           setTourCreated={setTourCreated}
+          notificationsOpen={notificationsOpen}
+          setNotificationsOpen={setNotificationsOpen}
         />
         <div className="tour-list-titles">
           <div className="id tour-list-title">Collection</div>
@@ -62,6 +70,7 @@ const AgencyTours = () => {
           setCreateTour={setCreateTour}
         />
       )}
+      {notificationsOpen && <Notifications />}
     </div>
   );
 };

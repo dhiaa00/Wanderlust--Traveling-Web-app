@@ -3,6 +3,7 @@ import logo from "../../images/logo.png";
 import SignLog from "../buttons/SignLogBtn";
 import { Link } from "react-router-dom";
 import "./navbar.css";
+import MainButton from "../buttons/MainButton";
 
 const NavBar = () => {
   return (
@@ -13,7 +14,7 @@ const NavBar = () => {
         <Link to="/about">About</Link>
         <Link to="/contact">Contact</Link>
       </nav>
-      <SignLog text={"Log in"} />
+      <MainButton text="Sign Up" />
     </div>
   );
 };

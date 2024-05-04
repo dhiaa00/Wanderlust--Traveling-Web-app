@@ -8,9 +8,14 @@ import ConfirmYourEmail from "./pages/forms/ConfirmYourEmail";
 import AgencyTours from "./pages/Agency/Tours/AgencyTours";
 import Login from "./pages/forms/login/Login";
 import Modal from "react-modal";
+import { useState } from "react";
 
 Modal.setAppElement("#root");
 function App() {
+  const [createTour, setCreateTour] = useState(false);
+  const [tourCreated, setTourCreated] = useState(false);
+  const [notificationsOpen, setNotificationsOpen] = useState(false);
+
   return (
     <Routes>
       <Route
@@ -41,9 +46,30 @@ function App() {
       </Route>
       <Route
         path="/agency/:agencyId/tours/:tourId"
-        element={<SingleTourPage />}
+        element={
+          <SingleTourPage
+            createTour={createTour}
+            setCreateTour={setCreateTour}
+            tourCreated={tourCreated}
+            setTourCreated={setTourCreated}
+            notificationsOpen={notificationsOpen}
+            setNotificationsOpen={setNotificationsOpen}
+          />
+        }
       />
-      <Route path="/agency/:agencyId/tours" element={<AgencyTours />} />
+      <Route
+        path="/agency/:agencyId/tours"
+        element={
+          <AgencyTours
+            createTour={createTour}
+            setCreateTour={setCreateTour}
+            tourCreated={tourCreated}
+            setTourCreated={setTourCreated}
+            notificationsOpen={notificationsOpen}
+            setNotificationsOpen={setNotificationsOpen}
+          />
+        }
+      />
     </Routes>
   );
 }

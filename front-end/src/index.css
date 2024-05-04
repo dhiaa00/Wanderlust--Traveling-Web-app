@@ -28,18 +28,6 @@ body {
   position: relative;
 }
 
-.bg-image-container {
-  position: absolute;
-  background-image: url("/src/images/banner.png");
-  width: 100vw;
-  height: 100vh;
-  background-repeat: no-repeat;
-  background-size: cover;
-  top: 0;
-  left: 0;
-  z-index: -1;
-}
-
 h1,
 h2,
 h3,

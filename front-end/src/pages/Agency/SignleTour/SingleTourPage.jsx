@@ -16,10 +16,15 @@ const AddCollaboration = lazy(() =>
 );
 import axios from "axios";
 
-const SingleTourPage = () => {
-  const [createTour, setCreateTour] = useState(false);
+const SingleTourPage = ({
+  createTour,
+  setCreateTour,
+  tourCreated,
+  setTourCreated,
+  notificationsOpen,
+  setNotificationsOpen,
+}) => {
   const [editTourOpen, setEditTourOpen] = useState(false);
-  const [notificationsOpen, setNotificationsOpen] = useState(false);
   const [addCollaboration, setAddCollaboration] = useState(false);
   const [tour, setTour] = useState({});
   const tourId =
@@ -64,6 +69,7 @@ const SingleTourPage = () => {
       <Suspense fallback={<div>Loading...</div>}>
         {createTour && (
           <CreateTourMultiStepForm
+            setTourCreated={setTourCreated}
             setCreateTour={setCreateTour}
             ariaHideApp={false}
           />

@@ -53,7 +53,7 @@ const CreateTourMultiStepForm = ({ setCreateTour, setTourCreated }) => {
         formData
       );
       setTourCreated(true);
-      setCreateTour(false);
+      closeModal();
     } catch (error) {
       console.log(error);
     }

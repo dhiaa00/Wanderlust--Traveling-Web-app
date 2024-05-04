@@ -38,6 +38,18 @@
     color: transparent;
     -webkit-background-clip: text;
     background-clip: text;
+    position: relative;
+    &::after {
+      content: "";
+      position: absolute;
+      background-image: url(/src/SVGs/Wanderlust-pencil-writing.svg);
+      width: 105px;
+      height: 12px;
+      bottom: -10%;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+    }
   }
   form {
     display: flex;

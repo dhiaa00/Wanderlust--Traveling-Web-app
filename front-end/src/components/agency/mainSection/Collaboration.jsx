@@ -3,7 +3,12 @@ import React from "react";
 const Collaboration = ({ id, title, type, priority }) => {
   const priorityStyle = {
     backgroundColor:
-      priority === "High" ? "red" : priority === "Medium" ? "orange" : "green",
+      priority.toLowerCase() === "high"
+        ? "red"
+        : priority === "medium"
+        ? "orange"
+        : "green",
+    textTransform: "capitalize",
   };
   return (
     <div className="collaboration">
