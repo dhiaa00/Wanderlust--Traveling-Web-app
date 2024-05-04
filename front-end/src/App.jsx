@@ -7,7 +7,9 @@ import SingleTourPage from "./pages/Agency/SignleTour/SingleTourPage";
 import ConfirmYourEmail from "./pages/forms/ConfirmYourEmail";
 import AgencyTours from "./pages/Agency/Tours/AgencyTours";
 import Login from "./pages/forms/login/Login";
+import Modal from "react-modal";
 
+Modal.setAppElement("#root");
 function App() {
   return (
     <Routes>

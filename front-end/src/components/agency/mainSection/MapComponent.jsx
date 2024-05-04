@@ -10,18 +10,18 @@ const redIcon = L.icon({
   iconAnchor: [12, 41], // Point of the icon which will correspond to marker's location
 });
 
-const SetViewOnClick = ({ coords }) => {
-  const map = useMap();
-
-  useEffect(() => {
-    if (coords) {
-      map.flyTo(coords, map.getZoom());
-    }
-  }, [coords, map]);
-
-  return null;
-};
 const MapComponent = ({ place = "Tipaza" }) => {
+  const SetViewOnClick = ({ coords }) => {
+    const map = useMap();
+
+    useEffect(() => {
+      if (coords) {
+        map.flyTo(coords, map.getZoom());
+      }
+    }, [coords, map]);
+
+    return null;
+  };
   const [position, setPosition] = useState([28.0339, 1.6596]); // Default coordinates for Algeria
 
   useEffect(() => {

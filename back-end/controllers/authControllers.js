@@ -130,7 +130,6 @@ const loginAgency = async (req, res) => {
 };
 
 const registerAgency = async (req, res) => {
-  console.log(req.body);
   try {
     const { error } = verifyAgencySignUp(req.body);
     if (error) {

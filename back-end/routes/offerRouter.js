@@ -25,7 +25,7 @@ offerRouter.route("/update/:id").put(updateOfferById);
 offerRouter.route("/delete/:id").delete(deleteOfferById);
 
 offerRouter
-  .route("addCollaboration/:id")
+  .route("/addCollaboration/:id")
   .post(verifyTokenAndAgency, addCollaboration);
 
 export default offerRouter;

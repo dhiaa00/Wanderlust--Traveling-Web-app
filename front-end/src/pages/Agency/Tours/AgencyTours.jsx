@@ -22,6 +22,9 @@ const AgencyTours = () => {
           "http://localhost:8080/offer/getAll",
           {
             id: agencyId,
+          },
+          {
+            withCredentials: true,
           }
         );
         setAgencyTours(response.data.data);

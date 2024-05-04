@@ -5,7 +5,6 @@ import UpperSectionForInfoCards from "./UpperSectionForInfoCards";
 import { calculateDaysNumber } from "../../../../utils/calculateDaysNumber";
 
 const TravelDateInfoCard = ({ tour }) => {
-  console.log(tour);
   const departDate = tour.startDate ? tour.startDate.slice(0, 10) : "";
   const returnDate = tour.endDate ? tour.endDate.slice(0, 10) : "";
   const DaysNumber =

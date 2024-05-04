@@ -1,11 +1,11 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import "./agencyMainSection.css";
 import AgencyUpperSection from "../upperSection/AgencyUpperSection";
 import ImageSwiper from "./ImageSwiper";
 import TravelDateInfoCard from "./infoCards/TravelDateInfoCard";
 import ClientInfoCard from "./infoCards/ClientInfoCard";
 import DestinationInfoCard from "./infoCards/DestinationInfoCard";
-import MapComponent from "./MapComponent";
+const MapComponent = lazy(() => import("./MapComponent"));
 import Expenses from "./Expenses";
 import EditTourButton from "../buttons/EditTourButton";
 import Collaborations from "./Collaborations";
@@ -17,6 +17,8 @@ const AgencyMainSection = ({
   setEditTourOpen,
   notificationsOpen,
   setNotificationsOpen,
+  addCollaboration,
+  setAddCollaboration,
   tour,
 }) => {
   return (
@@ -39,8 +41,14 @@ const AgencyMainSection = ({
             <DestinationInfoCard tour={tour} />
           </div>
           <div className="map-and-collaborations">
-            <MapComponent place={tour.country} />
-            <Collaborations />
+            <Suspense fallback={<div>Loading...</div>}>
+              <MapComponent place={tour.country} />
+            </Suspense>
+            <Collaborations
+              addCollaboration={addCollaboration}
+              setAddCollaboration={setAddCollaboration}
+              collaborations={tour.collaborations}
+            />
           </div>
         </div>
         <div className="agency-right-side">

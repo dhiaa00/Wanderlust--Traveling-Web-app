@@ -1,16 +1,26 @@
-import React, { useEffect, useState } from "react";
+import React, { lazy, Suspense, useEffect, useState } from "react";
 import "./singletourpage.css";
 import AgencyNavbar from "../../../components/agency/navbar/AgencyNavbar";
 import AgencyMainSection from "../../../components/agency/mainSection/AgencyMainSection";
-import CreateTourMultiStepForm from "../../../components/agency/createTour/CreateTourMultiStepForm";
-import EditTour from "../../../components/agency/editTour/EditTour";
-import Notifications from "../../../components/notifications/Notifications";
+const CreateTourMultiStepForm = lazy(() =>
+  import("../../../components/agency/createTour/CreateTourMultiStepForm")
+);
+const EditTour = lazy(() =>
+  import("../../../components/agency/editTour/EditTour")
+);
+const Notifications = lazy(() =>
+  import("../../../components/notifications/Notifications")
+);
+const AddCollaboration = lazy(() =>
+  import("../../../components/agency/mainSection/AddCollaboration")
+);
 import axios from "axios";
 
 const SingleTourPage = () => {
   const [createTour, setCreateTour] = useState(false);
   const [editTourOpen, setEditTourOpen] = useState(false);
   const [notificationsOpen, setNotificationsOpen] = useState(false);
+  const [addCollaboration, setAddCollaboration] = useState(false);
   const [tour, setTour] = useState({});
   const tourId =
     window.location.pathname.split("/")[
@@ -31,7 +41,6 @@ const SingleTourPage = () => {
           }
         );
         setTour(tour.data.data);
-        console.log("tour retrieved:", tour);
       } catch {
         console.error("Error getting tour:", error);
       }
@@ -48,11 +57,29 @@ const SingleTourPage = () => {
         setEditTourOpen={setEditTourOpen}
         notificationsOpen={notificationsOpen}
         setNotificationsOpen={setNotificationsOpen}
+        addCollaboration={addCollaboration}
+        setAddCollaboration={setAddCollaboration}
         tour={tour}
       />
-      {createTour && <CreateTourMultiStepForm />}
-      {editTourOpen && <EditTour />}
-      {notificationsOpen && <Notifications />}
+      <Suspense fallback={<div>Loading...</div>}>
+        {createTour && (
+          <CreateTourMultiStepForm
+            setCreateTour={setCreateTour}
+            ariaHideApp={false}
+          />
+        )}
+        {editTourOpen && (
+          <EditTour ariaHideApp={false} setEditTourOpen={setEditTourOpen} />
+        )}
+        {notificationsOpen && <Notifications ariaHideApp={false} />}
+        {addCollaboration && (
+          <AddCollaboration
+            addCollaboration={addCollaboration}
+            setAddCollaboration={setAddCollaboration}
+            ariaHideApp={false}
+          />
+        )}
+      </Suspense>
     </div>
   );
 };

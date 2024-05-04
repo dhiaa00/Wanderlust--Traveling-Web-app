@@ -63,7 +63,7 @@ const offerSchema = new mongoose.Schema(
           required: true,
         },
         priority: {
-          enum: ["high", "medium", "low"],
+          type: String,
         },
       },
     ],

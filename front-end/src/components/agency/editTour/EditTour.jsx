@@ -3,7 +3,7 @@ import "./editTour.css";
 import Modal from "react-modal";
 import iIcon from "/src/SVGs/edit-tour-i-icon.svg";
 
-const EditTour = () => {
+const EditTour = ({ setEditTourOpen }) => {
   const [isOpen, setIsOpen] = useState(true);
 
   const openModal = () => {
@@ -11,6 +11,7 @@ const EditTour = () => {
   };
 
   const closeModal = () => {
+    setEditTourOpen(false);
     setIsOpen(false);
   };
 

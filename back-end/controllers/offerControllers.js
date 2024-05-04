@@ -180,6 +180,8 @@ const addCollaboration = async (req, res) => {
     }
 
     offer.collaborations.push({ name, type, contact, priority });
+    console.log("data: ", { name, type, contact, priority });
+    console.log("collaboration: ", offer.collaborations);
     const updatedOffer = await offer.save();
 
     res.status(200).json({

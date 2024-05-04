@@ -63,7 +63,10 @@ const CreateTourMultiStepForm = ({ setCreateTour, setTourCreated }) => {
   const [step, setStep] = useState(1);
 
   const openModal = () => setIsOpen(true);
-  const closeModal = () => setIsOpen(false);
+  const closeModal = () => {
+    setCreateTour(false);
+    setIsOpen(false);
+  };
 
   const nextStep = () => setStep(step + 1);
   const prevStep = () => setStep(step - 1);
