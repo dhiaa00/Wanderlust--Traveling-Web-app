@@ -168,10 +168,36 @@ const getOfferById = async (req, res) => {
   }
 };
 
+const addCollaboration = async (req, res) => {
+  try {
+    const offerId = req.params.id;
+    const agencyId = req.agency._id;
+    const { name, type, contact, priority } = req.body;
+
+    const offer = await Offer.findOne({ _id: offerId, agency: agencyId });
+    if (!offer) {
+      return res.status(404).json({ message: "Offer not found", data: null });
+    }
+
+    offer.collaborations.push({ name, type, contact, priority });
+    const updatedOffer = await offer.save();
+
+    res.status(200).json({
+      message: "Collaboration added successfully",
+      data: updatedOffer.collaborations,
+    });
+  } catch (error) {
+    res
+      .status(500)
+      .json({ message: "Failed to add collaboration", error: error.message });
+  }
+};
+
 export {
   createOffer,
   getAllOffers,
   updateOfferById,
   deleteOfferById,
   getOfferById,
+  addCollaboration,
 };

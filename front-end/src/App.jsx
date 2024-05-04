@@ -6,6 +6,7 @@ import SignUpAgency from "./pages/forms/SignUpAgency";
 import SingleTourPage from "./pages/Agency/SignleTour/SingleTourPage";
 import ConfirmYourEmail from "./pages/forms/ConfirmYourEmail";
 import AgencyTours from "./pages/Agency/Tours/AgencyTours";
+import Login from "./pages/forms/login/Login";
 
 function App() {
   return (
@@ -25,6 +26,16 @@ function App() {
           path="confirmation/:type/:confirmationId"
           element={<ConfirmYourEmail />}
         />
+      </Route>
+      <Route
+        path="/login"
+        element={
+          <>
+            <NavBar />
+            <Outlet />
+          </>
+        }>
+        <Route index element={<Login />} />
       </Route>
       <Route
         path="/agency/:agencyId/tours/:tourId"

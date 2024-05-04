@@ -48,6 +48,25 @@ const offerSchema = new mongoose.Schema(
       type: String,
       default: "",
     },
+    collaborations: [
+      {
+        name: {
+          type: String,
+          required: true,
+        },
+        type: {
+          type: String,
+          required: true,
+        },
+        contact: {
+          type: String,
+          required: true,
+        },
+        priority: {
+          enum: ["high", "medium", "low"],
+        },
+      },
+    ],
     agency: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "agency",

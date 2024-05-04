@@ -7,9 +7,12 @@ import "./navbar.css";
 const NavBar = () => {
   return (
     <div className="navbar">
-      <Link to="/">
-        <img className="logo" src={logo} alt="logo" />
-      </Link>
+      <nav className="nav-links">
+        <Link to="/">Home</Link>
+        <Link to="/pricing">Pricing</Link>
+        <Link to="/about">About</Link>
+        <Link to="/contact">Contact</Link>
+      </nav>
       <SignLog text={"Log in"} />
     </div>
   );

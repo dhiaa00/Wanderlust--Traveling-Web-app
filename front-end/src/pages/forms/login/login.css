@@ -1,0 +1,122 @@
+.login-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.sign-up-container {
+  width: 50%;
+  padding: 2rem 12%;
+  border-radius: 5px;
+  text-align: center;
+  position: relative;
+  background-color: transparent;
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 46%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      180deg,
+      rgba(0, 193, 182, 0.25) 0%,
+      rgba(0, 75, 108, 0.19) 100%
+    );
+    z-index: -1;
+  }
+  h1 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 4rem;
+  }
+  span {
+    font-weight: 700;
+    background: var(--main-gradient);
+    color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+  }
+  form {
+    display: flex;
+    flex-direction: column;
+    text-align: start;
+    margin-bottom: 20px;
+  }
+  label {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.2rem;
+  }
+
+  input {
+    padding: 12px;
+    margin-bottom: 1rem;
+    border: none;
+    border-radius: 5px;
+    font-size: 0.8rem;
+  }
+
+  .keep-me-logged {
+    display: flex;
+    padding: 5px 0;
+    gap: 0.5rem;
+    margin-bottom: 10px;
+    input {
+      margin-top: 5px;
+    }
+  }
+  button {
+    padding: 10px 20px;
+    background: var(--main-gradient);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+  }
+
+  .or {
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+
+  .google-auth {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+  }
+
+  .google-auth button {
+    background: transparent;
+    padding: 10px 20px;
+    color: black;
+    border-radius: 8px;
+    cursor: pointer;
+    position: relative;
+    background-color: white;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+  .google-auth button::before {
+    content: "";
+    position: absolute;
+    top: -0.8px;
+    left: -1px;
+    bottom: -1px;
+    right: -1px;
+    background: var(--main-gradient);
+    z-index: -1;
+    border-radius: 8.5px;
+  }
+
+  .google-auth button:hover {
+    background: #f1f1f1;
+  }
+}

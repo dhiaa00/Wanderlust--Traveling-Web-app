@@ -1,12 +1,15 @@
 import React from "react";
 import "./chevronButton.css";
 import chevronDown from "/src/SVGs/chevron-down.svg";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const ChevronButton = ({ title }) => {
   const navigate = useNavigate();
+  const { agencyId } = useParams();
   const pathToNavigate =
-    title === "My Offers" ? "/agency/1/tours" : "/agency/1/clients";
+    title === "My Offers"
+      ? `/agency/${agencyId}/tours`
+      : `/agency/${agencyId}/clients`;
   const handleButtonClicked = () => {
     navigate(pathToNavigate);
   };
