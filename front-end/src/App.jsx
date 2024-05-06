@@ -8,13 +8,21 @@ import ConfirmYourEmail from "./pages/forms/ConfirmYourEmail";
 import AgencyTours from "./pages/Agency/Tours/AgencyTours";
 import Login from "./pages/forms/login/Login";
 import Modal from "react-modal";
-import { useState } from "react";
+import { Suspense, useState } from "react";
+import AgencyNavbar from "./components/agency/navbar/AgencyNavbar";
+import AgencyUpperSection from "./components/agency/upperSection/AgencyUpperSection";
+import AgencyMainSection from "./components/agency/mainSection/AgencyMainSection";
+import Notifications from "./components/notifications/Notifications";
+import AddCollaboration from "./components/agency/mainSection/AddCollaboration";
+import CreateTourMultiStepForm from "./components/agency/createTour/CreateTourMultiStepForm";
+import "/src/pages/Agency/Tours/agencyTours.css";
 
 Modal.setAppElement("#root");
 function App() {
   const [createTour, setCreateTour] = useState(false);
   const [tourCreated, setTourCreated] = useState(false);
   const [notificationsOpen, setNotificationsOpen] = useState(false);
+  const [seachInput, setSearchInput] = useState("");
 
   return (
     <Routes>
@@ -45,31 +53,38 @@ function App() {
         <Route index element={<Login />} />
       </Route>
       <Route
-        path="/agency/:agencyId/tours/:tourId"
+        path="/agency/:agencyId/"
         element={
-          <SingleTourPage
-            createTour={createTour}
-            setCreateTour={setCreateTour}
-            tourCreated={tourCreated}
-            setTourCreated={setTourCreated}
-            notificationsOpen={notificationsOpen}
-            setNotificationsOpen={setNotificationsOpen}
-          />
-        }
-      />
-      <Route
-        path="/agency/:agencyId/tours"
-        element={
-          <AgencyTours
-            createTour={createTour}
-            setCreateTour={setCreateTour}
-            tourCreated={tourCreated}
-            setTourCreated={setTourCreated}
-            notificationsOpen={notificationsOpen}
-            setNotificationsOpen={setNotificationsOpen}
-          />
-        }
-      />
+          <div className="agencyTours signle-tour-page">
+            <AgencyNavbar />
+            <div className="agency-main-section">
+              <AgencyUpperSection
+                createTour={createTour}
+                setCreateTour={setCreateTour}
+                notificationsOpen={notificationsOpen}
+                setNotificationsOpen={setNotificationsOpen}
+                setSearchInput={setSearchInput}
+              />
+              <Outlet />
+            </div>
+          </div>
+        }>
+        <Route
+          path="tours"
+          element={
+            <AgencyTours
+              createTour={createTour}
+              setCreateTour={setCreateTour}
+              tourCreated={tourCreated}
+              setTourCreated={setTourCreated}
+              notificationsOpen={notificationsOpen}
+              setNotificationsOpen={setNotificationsOpen}
+              seachInput={seachInput}
+            />
+          }
+        />
+        <Route path="tours/:tourId" element={<SingleTourPage />} />
+      </Route>
     </Routes>
   );
 }

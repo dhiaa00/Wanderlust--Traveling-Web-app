@@ -14,6 +14,12 @@ const offerSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    placeFrom: {
+      type: String,
+    },
+    placeTo: {
+      type: String,
+    },
     price: {
       type: Number,
       required: true,
@@ -25,6 +31,12 @@ const offerSchema = new mongoose.Schema(
     endDate: {
       type: Date,
       required: true,
+    },
+    flightTime: {
+      type: String,
+    },
+    flightDuration: {
+      type: Number,
     },
     temporaryPrice: {
       type: Number,

@@ -13,6 +13,7 @@ const CreateTourMultiStepForm = ({ setCreateTour, setTourCreated }) => {
   const [formData, setFormData] = useState({
     title: "",
     country: "",
+    placeTo: "",
     price: 0,
     description: "",
     categories: [], // Array to hold selected categories

@@ -3,26 +3,31 @@ import "./searchBar.css";
 import VoiceSearchIcon1 from "/src/SVGs/voice-search-icon.svg";
 import SearchIcon from "/src/SVGs/search-icon.svg";
 
-const SearchBar = () => {
+const SearchBar = ({ setSearchInput }) => {
   const [voiceSearchEnabled, setVoiceSearchEnabled] = useState(false);
   const [textSpeeched, setTextSpeeched] = useState("");
 
   const handleVoiceSearch = () => {
+    if (!voiceSearchEnabled) {
+      const recognition = new window.webkitSpeechRecognition();
+      recognition.start();
+      recognition.onresult = (event) => {
+        const speechToText = event.results[0][0].transcript;
+        setTextSpeeched(speechToText);
+        setSearchInput(speechToText);
+      };
+      // end recognition when voiceSearchenabled == false
+      recognition.onend = () => {
+        if (!voiceSearchEnabled) {
+          recognition.stop();
+        }
+      };
+    }
+
     setVoiceSearchEnabled(!voiceSearchEnabled);
     setTextSpeeched("");
+    setSearchInput("");
     // speech recognition using web speech api
-    const recognition = new window.webkitSpeechRecognition();
-    recognition.start();
-    recognition.onresult = (event) => {
-      const speechToText = event.results[0][0].transcript;
-      setTextSpeeched(speechToText);
-    };
-    // end recognition when voiceSearchenabled == false
-    recognition.onend = () => {
-      if (!voiceSearchEnabled) {
-        recognition.stop();
-      }
-    };
   };
   return (
     <div className="agency-search-bar">
@@ -41,7 +46,10 @@ const SearchBar = () => {
           type="text"
           placeholder="Search..."
           value={textSpeeched}
-          onChange={(e) => setTextSpeeched(e.target.value)}
+          onChange={(e) => {
+            setTextSpeeched(e.target.value);
+            setSearchInput(e.target.value);
+          }}
         />
         <div
           className={

@@ -41,13 +41,12 @@
       font-weight: 700;
       z-index: 100000;
     }
-    &::before {
-      content: "Fuji";
+    .slide-caption-city {
       position: absolute;
       top: 25%;
       left: 5%;
       color: white;
-      transform: translate(-20%, -50%);
+      transform: translate(-10%, -50%);
       font-size: 0.8rem;
       font-weight: 400;
       z-index: 100000;
@@ -149,8 +148,10 @@
     }
     .right-side-upper-section {
       display: flex;
+      flex-direction: column;
       justify-content: space-between;
       align-items: center;
+      width: 100%;
       h2 {
         font-size: 2rem;
         font-weight: 700;

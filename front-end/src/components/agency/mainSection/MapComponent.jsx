@@ -24,7 +24,6 @@ const SetViewOnClick = ({ coords }) => {
 
 const MapComponent = ({ place }) => {
   const [position, setPosition] = useState([36.5882, 2.4481]);
-
   useEffect(() => {
     const fetchGeoCode = async () => {
       try {

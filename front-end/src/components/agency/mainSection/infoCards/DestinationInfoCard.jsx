@@ -7,7 +7,7 @@ const DestinationInfoCard = ({ tour }) => {
   const destination = tour.country || "";
   const firstDestination = "Fouji";
   const secondDestination = "Fouji";
-  const flightTime = { hours: 2, minutes: 25 };
+  const flightTime = { hours: tour.flightDuration, minutes: 0 };
   return (
     <div className="destination-info-card agency-tour-info-card">
       <UpperSectionForInfoCards title="Destination" />

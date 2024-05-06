@@ -31,15 +31,14 @@ const ConfirmYourEmail = () => {
           withCredentials: true,
         }
       );
-      console.log(response.data.agency);
       if (response.status == 200) {
         saveToLocalStorage(
           type == "agency" ? "agency" : "user",
           response.data.agency
         );
         type == "agency"
-          ? navigate(`/agency/${response.data.agency._id}`)
-          : navigate(`/user/${response.data.agency._id}`);
+          ? navigate(`/agency/${response.data.data._id}`)
+          : navigate(`/user/${response.data.data.id}`);
       } else {
         console.log("else " + response);
       }

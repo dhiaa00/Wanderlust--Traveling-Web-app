@@ -8,6 +8,10 @@ import { saveToLocalStorage } from "../../../utils/localStorageOp";
 const Login = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({ email: "", password: "" });
+  const [accountType, setAccountType] = useState("agency");
+  const handleAccountType = (e) => {
+    setAccountType(e.target.value);
+  };
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -15,7 +19,9 @@ const Login = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "http://localhost:8080/auth/agency/login",
+        accountType == "agency"
+          ? "http://localhost:8080/auth/agency/login"
+          : "http://localhost:8080/auth/user/login",
         formData,
         {
           withCredentials: true,
@@ -23,7 +29,12 @@ const Login = () => {
       );
       if (response.status === 200) {
         saveToLocalStorage("user", response.data.data);
-        navigate(`/agency/${response.data.data._id}/tours`);
+        if (accountType == "agency") {
+          navigate(`/agency/${response.data.data._id}/tours`);
+        }
+        if (accountType == "user") {
+          navigate(`/user/${response.data.data._id}`);
+        }
       } else {
         console.log("Login failed");
       }
@@ -46,6 +57,14 @@ const Login = () => {
             placeholder="Enter your email"
             onChange={(e) => handleChange(e)}
           />
+          <label htmlFor="accountType">Account Type</label>
+          <select
+            name="accountType"
+            id="accountType"
+            onChange={(e) => handleAccountType(e)}>
+            <option value="agency">Agency</option>
+            <option value="user">Tourist</option>
+          </select>
           <label htmlFor="password">Password</label>
           <input
             type="password"

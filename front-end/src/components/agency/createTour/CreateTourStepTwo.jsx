@@ -35,6 +35,14 @@ const CreateTourStepTwo = ({
       </div>
       <div className="post-description-details post-description-details-step-two">
         <div className="post-description">
+          <label htmlFor="country">Country</label>
+          <input name="country" type="text" onChange={handleInputChange} />
+        </div>
+        <div className="post-description">
+          <label htmlFor="placeTo">City</label>
+          <input name="placeTo" type="text" onChange={handleInputChange} />
+        </div>
+        <div className="post-description">
           <label htmlFor="visibility">Visibility</label>
           <p className="visibility-paragraph">
             {visibility === "public"
@@ -62,10 +70,7 @@ const CreateTourStepTwo = ({
           <label htmlFor="endDate">End Date</label>
           <input name="endDate" type="date" onChange={handleInputChange} />
         </div>
-        <div className="post-description">
-          <label htmlFor="country">Country</label>
-          <input name="country" type="text" onChange={handleInputChange} />
-        </div>
+
         <div className="step-navigation">
           <button disabled={step === 1} onClick={prevStep}>
             Back

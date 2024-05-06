@@ -9,31 +9,22 @@ const MapComponent = lazy(() => import("./MapComponent"));
 import Expenses from "./Expenses";
 import EditTourButton from "../buttons/EditTourButton";
 import Collaborations from "./Collaborations";
+import Timeline from "./Timeline";
 
 const AgencyMainSection = ({
-  createTour,
-  setCreateTour,
   editTourOpen,
   setEditTourOpen,
-  notificationsOpen,
-  setNotificationsOpen,
   addCollaboration,
   setAddCollaboration,
   tour,
 }) => {
   return (
-    <div className="agency-main-section">
-      <AgencyUpperSection
-        createTour={createTour}
-        setCreateTour={setCreateTour}
-        notificationsOpen={notificationsOpen}
-        setNotificationsOpen={setNotificationsOpen}
-      />
+    <>
       <div className="agency-bottom-section">
         <div className="agency-left-side">
           <div className="images-and-expenses">
             <ImageSwiper tour={tour} />
-            <Expenses />
+            <Expenses collaborations={tour.collaborations} />
           </div>
           <div className="info-cards">
             <TravelDateInfoCard tour={tour} />
@@ -57,11 +48,11 @@ const AgencyMainSection = ({
             setEditTourOpen={setEditTourOpen}
           />
           <div className="right-side-upper-section">
-            <h2>Timeline</h2>
+            <Timeline tour={tour} />
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

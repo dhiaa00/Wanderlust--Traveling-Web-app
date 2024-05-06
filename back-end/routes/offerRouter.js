@@ -5,12 +5,10 @@ import {
   deleteOfferById,
   getAllOffers,
   getOfferById,
+  offerSearch,
   updateOfferById,
 } from "../controllers/offerControllers.js";
-import {
-  verifyTokenAndAgency,
-  verifyTokenAndUser,
-} from "../utils/verifyToken.js";
+import { verifyTokenAndAgency } from "../utils/verifyToken.js";
 
 const offerRouter = Router();
 
@@ -23,6 +21,8 @@ offerRouter.route("/get/:id").get(verifyTokenAndAgency, getOfferById);
 offerRouter.route("/update/:id").put(updateOfferById);
 
 offerRouter.route("/delete/:id").delete(deleteOfferById);
+
+offerRouter.route("/search").post(verifyTokenAndAgency, offerSearch);
 
 offerRouter
   .route("/addCollaboration/:id")

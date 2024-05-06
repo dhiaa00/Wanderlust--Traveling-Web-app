@@ -18,6 +18,7 @@ const createOffer = async (req, res) => {
     const offer = new Offer({
       title,
       country,
+      placeTo,
       description,
       price,
       startDate,
@@ -167,6 +168,28 @@ const getOfferById = async (req, res) => {
   }
 };
 
+const offerSearch = async (req, res) => {
+  try {
+    const { id, searchInput } = req.body;
+    const offers = await Offer.find({
+      agency: id,
+      $or: [
+        { title: { $regex: searchInput, $options: "i" } },
+        { country: { $regex: searchInput, $options: "i" } },
+      ],
+    });
+    console.log(offers);
+    return res
+      .status(200)
+      .json({ message: "Offers retrieved successfully", data: offers });
+  } catch (error) {
+    res.status(500).json({
+      message: "Failed to retrieve offers",
+      error: error,
+    });
+  }
+};
+
 const addCollaboration = async (req, res) => {
   try {
     const offerId = req.params.id;
@@ -200,5 +223,6 @@ export {
   updateOfferById,
   deleteOfferById,
   getOfferById,
+  offerSearch,
   addCollaboration,
 };

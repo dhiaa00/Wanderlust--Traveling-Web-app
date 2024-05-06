@@ -16,14 +16,7 @@ const AddCollaboration = lazy(() =>
 );
 import axios from "axios";
 
-const SingleTourPage = ({
-  createTour,
-  setCreateTour,
-  tourCreated,
-  setTourCreated,
-  notificationsOpen,
-  setNotificationsOpen,
-}) => {
+const SingleTourPage = () => {
   const [editTourOpen, setEditTourOpen] = useState(false);
   const [addCollaboration, setAddCollaboration] = useState(false);
   const [tour, setTour] = useState({});
@@ -53,31 +46,18 @@ const SingleTourPage = ({
     getTour();
   }, []);
   return (
-    <div className="signle-tour-page">
-      <AgencyNavbar />
+    <>
       <AgencyMainSection
-        createTour={createTour}
-        setCreateTour={setCreateTour}
         editTourOpen={editTourOpen}
         setEditTourOpen={setEditTourOpen}
-        notificationsOpen={notificationsOpen}
-        setNotificationsOpen={setNotificationsOpen}
         addCollaboration={addCollaboration}
         setAddCollaboration={setAddCollaboration}
         tour={tour}
       />
       <Suspense fallback={<div>Loading...</div>}>
-        {createTour && (
-          <CreateTourMultiStepForm
-            setTourCreated={setTourCreated}
-            setCreateTour={setCreateTour}
-            ariaHideApp={false}
-          />
-        )}
         {editTourOpen && (
           <EditTour ariaHideApp={false} setEditTourOpen={setEditTourOpen} />
         )}
-        {notificationsOpen && <Notifications ariaHideApp={false} />}
         {addCollaboration && (
           <AddCollaboration
             addCollaboration={addCollaboration}
@@ -86,7 +66,7 @@ const SingleTourPage = ({
           />
         )}
       </Suspense>
-    </div>
+    </>
   );
 };
 

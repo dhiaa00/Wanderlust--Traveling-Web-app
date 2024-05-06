@@ -11,6 +11,7 @@ const ImageSwiper = ({ tour }) => {
     <>
       {tour && (
         <div className="swiper-container">
+          <div className="slide-caption-city">{tour.placeTo}</div>
           <div className="slide-caption">{tour.country}</div>
           <Swiper
             pagination={{}}

@@ -13,6 +13,20 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    &:hover::after {
+      content: attr(data-name);
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translate(-50%, 5px);
+      background-color: rgba(0, 0, 0, 0.8);
+      color: white;
+      padding: 5px;
+      border-radius: 5px;
+      font-size: 0.8rem;
+      width: 100px;
+      text-align: center;
+    }
   }
   .transport-expenses {
     background-color: rgba(67, 131, 255, 0.76);
@@ -23,11 +37,15 @@
     background-color: rgba(0, 200, 116, 0.76);
     color: white;
     transform: translate(-50%, -80%);
+    &:hover::after {
+      top: 0;
+      transform: translate(-50%, -100%);
+    }
   }
   .other-expenses {
     background-color: rgba(255, 124, 67, 0.76);
     color: white;
-    transform: translate(50%, 0%);
+    transform: translate(0%, 0%);
   }
   &::after {
     content: "Expenses";
