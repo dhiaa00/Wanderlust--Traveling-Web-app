@@ -33,7 +33,7 @@ const AgencyMainSection = ({
           </div>
           <div className="map-and-collaborations">
             <Suspense fallback={<div>Loading...</div>}>
-              <MapComponent place={tour.country} />
+              <MapComponent place={tour.placeTo} />
             </Suspense>
             <Collaborations
               addCollaboration={addCollaboration}

@@ -6,6 +6,7 @@ import CreateTourStepTwo from "./CreateTourStepTwo";
 import axios from "axios";
 
 const CreateTourMultiStepForm = ({ setCreateTour, setTourCreated }) => {
+  const [fileIsUploading, setFileIsUploading] = useState(false);
   const agencyId = window.location.pathname
     .split("agency/")
     .pop()
@@ -82,6 +83,7 @@ const CreateTourMultiStepForm = ({ setCreateTour, setTourCreated }) => {
             nextStep={nextStep}
             handleInputChange={handleInputChange}
             handleCheckboxChange={handleCheckboxChange}
+            setFileIsUploading={setFileIsUploading}
           />
         ); // Return the JSX for Step 1 content
       case 2:
@@ -93,6 +95,7 @@ const CreateTourMultiStepForm = ({ setCreateTour, setTourCreated }) => {
               nextStep={nextStep}
               closeModal={closeModal}
               handleInputChange={handleInputChange}
+              setFileIsUploading={setFileIsUploading}
             />
             <button onClick={handleCreateSubmit}>submit</button>
           </>
@@ -110,6 +113,12 @@ const CreateTourMultiStepForm = ({ setCreateTour, setTourCreated }) => {
       <Modal isOpen={isOpen} onRequestClose={closeModal}>
         {renderStepContent()}
       </Modal>
+      {fileIsUploading && (
+        <div className="uploading-file">
+          <div className="uploading-file-background"></div>
+          <p>Uploading file</p>
+        </div>
+      )}
     </>
   );
 };

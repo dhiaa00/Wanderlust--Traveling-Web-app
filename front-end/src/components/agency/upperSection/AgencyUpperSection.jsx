@@ -4,7 +4,6 @@ import ChevronButton from "../buttons/ChevronButton";
 import CreateTourButton from "../buttons/CreateTourButton";
 import SearchBar from "./SearchBar";
 import ManagementButtons from "../buttons/ManagementButtons";
-import EditTourButton from "../buttons/EditTourButton";
 
 const AgencyUpperSection = ({
   createTour,

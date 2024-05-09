@@ -2,7 +2,13 @@ import React, { useRef } from "react";
 import "./importButton.css";
 import axios from "axios";
 
-const ImportButton = ({ text, name, type, handleInputChange }) => {
+const ImportButton = ({
+  text,
+  name,
+  type,
+  handleInputChange,
+  setFileIsUploading,
+}) => {
   const cloud_name = "djwcvewmf";
   const ImageFileInput = useRef(null);
 
@@ -10,6 +16,7 @@ const ImportButton = ({ text, name, type, handleInputChange }) => {
     const files = event.target.files;
     const formData = new FormData();
     const urls = [];
+    setFileIsUploading(true);
 
     if (name === "otherImagesUrl") {
       for (let i = 0; i < files.length; i++) {
@@ -43,6 +50,7 @@ const ImportButton = ({ text, name, type, handleInputChange }) => {
       }
       handleInputChange(event, urls[0]);
     }
+    setFileIsUploading(false);
   };
 
   return (
@@ -51,6 +59,7 @@ const ImportButton = ({ text, name, type, handleInputChange }) => {
         className="post-import-image"
         onClick={() => ImageFileInput.current.click()}>
         <input
+          id={`${type === "image" ? "image" : "video"}-input`}
           type="file"
           name={name}
           accept={type === "image" ? "image/*" : "video/mp4, video/mov"}

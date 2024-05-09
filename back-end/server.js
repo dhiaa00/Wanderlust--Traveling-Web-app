@@ -8,6 +8,9 @@ import offerRouter from "./routes/offerRouter.js";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import connectToDb from "./lib/connectToDb.js";
+
+// ... other imports and middleware
+
 const app = express();
 
 app.use(

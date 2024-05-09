@@ -11,6 +11,7 @@ const CreateTourStepOne = ({
   nextStep,
   handleInputChange,
   handleCheckboxChange,
+  setFileIsUploading,
 }) => {
   return (
     <div className="create-tour-step">
@@ -22,12 +23,14 @@ const CreateTourStepOne = ({
           name="thumbImageUrl"
           type="image"
           handleInputChange={handleInputChange}
+          setFileIsUploading={setFileIsUploading}
         />
       </div>
       <div className="post-description-details">
         <div className="post-description">
           <label htmlFor="post-title">Post Title</label>
           <input
+            id="post-title"
             name="title"
             type="text"
             placeholder="Add a Tittle to Your Post"
@@ -35,8 +38,9 @@ const CreateTourStepOne = ({
           />
         </div>
         <div className="post-description">
-          <label htmlFor="post-title">Price</label>
+          <label htmlFor="price-input">Price</label>
           <input
+            id="price-input"
             name="price"
             type="number"
             placeholder="Enter the Price of the Trip in DZD"
@@ -44,8 +48,9 @@ const CreateTourStepOne = ({
           />
         </div>
         <div className="post-description">
-          <label htmlFor="post-title">Description of The Trip</label>
+          <label htmlFor="description-input">Description of The Trip</label>
           <input
+            id="description-input"
             name="description"
             type="text"
             placeholder="100 Words at least"

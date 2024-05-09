@@ -20,5 +20,11 @@
       display: flex;
       justify-content: center;
     }
+    .days {
+      width: 20%;
+    }
+    .delete {
+      width: 5%;
+    }
   }
 }

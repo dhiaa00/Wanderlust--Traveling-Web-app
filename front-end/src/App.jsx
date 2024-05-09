@@ -61,6 +61,7 @@ function App() {
               <AgencyUpperSection
                 createTour={createTour}
                 setCreateTour={setCreateTour}
+                setTourCreated={setTourCreated}
                 notificationsOpen={notificationsOpen}
                 setNotificationsOpen={setNotificationsOpen}
                 setSearchInput={setSearchInput}

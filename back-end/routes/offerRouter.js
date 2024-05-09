@@ -20,7 +20,7 @@ offerRouter.route("/get/:id").get(verifyTokenAndAgency, getOfferById);
 
 offerRouter.route("/update/:id").put(updateOfferById);
 
-offerRouter.route("/delete/:id").delete(deleteOfferById);
+offerRouter.route("/delete/:id").delete(verifyTokenAndAgency, deleteOfferById);
 
 offerRouter.route("/search").post(verifyTokenAndAgency, offerSearch);
 

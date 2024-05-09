@@ -34,7 +34,7 @@ const AgencyTours = ({
     } catch (error) {
       console.error("Error searching tours:", error);
     }
-  }, 1000); // delay in ms
+  }, 100); // delay in ms
 
   useEffect(() => {
     const getTours = async () => {
@@ -66,10 +66,18 @@ const AgencyTours = ({
         <div className="country tour-list-title">Country</div>
         <div className="clients tour-list-title">Clients</div>
         <div className="days tour-list-title">Days</div>
+        <div className="delete tour-list-title"></div>
       </div>
       <div className="agency-tour-list">
         {agencyTours.map((tour, i) => {
-          return <TourListItem key={tour.id} order={i + 1} tour={tour} />;
+          return (
+            <TourListItem
+              key={tour.id}
+              order={i + 1}
+              tour={tour}
+              setAgencyTours={setAgencyTours}
+            />
+          );
         })}
       </div>
       <Suspense fallback={<div>Loading...</div>}>

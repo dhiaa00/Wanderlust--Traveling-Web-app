@@ -8,6 +8,7 @@ const CreateTourStepTwo = ({
   nextStep,
   closeModal,
   handleInputChange,
+  setFileIsUploading,
 }) => {
   const [visibility, setVisibility] = useState("public");
   const selectVisibility = useRef();
@@ -24,6 +25,7 @@ const CreateTourStepTwo = ({
           name="videoUrl"
           type="video"
           handleInputChange={handleInputChange}
+          setFileIsUploading={setFileIsUploading}
         />
         <h2>Post Pictures</h2>
         <ImportButton
@@ -31,16 +33,27 @@ const CreateTourStepTwo = ({
           name="otherImagesUrl"
           type="image"
           handleInputChange={handleInputChange}
+          setFileIsUploading={setFileIsUploading}
         />
       </div>
       <div className="post-description-details post-description-details-step-two">
         <div className="post-description">
           <label htmlFor="country">Country</label>
-          <input name="country" type="text" onChange={handleInputChange} />
+          <input
+            id="country"
+            name="country"
+            type="text"
+            onChange={handleInputChange}
+          />
         </div>
         <div className="post-description">
           <label htmlFor="placeTo">City</label>
-          <input name="placeTo" type="text" onChange={handleInputChange} />
+          <input
+            id="placeTo"
+            name="placeTo"
+            type="text"
+            onChange={handleInputChange}
+          />
         </div>
         <div className="post-description">
           <label htmlFor="visibility">Visibility</label>
@@ -64,11 +77,21 @@ const CreateTourStepTwo = ({
         </div>
         <div className="post-description">
           <label htmlFor="startDate">Start Date</label>
-          <input name="startDate" type="date" onChange={handleInputChange} />
+          <input
+            id="startDate"
+            name="startDate"
+            type="date"
+            onChange={handleInputChange}
+          />
         </div>
         <div className="post-description">
           <label htmlFor="endDate">End Date</label>
-          <input name="endDate" type="date" onChange={handleInputChange} />
+          <input
+            id="endDate"
+            name="endDate"
+            type="date"
+            onChange={handleInputChange}
+          />
         </div>
 
         <div className="step-navigation">

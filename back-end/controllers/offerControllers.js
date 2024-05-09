@@ -7,6 +7,7 @@ const createOffer = async (req, res) => {
       title,
       country,
       description,
+      placeTo,
       price,
       startDate,
       endDate,
@@ -108,7 +109,7 @@ const updateOfferById = async (req, res) => {
 const deleteOfferById = async (req, res) => {
   try {
     const offerId = req.params.id;
-    const agencyId = req.user._id; // Assuming the authenticated user is an agency
+    const agencyId = req.agency._id; // Assuming the authenticated user is an agency
 
     const offer = await Offer.findById(offerId);
     if (!offer) {
@@ -178,7 +179,6 @@ const offerSearch = async (req, res) => {
         { country: { $regex: searchInput, $options: "i" } },
       ],
     });
-    console.log(offers);
     return res
       .status(200)
       .json({ message: "Offers retrieved successfully", data: offers });
@@ -202,8 +202,6 @@ const addCollaboration = async (req, res) => {
     }
 
     offer.collaborations.push({ name, type, contact, priority });
-    console.log("data: ", { name, type, contact, priority });
-    console.log("collaboration: ", offer.collaborations);
     const updatedOffer = await offer.save();
 
     res.status(200).json({

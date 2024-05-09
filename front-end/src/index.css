@@ -2,13 +2,9 @@
 :root {
   --primary-color: #00ff94;
   --secondary-color: ;
-  --main-gradient: linear-gradient(180deg, #00c1b6 0%, #004b6c 100%);
-  --main-gradient-up-to-down: linear-gradient(180deg, #00c1b6 0%, #004b6c 100%);
-  --second-gradient: linear-gradient(
-    180deg,
-    rgba(79, 118, 119, 1) 0%,
-    rgba(112, 138, 132, 1) 100%
-  );
+  --main-gradient: #0d9cdb;
+  --main-gradient-up-to-down: #0d9cdb;
+  --second-gradient: #0d9cdb;
   --font-family: poppins;
   --base-line-height: 1.6;
   --x-padding: 40px;
