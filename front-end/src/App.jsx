@@ -12,6 +12,7 @@ import { Suspense, useState } from "react";
 import AgencyNavbar from "./components/agency/navbar/AgencyNavbar";
 import AgencyUpperSection from "./components/agency/upperSection/AgencyUpperSection";
 import "/src/pages/Agency/Tours/agencyTours.css";
+import Messages from "./pages/Agency/Massages/Messages";
 Modal.setAppElement("#root");
 function App() {
   const [createTour, setCreateTour] = useState(false);
@@ -90,6 +91,7 @@ function App() {
             />
           }
         />
+        <Route path="messages" element={<Messages />} />
       </Route>
     </Routes>
   );

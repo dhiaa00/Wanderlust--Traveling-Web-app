@@ -1,0 +1,235 @@
+.messages {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  min-height: 90vh;
+}
+
+.message-list {
+  width: 30%;
+  background-color: #f4f4f4;
+  padding: 20px;
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    transform: translateX(100%);
+    width: 1px;
+    background-color: rgba(0, 0, 0, 0.2);
+    filter: blur(2px);
+  }
+}
+
+.message-list h1 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+.messages-search {
+  background-color: transparent;
+  display: flex;
+  gap: 0.5rem;
+  img {
+    width: 20px;
+  }
+  input {
+    padding: 10px 5px;
+    background-color: transparent;
+    width: 100%;
+    border: none;
+    outline: none;
+  }
+}
+
+.message-list-container {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 0.5rem;
+  .message {
+    padding: 1rem 0.5rem;
+    border-radius: 5px;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    .message-sender {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      .message-sender-name {
+        font-weight: bold;
+      }
+    }
+  }
+  .message.active {
+    background-color: rgba(0, 123, 255, 0.3);
+  }
+}
+
+.message-sender-img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.message-sender-name {
+  font-weight: bold;
+}
+
+.current-opened-message {
+  width: 60%;
+  background-color: #ffffff;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.upper-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.sender-name h2 {
+  font-size: 20px;
+  margin-bottom: 5px;
+}
+
+.sender-name p {
+  color: green;
+}
+
+.messages-content {
+  flex: 1;
+  overflow-y: scroll;
+  scrollbar-width: none;
+  margin-bottom: 10px;
+}
+
+.current-messages-list {
+  margin-top: 0;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.message-item {
+  margin-bottom: 5px;
+}
+
+.own-message-item {
+  margin-bottom: 5px;
+}
+
+.message-item {
+  background-color: #f2f2f2;
+  padding: 10px;
+  border-radius: 10px;
+  width: fit-content;
+  align-self: flex-start;
+}
+
+.own-message-item {
+  background-color: var(--main-gradient);
+  color: #ffffff;
+  padding: 10px;
+  border-radius: 10px;
+  width: fit-content;
+  align-self: flex-end;
+}
+
+.bottom-section {
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding: 0.5rem 0.2rem;
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    transform: translateY(-100%);
+    height: 1px;
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+}
+
+.message-input {
+  flex: 1;
+  padding: 10px 5px;
+  margin-right: 10px;
+  border: none;
+  outline: none;
+}
+
+.send-message-btn {
+  padding: 8px 10px;
+  background-color: var(--main-gradient);
+  border-radius: 8px;
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+}
+
+.sender-info {
+  width: 30%;
+  background-color: #f4f4f4;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    transform: translateX(-100%);
+    width: 1px;
+    background-color: rgba(0, 0, 0, 0.2);
+    filter: blur(2px);
+  }
+  .sender-info-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+
+  .sender-info-img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin-bottom: 2rem;
+  }
+
+  .sender-info-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    .sender-info-text-item {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      h3 {
+        width: 50%;
+        font-size: 0.8rem;
+        margin-bottom: 5px;
+        font-weight: 800;
+      }
+      p {
+        width: 50%;
+        font-size: 0.6rem;
+        font-weight: 600;
+        margin-bottom: 5px;
+      }
+    }
+  }
+}
