@@ -11,12 +11,7 @@ import Modal from "react-modal";
 import { Suspense, useState } from "react";
 import AgencyNavbar from "./components/agency/navbar/AgencyNavbar";
 import AgencyUpperSection from "./components/agency/upperSection/AgencyUpperSection";
-import AgencyMainSection from "./components/agency/mainSection/AgencyMainSection";
-import Notifications from "./components/notifications/Notifications";
-import AddCollaboration from "./components/agency/mainSection/AddCollaboration";
-import CreateTourMultiStepForm from "./components/agency/createTour/CreateTourMultiStepForm";
 import "/src/pages/Agency/Tours/agencyTours.css";
-
 Modal.setAppElement("#root");
 function App() {
   const [createTour, setCreateTour] = useState(false);
@@ -84,7 +79,17 @@ function App() {
             />
           }
         />
-        <Route path="tours/:tourId" element={<SingleTourPage />} />
+        <Route
+          path="tours/:tourId"
+          element={
+            <SingleTourPage
+              createTour={createTour}
+              setCreateTour={setCreateTour}
+              setTourCreated={setTourCreated}
+              notificationsOpen={notificationsOpen}
+            />
+          }
+        />
       </Route>
     </Routes>
   );

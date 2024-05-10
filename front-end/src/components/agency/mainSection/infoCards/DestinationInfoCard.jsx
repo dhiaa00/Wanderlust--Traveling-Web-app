@@ -5,8 +5,8 @@ import UpperSectionForInfoCards from "./UpperSectionForInfoCards";
 
 const DestinationInfoCard = ({ tour }) => {
   const destination = tour.country || "";
-  const firstDestination = "Fouji";
-  const secondDestination = "Fouji";
+  const firstDestination = tour.placeFrom || "???";
+  const secondDestination = tour.placeTo || "???";
   const flightTime = { hours: tour.flightDuration, minutes: 0 };
   return (
     <div className="destination-info-card agency-tour-info-card">

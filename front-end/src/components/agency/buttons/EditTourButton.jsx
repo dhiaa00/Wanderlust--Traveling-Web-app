@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import editPostIcon from "/src/SVGs/edit-post-svg.svg";
 import "./createTourButton.css";
 
 const EditTourButton = ({ editTourOpen, setEditTourOpen }) => {

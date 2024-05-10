@@ -7,7 +7,10 @@ const createOffer = async (req, res) => {
       title,
       country,
       description,
+      placeFrom,
       placeTo,
+      flightTime,
+      flightDuration,
       price,
       startDate,
       endDate,
@@ -20,6 +23,9 @@ const createOffer = async (req, res) => {
       title,
       country,
       placeTo,
+      placeFrom,
+      flightTime,
+      flightDuration,
       description,
       price,
       startDate,
@@ -42,17 +48,20 @@ const createOffer = async (req, res) => {
 
 const updateOfferById = async (req, res) => {
   try {
-    const offerId = req.params._id;
-    const agencyId = req.user._id; // Assuming the authenticated user is an agency
+    const offerId = req.params.id;
+    const agencyId = req.agency.id;
     const {
       title,
-      description,
-      price,
       startDate,
       endDate,
+      flightTime,
+      flightDuration,
+      country,
+      placeFrom,
+      placeTo,
+      description,
       thumbImageUrl,
-      otherImagesUrl,
-      videoUrl,
+      price,
       temporaryPrice,
       temporaryPriceDurationDays,
     } = req.body;
@@ -69,12 +78,15 @@ const updateOfferById = async (req, res) => {
     // Update offer fields
     offer.title = title;
     offer.description = description;
+    offer.country = country;
+    offer.placeFrom = placeFrom;
+    offer.placeTo = placeTo;
+    offer.flightTime = flightTime;
+    offer.flightDuration = flightDuration;
     offer.price = price;
     offer.startDate = startDate;
     offer.endDate = endDate;
     offer.thumbImageUrl = thumbImageUrl;
-    offer.otherImagesUrl = otherImagesUrl;
-    offer.videoUrl = videoUrl;
 
     // Handle temporary price update
     if (temporaryPrice && temporaryPriceDurationDays) {

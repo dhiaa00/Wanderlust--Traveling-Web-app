@@ -7,7 +7,7 @@ import opencage from "opencage-api-client";
 const redIcon = L.icon({
   iconUrl: "/src/images/map-marker.png",
   iconSize: [50, 40], // Size of the icon, in pixels
-  iconAnchor: [12, 41], // Point of the icon which will correspond to marker's location
+  iconAnchor: [23, 40], // Point of the icon which will correspond to marker's location
 });
 
 const SetViewOnClick = ({ coords }) => {

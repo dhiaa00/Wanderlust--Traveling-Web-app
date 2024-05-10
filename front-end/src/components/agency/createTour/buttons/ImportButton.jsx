@@ -9,7 +9,8 @@ const ImportButton = ({
   handleInputChange,
   setFileIsUploading,
 }) => {
-  const cloud_name = "djwcvewmf";
+  const cloud_name = import.meta.env.VITE_CLOUD_NAME;
+
   const ImageFileInput = useRef(null);
 
   const handleImageUpload = async (event) => {

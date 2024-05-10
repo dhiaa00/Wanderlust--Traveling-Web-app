@@ -51,9 +51,10 @@
     cursor: pointer;
     img {
       width: 30px;
+      transition: 0.2s;
     }
     &:hover img {
-      transform: scale(1.01);
+      transform: scale(1.2);
     }
   }
   &:hover {

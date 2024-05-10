@@ -46,8 +46,18 @@ const CreateTourStepTwo = ({
             onChange={handleInputChange}
           />
         </div>
+
         <div className="post-description">
-          <label htmlFor="placeTo">City</label>
+          <label htmlFor="placeFrom">City of Depart</label>
+          <input
+            id="placeFrom"
+            name="placeFrom"
+            type="text"
+            onChange={handleInputChange}
+          />
+        </div>
+        <div className="post-description">
+          <label htmlFor="placeTo">City of Arrive</label>
           <input
             id="placeTo"
             name="placeTo"
@@ -98,7 +108,7 @@ const CreateTourStepTwo = ({
           <button disabled={step === 1} onClick={prevStep}>
             Back
           </button>
-          <button onClick={closeModal}>Done</button>
+          <button onClick={nextStep}>Next</button>
         </div>
       </div>
     </div>

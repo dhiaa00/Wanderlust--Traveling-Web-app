@@ -16,6 +16,7 @@
     "@fortawesome/react-fontawesome": "^0.2.0",
     "axios": "^1.6.8",
     "cloudinary-react": "^1.8.1",
+    "dotenv": "^16.4.5",
     "leaflet": "^1.9.4",
     "lodash": "^4.17.21",
     "opencage-api-client": "^1.0.5",

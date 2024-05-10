@@ -4,6 +4,8 @@ import CreateTourStepOne from "./CreateTourStepOne";
 import "./createTourForm.css";
 import CreateTourStepTwo from "./CreateTourStepTwo";
 import axios from "axios";
+import FileUploading from "../FileUploading";
+import CreateTourStepThree from "./CreateTourStepThree";
 
 const CreateTourMultiStepForm = ({ setCreateTour, setTourCreated }) => {
   const [fileIsUploading, setFileIsUploading] = useState(false);
@@ -14,6 +16,7 @@ const CreateTourMultiStepForm = ({ setCreateTour, setTourCreated }) => {
   const [formData, setFormData] = useState({
     title: "",
     country: "",
+    placeFrom: "",
     placeTo: "",
     price: 0,
     description: "",
@@ -24,6 +27,8 @@ const CreateTourMultiStepForm = ({ setCreateTour, setTourCreated }) => {
     videoUrl: "",
     startDate: "",
     endDate: "",
+    flightTime: "",
+    flightDuration: "",
     agencyId: agencyId,
   });
   const handleInputChange = (event, url) => {
@@ -97,8 +102,17 @@ const CreateTourMultiStepForm = ({ setCreateTour, setTourCreated }) => {
               handleInputChange={handleInputChange}
               setFileIsUploading={setFileIsUploading}
             />
-            <button onClick={handleCreateSubmit}>submit</button>
           </>
+        );
+      case 3:
+        return (
+          <CreateTourStepThree
+            step={step}
+            prevStep={prevStep}
+            closeModal={closeModal}
+            handleInputChange={handleInputChange}
+            handleCreateSubmit={handleCreateSubmit}
+          />
         );
     }
   };
@@ -113,12 +127,7 @@ const CreateTourMultiStepForm = ({ setCreateTour, setTourCreated }) => {
       <Modal isOpen={isOpen} onRequestClose={closeModal}>
         {renderStepContent()}
       </Modal>
-      {fileIsUploading && (
-        <div className="uploading-file">
-          <div className="uploading-file-background"></div>
-          <p>Uploading file</p>
-        </div>
-      )}
+      {fileIsUploading && <FileUploading />}
     </>
   );
 };

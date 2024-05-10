@@ -21,7 +21,7 @@
       margin: 0;
       padding: 0;
       font-size: 1.2rem;
-      height: 12%;
+      height: 10%;
     }
   }
   .edit-tour-middle-section {
@@ -29,7 +29,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 1rem;
+    padding: 2rem 1rem 1rem 1rem;
     .tour-section {
       width: 48%;
       height: 100%;
@@ -38,10 +38,7 @@
       align-items: flex-start;
       justify-content: space-between;
       label {
-        background-image: var(--main-gradient);
-        color: transparent;
-        -webkit-background-clip: text;
-        background-clip: text;
+        color: var(--main-gradient);
         font-weight: 600;
       }
       input {
@@ -49,6 +46,9 @@
         padding: 0.5rem 0.2rem;
         position: relative;
         width: 100%;
+        &:focus {
+          outline: none;
+        }
       }
       .input-wrapper {
         width: 100%;
@@ -58,7 +58,7 @@
         content: "";
         position: absolute;
         height: 1.5px;
-        background-color: #61d6cf;
+        background-color: var(--main-gradient);
         bottom: 0;
         left: 0;
         right: 0;
@@ -75,16 +75,27 @@
           width: 100%;
           .input-wrapper {
             width: 48%;
+            background-color: transparent;
+            &::after {
+              content: "";
+              position: absolute;
+              height: 1px;
+              background-color: var(--main-gradient);
+              bottom: 0;
+              left: 0;
+              right: 0;
+            }
           }
           input {
-            width: 48%;
+            width: 100%;
+            background-color: transparent;
           }
 
           input::after {
             content: "";
             position: absolute;
             height: 1px;
-            background-color: #61d6cf;
+            background-color: var(--main-gradient);
             bottom: 0;
             left: 0;
             right: 0;
@@ -97,8 +108,8 @@
       position: absolute;
       height: 90%;
       width: 0.5px;
-      background-color: #61d6cf;
-      top: 12%;
+      background-color: var(--main-gradient);
+      top: 10%;
       right: 50%;
       transform: translateX(-100%);
       opacity: 0.6;
@@ -108,21 +119,51 @@
       position: absolute;
       height: 0.5px;
       width: 100%;
-      background-color: #61d6cf;
-      top: 12%;
+      background-color: var(--main-gradient);
+      top: 10%;
       left: 50%;
       transform: translateX(-50%);
       opacity: 0.6;
     }
     .tour-description {
-      flex-direction: row;
+      flex-direction: column;
       justify-content: flex-start;
       gap: 1rem;
+      .description {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 1rem;
+        width: 100%;
+        textarea {
+          border: none;
+          padding: 0.5rem 0.5rem;
+          position: relative;
+          width: 100%;
+          &:focus {
+            outline: none;
+          }
+        }
+        .input-wrapper {
+          width: 100%;
+          position: relative;
+        }
+        .input-wrapper::after {
+          content: "";
+          position: absolute;
+          height: 1.5px;
+          background-color: var(--main-gradient);
+          bottom: 0;
+          left: 0;
+          right: 0;
+        }
+      }
       .tour-description {
         border: none;
         border-radius: 10px;
         padding: 0.5rem 1rem;
-        background-color: rgba(97, 214, 207, 0.15);
+        background-color: rgba(13, 156, 219, 0.15);
       }
     }
   }
@@ -132,7 +173,7 @@
     justify-content: flex-end;
     gap: 1rem;
     button {
-      background-image: var(--main-gradient);
+      background: var(--main-gradient);
       color: white;
       padding: 0.5rem 1rem;
       border: none;
@@ -145,7 +186,7 @@
     }
     .cancel-edit-button {
       background-image: unset;
-      color: #61d6cf;
+      color: var(--main-gradient);
       background-color: white;
       position: relative;
     }
@@ -159,6 +200,88 @@
       background: var(--main-gradient);
       border-radius: 16px;
       z-index: -1;
+    }
+  }
+  input::focus {
+    outline: none;
+  }
+}
+.edit-tour-step-two {
+  .edit-tour-upper-section {
+    height: calc(12% - 20px);
+  }
+  .edit-tour-middle-section-step-two {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 2rem;
+    align-items: flex-start;
+    &::before {
+      content: "";
+      position: absolute;
+      height: 0.5px;
+      width: 100%;
+      background-color: var(--main-gradient);
+      top: 10%;
+      left: 50%;
+      transform: translateX(-50%);
+      opacity: 0.6;
+    }
+    .tour-info {
+      width: 100%;
+    }
+  }
+  label {
+    color: var(--main-gradient);
+    display: flex;
+    font-weight: 600;
+    width: 100%;
+    position: relative;
+    &::after {
+      content: "";
+      position: absolute;
+      height: 1px;
+      background-color: var(--main-gradient);
+      bottom: 0;
+      left: 0;
+      right: 0;
+      transform: translateY(31px);
+    }
+  }
+  input {
+    border: none;
+    padding: 0.5rem 0.2rem;
+    position: relative;
+    background-color: transparent;
+    &:focus {
+      outline: none;
+    }
+    &::after {
+      content: "";
+      position: absolute;
+      min-height: 1.5px;
+      height: 1.5px;
+      background: var(--main-gradient);
+      bottom: 0;
+      left: 0;
+      right: 0;
+    }
+  }
+  .nameInput {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    input {
+      width: 100%;
+    }
+  }
+  .double-input {
+    width: 100%;
+    input {
+      width: 48%;
+      background-color: transparent;
     }
   }
 }

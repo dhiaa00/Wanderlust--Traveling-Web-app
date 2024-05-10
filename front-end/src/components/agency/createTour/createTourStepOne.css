@@ -86,4 +86,14 @@
       z-index: 1;
     }
   }
+  .post-description-details-step-three {
+    .details-container {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-self: center;
+      gap: 3rem;
+    }
+  }
 }

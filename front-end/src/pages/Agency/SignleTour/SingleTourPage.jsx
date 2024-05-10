@@ -1,6 +1,5 @@
 import React, { lazy, Suspense, useEffect, useState } from "react";
 import "./singletourpage.css";
-import AgencyNavbar from "../../../components/agency/navbar/AgencyNavbar";
 import AgencyMainSection from "../../../components/agency/mainSection/AgencyMainSection";
 const CreateTourMultiStepForm = lazy(() =>
   import("../../../components/agency/createTour/CreateTourMultiStepForm")
@@ -16,8 +15,14 @@ const AddCollaboration = lazy(() =>
 );
 import axios from "axios";
 
-const SingleTourPage = () => {
+const SingleTourPage = ({
+  createTour,
+  setCreateTour,
+  setTourCreated,
+  notificationsOpen,
+}) => {
   const [editTourOpen, setEditTourOpen] = useState(false);
+  const [tourUpdated, setTourUpdated] = useState(false);
   const [addCollaboration, setAddCollaboration] = useState(false);
   const [tour, setTour] = useState({});
   const tourId =
@@ -44,19 +49,25 @@ const SingleTourPage = () => {
       }
     };
     getTour();
-  }, []);
+  }, [tourUpdated]);
   return (
     <>
       <AgencyMainSection
         editTourOpen={editTourOpen}
         setEditTourOpen={setEditTourOpen}
+        tourUpdated={tourUpdated}
+        setTourUpdated={setTourUpdated}
         addCollaboration={addCollaboration}
         setAddCollaboration={setAddCollaboration}
         tour={tour}
       />
       <Suspense fallback={<div>Loading...</div>}>
         {editTourOpen && (
-          <EditTour ariaHideApp={false} setEditTourOpen={setEditTourOpen} />
+          <EditTour
+            ariaHideApp={false}
+            setEditTourOpen={setEditTourOpen}
+            setTourUpdated={setTourUpdated}
+          />
         )}
         {addCollaboration && (
           <AddCollaboration
@@ -65,6 +76,14 @@ const SingleTourPage = () => {
             ariaHideApp={false}
           />
         )}
+        {createTour && (
+          <CreateTourMultiStepForm
+            setTourCreated={setTourCreated}
+            setCreateTour={setCreateTour}
+            ariaHideApp={false}
+          />
+        )}
+        {notificationsOpen && <Notifications ariaHideApp={false} />}
       </Suspense>
     </>
   );

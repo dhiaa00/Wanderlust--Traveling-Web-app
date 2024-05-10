@@ -68,7 +68,7 @@ const CreateTourStepOne = ({
           <button disabled={step === 1} onClick={prevStep}>
             Back
           </button>
-          <button onClick={nextStep}>Next Step</button>
+          <button onClick={nextStep}>Next</button>
         </div>
       </div>
     </div>
