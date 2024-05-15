@@ -1,0 +1,17 @@
+.Biling-history-container {
+    padding: 0.7rem 1rem;
+}
+.everything-bro {
+    background-color: white;
+}
+.the-first-thingos {
+    padding: 0.5rem 1rem;
+    border-bottom: solid;
+    border-width: 1px;
+    border-color: rgba(0, 0, 0, 0.28);
+}
+.everything-else-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}

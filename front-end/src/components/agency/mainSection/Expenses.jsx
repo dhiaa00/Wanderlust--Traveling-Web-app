@@ -42,16 +42,16 @@ const Expenses = ({ collaborations }) => {
     if (collaborations) {
       calculatePercentages(collaborations);
       setHotelsStyle({
-        width: `${percentages.hotels / 1.2}%`,
-        height: `${percentages.hotels / 1.2}%`,
+        width: `${percentages.hotels / 1.3}%`,
+        height: `${percentages.hotels / 1.3}%`,
       });
       setTransportStyle({
-        width: `${percentages.transport / 1.2}%`,
-        height: `${percentages.transport / 1.2}%`,
+        width: `${percentages.transport / 1.3}%`,
+        height: `${percentages.transport / 1.3}%`,
       });
       setOtherStyle({
-        width: `${percentages.other / 1.2}%`,
-        height: `${percentages.other / 1.2}%`,
+        width: `${percentages.other / 1.3}%`,
+        height: `${percentages.other / 1.3}%`,
       });
       setTransportDataName(`transport: ${percentages.transport}%`);
       setHotelsDataName(`hotels: ${percentages.hotels}%`);

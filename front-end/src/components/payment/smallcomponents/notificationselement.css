@@ -1,0 +1,31 @@
+.notification-element {
+    h3 {
+        font-weight: 600;
+        font-size: 17px;
+
+    }
+    p {
+        font-weight: 400;
+        font-size: 14px;
+    }
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 1rem;
+    background-color: rgba(13, 157, 219, 0.185);
+    border-radius: 20px;
+
+
+}
+.the-first-half {
+    display: flex;
+    gap: 1rem;
+
+}
+.the-thingy-SVG {
+    
+}
+.this-button-that-i-dontknow {
+    background: transparent;
+    border: none;
+
+}

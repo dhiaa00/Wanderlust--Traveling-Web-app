@@ -1,0 +1,299 @@
+.edit-profile-payment-page {
+  display: flex;
+  flex-direction: column;
+  h2 {
+    font-weight: 700;
+    font-size: 20px;
+  }
+
+  h1 {
+    font-weight: 700;
+    font-size: 30px;
+  }
+}
+.editing-profile-changing-stuff {
+  background-color: white;
+  border-radius: 18px;
+  max-width: 100%;
+}
+
+.profile-picture-container {
+  padding-left: 2rem;
+  padding-top: 1.5rem;
+  padding-right: 27rem;
+  padding-bottom: 1.5rem;
+  display: flex;
+  gap: 3.5rem;
+}
+
+:root {
+  --gradient3: linear-gradient(
+    to bottom,
+    rgba(0, 193, 182, 0.61),
+    rgba(0, 75, 108, 0.61)
+  );
+}
+
+.upload-new-photo {
+  cursor: pointer;
+  --border-width: 2px;
+  --border-radius: 18px;
+  position: relative;
+  padding: 0.6rem 1.3rem;
+  background: var(--gradient3);
+  font-size: 16px;
+  font: transparent;
+  font: inherit;
+  border: 0;
+  border-radius: var(--border-radius);
+  z-index: 1;
+  min-width: 200px;
+}
+.upload-new-photo::before {
+  content: "";
+  display: block;
+
+  height: calc(100% - calc(var(--border-width) * 2));
+  width: calc(100% - calc(var(--border-width) * 2));
+
+  background: white;
+  position: absolute;
+  top: var(--border-width);
+  left: var(--border-width);
+  border-radius: calc(var(--border-radius) - var(--border-width));
+  z-index: -1;
+}
+.upload-new-photo-text {
+  color: transparent;
+  font-size: 21px;
+  font-weight: 600;
+  background: var(--gradient3);
+  -webkit-background-clip: text;
+}
+.upload-new-photo::after {
+  content: "";
+  position: absolute;
+  width: 0%;
+  height: 100%;
+  top: 0px;
+  left: 0px;
+  background: var(--gradient3);
+  border-radius: var(--border-radius);
+  z-index: 0;
+  transition: 0.6s;
+}
+.upload-new-photo:hover::after {
+  width: 100%;
+}
+.upload-new-photo:hover .upload-new-photo-text {
+  transition: 0.5s;
+  color: black;
+}
+
+.instruction-text-container {
+  p {
+    opacity: 54%;
+  }
+}
+.upload-picutre-profile {
+  padding: 1rem 0px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.edit-button {
+  display: flex;
+  gap: 0.3rem;
+  padding: 0.3rem 0.8rem;
+  border-radius: 12px;
+  background-color: white;
+  border: solid;
+  border-width: 1px;
+  border-color: rgba(0, 0, 0, 0.28);
+  font-size: 20px;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.5s ease;
+}
+.edit-button:hover {
+  background-color: rgba(0, 0, 0, 0.28);
+}
+.information-title {
+  display: flex;
+  justify-content: space-between;
+}
+.information-container1 {
+  border: solid;
+  border-width: 1px;
+  border-color: rgba(0, 0, 0, 0.28);
+  border-radius: 18px;
+  margin: 2rem 3rem;
+  padding: 2rem 2rem;
+  gap: 2rem;
+}
+.informations-container-the-actualinfo {
+  display: flex;
+  justify-content: space-between;
+}
+.info-single-title {
+  opacity: 54%;
+  font-weight: 600;
+}
+.the-infomation-itself {
+  font-weight: 600;
+}
+.information-title-info-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.location {
+  border: solid;
+  border-width: 1px;
+  border-color: rgba(0, 0, 0, 0.28);
+  border-radius: 18px;
+  margin: 2rem 3rem;
+  padding: 2rem 2rem;
+}
+
+.text-save-button {
+  display: flex;
+  gap: 2rem;
+}
+.location-input {
+  padding: 0rem 1rem;
+  width: 100%;
+  border-radius: 10px;
+  height: 100%;
+  font: inherit;
+  z-index: 1;
+}
+.focus-outline {
+  width: 70%;
+  --border-width: 1px;
+  --border-radius: 10px;
+  position: relative;
+  background: var(--gradient);
+  font: inherit;
+  border: 0;
+  border-radius: var(--border-radius);
+  z-index: 1;
+}
+.focus-outline::before {
+  content: "";
+  display: block;
+
+  height: calc(100% - calc(var(--border-width) * 2));
+  width: calc(100% - calc(var(--border-width) * 2));
+
+  background: white;
+  position: absolute;
+  top: var(--border-width);
+  left: var(--border-width);
+  border-radius: calc(var(--border-radius) - var(--border-width));
+  z-index: -1;
+}
+.location {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.savechange-button {
+  background: var(--gradient3);
+  padding: 0.4rem 2rem;
+  border-radius: 10px;
+  color: white;
+  font-family: inherit;
+  font-size: 17px;
+  border: none;
+}
+.location-input:focus {
+  outline: none;
+}
+.bio {
+  border: solid;
+  border-width: 1px;
+  border-color: rgba(0, 0, 0, 0.28);
+  border-radius: 18px;
+  margin: 2rem 3rem;
+  padding: 2rem 2rem;
+}
+
+/* responsive */
+
+@media screen and (max-width: 1100px) {
+  .edit-profile-payment-page {
+    padding: 1rem;
+  }
+  .profile-picture-container {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .profile-picture {
+    width: 40%;
+    align-self: center;
+  }
+  .upload-new-photo {
+    min-width: 100px;
+  }
+  .upload-new-photo-text {
+    font-size: 16px;
+  }
+  .information-container1 {
+    margin: 1rem 1rem;
+    padding: 1rem 1rem;
+  }
+  .location {
+    margin: 1rem 1rem;
+    padding: 1rem 1rem;
+  }
+  .bio {
+    margin: 1rem 1rem;
+    padding: 1rem 1rem;
+  }
+  .location-input {
+    padding: 0rem 0.5rem;
+  }
+  .savechange-button {
+    padding: 0.4rem 1rem;
+    font-size: 14px;
+  }
+  .edit-button {
+    padding: 0.3rem 0.5rem;
+    font-size: 16px;
+  }
+  .information-title {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .information-title-info-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .text-save-button {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .location {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .upload-picutre-profile {
+    padding: 0.5rem 0px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .instruction-text-container {
+    p {
+      font-size: 14px;
+    }
+  }
+}

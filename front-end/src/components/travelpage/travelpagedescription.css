@@ -1,0 +1,23 @@
+.travelpagedescription {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    border: solid;
+    border-width: 1px;
+    border-color: rgba(0, 0, 0, 0.13);;
+    border-radius: 22px;
+    margin: 0 13%;
+    h3 {
+        padding-left: 25px;
+        padding-top: 0.5%;
+        font-size: 16px;
+        font-weight: 600;
+        color: rgba(0, 0, 0, 0.57);
+    }
+    p {
+        padding-left: 2%;
+        padding-right: 3%;
+        padding-bottom: 3%;
+    }
+}

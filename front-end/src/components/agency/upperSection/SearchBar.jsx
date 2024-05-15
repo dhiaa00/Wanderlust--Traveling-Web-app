@@ -9,6 +9,7 @@ const SearchBar = ({ setSearchInput }) => {
 
   const handleVoiceSearch = () => {
     if (!voiceSearchEnabled) {
+      setRegularSearch(false);
       const recognition = new window.webkitSpeechRecognition();
       recognition.start();
       recognition.onresult = (event) => {
@@ -29,6 +30,13 @@ const SearchBar = ({ setSearchInput }) => {
     setSearchInput("");
     // speech recognition using web speech api
   };
+
+  const [regularSearch, setRegularSearch] = useState(false);
+
+  const handleRegularSearch = () => {
+    setVoiceSearchEnabled(false);
+    setRegularSearch(!regularSearch);
+  };
   return (
     <div className="agency-search-bar">
       <div className="voice-search">
@@ -38,11 +46,18 @@ const SearchBar = ({ setSearchInput }) => {
           alt="voice search icon"
           onClick={handleVoiceSearch}
         />
-        <p className={voiceSearchEnabled ? "voice-search-enabled-p" : ""}>
+        <p
+          className={
+            voiceSearchEnabled || regularSearch ? "voice-search-enabled-p" : ""
+          }>
           Voice Search
         </p>
         <input
-          className={voiceSearchEnabled ? "voice-search-enabled-input" : ""}
+          className={
+            voiceSearchEnabled || regularSearch
+              ? "voice-search-enabled-input "
+              : ""
+          }
           type="text"
           placeholder="Search..."
           value={textSpeeched}
@@ -71,7 +86,12 @@ const SearchBar = ({ setSearchInput }) => {
         className={
           "agency-search " + (voiceSearchEnabled ? "voice-search-enabled" : "")
         }>
-        <img src={SearchIcon} alt="search icon" />
+        <img
+          className="regular-search-icon"
+          src={SearchIcon}
+          alt="search icon"
+          onClick={handleRegularSearch}
+        />
       </div>
     </div>
   );

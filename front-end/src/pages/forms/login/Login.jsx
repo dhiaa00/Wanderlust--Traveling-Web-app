@@ -28,7 +28,10 @@ const Login = () => {
         }
       );
       if (response.status === 200) {
-        saveToLocalStorage("user", response.data.data);
+        saveToLocalStorage(
+          accountType == "agency" ? "agency" : "user",
+          response.data.data
+        );
         if (accountType == "agency") {
           navigate(`/agency/${response.data.data._id}/tours`);
         }

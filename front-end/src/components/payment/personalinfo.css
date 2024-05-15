@@ -1,0 +1,47 @@
+.edit-button {
+    display: flex;
+    gap: 0.3rem;
+    padding: 0.3rem 0.8rem;
+    border-radius: 12px;
+    background-color: white;
+    border: solid;
+    border-width: 1px;
+    border-color: rgba(0,0, 0, 0.28);
+    font-size: 20px;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.5s ease;
+  }
+  .edit-button:hover {
+    background-color: rgba(0, 0, 0, 0.28);
+  }
+  .information-title {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .information-container {
+    border: solid;
+    border-width: 1px;
+    border-color: rgba(0, 0, 0, 0.28);
+    border-radius: 18px;
+    margin: 2rem 3rem;
+    padding: 2rem 2rem;
+    gap: 2rem;
+  }
+  .informations-container-the-actualinfo {
+    display: flex;
+    justify-content: space-between;
+  }
+  .info-single-title {
+    opacity: 54%;
+    font-weight: 600;
+  }
+  .the-infomation-itself {
+    font-weight: 600;
+  }
+  .information-title-info-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  } 

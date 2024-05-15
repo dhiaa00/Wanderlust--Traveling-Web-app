@@ -1,0 +1,17 @@
+.title-containers-actually {
+    p {
+        opacity:0.27;
+        font-size: 17px;
+    }
+    display: flex;
+    gap: 0.5rem;
+    width: 17%;
+}
+.list-of-stuff-container {
+    display: flex;
+    padding-left: 0.5rem;
+    justify-content: space-between;
+    border-radius: 8px;
+    background-color: rgba(13, 157, 219, 0.185) ;
+
+}

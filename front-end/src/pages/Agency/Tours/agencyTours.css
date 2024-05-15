@@ -35,7 +35,9 @@
     }
     .agency-upper-section {
       .agency-upper-section-buttons {
-        width: 35%;
+        min-width: 45%;
+        max-width: 45%;
+        gap: 0.8rem;
       }
       .search-and-management-buttons {
         width: 50%;
@@ -102,7 +104,8 @@
       }
       .search-and-management-buttons {
         width: 60%;
-        gap: 10px;
+        justify-content: center;
+        gap: 5px;
         .agency-search-bar {
           .agency-search {
             &::after {

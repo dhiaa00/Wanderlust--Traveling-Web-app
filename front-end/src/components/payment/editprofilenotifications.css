@@ -1,0 +1,46 @@
+.notifications-container-everything {
+    background-color: white;
+    border-radius: 29px;
+    width: 100%;
+    padding: 2rem 3rem;
+    h2 {
+        font-weight: 700;
+        font-size: 20px;
+    }
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+.notification-you-recieve {
+    display: flex;
+    justify-content: space-between;
+
+}
+.editprofile-notifications {
+  width: 100%;   
+  h1 {
+    font-weight: 700;
+    font-size: 30px;
+  }
+}
+.the-notification-you-recieve-container-everything {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+.where-you-recieve-notifications {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+.different-notifications-container {
+    border: solid;
+    border-color: rgba(0, 0, 0, 0.288);
+    border-width: 1px;
+    border-radius: 29px;
+    padding: 1.3rem 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}

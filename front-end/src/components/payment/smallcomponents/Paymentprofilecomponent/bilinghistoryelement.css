@@ -1,0 +1,27 @@
+.biling-history-element-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color:rgba(217, 217, 217, 0.24) ;
+    h2 {
+        font-size: 17px;
+        font-weight: 600;
+    }
+    p {
+        font-size: 13px;
+        opacity: 0.44;
+    }
+    padding-right: 1.2rem;
+}
+.name-datetype-shit {
+    display: flex;
+    gap: 0.5rem;
+    width: 20%;
+}
+.title-container-details {
+    display: flex;
+    flex-direction: column;
+}
+.element {
+    width: 19%;
+}

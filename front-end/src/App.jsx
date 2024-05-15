@@ -6,6 +6,11 @@ import SignUpAgency from "./pages/forms/SignUpAgency";
 import SingleTourPage from "./pages/Agency/SignleTour/SingleTourPage";
 import ConfirmYourEmail from "./pages/forms/ConfirmYourEmail";
 import AgencyTours from "./pages/Agency/Tours/AgencyTours";
+import TravelPage from "./pages/Travels/TravelPage";
+import PaymentPage from "./pages/PaymentS/AgencyInfoPage";
+import EditProfileLanguagePage from "./pages/PaymentS/EditProfileLanguagePage";
+import EditProfileNotificationsPage from "./pages/PaymentS/EditProfileNotificationsPage";
+import EditProfilePayment from "./pages/PaymentS/EditProfilePayment";
 import Login from "./pages/forms/login/Login";
 import Modal from "react-modal";
 import { Suspense, useState } from "react";
@@ -13,7 +18,9 @@ import AgencyNavbar from "./components/agency/navbar/AgencyNavbar";
 import AgencyUpperSection from "./components/agency/upperSection/AgencyUpperSection";
 import "/src/pages/Agency/Tours/agencyTours.css";
 import Messages from "./pages/Agency/Massages/Messages";
+import AgencyInfoPage from "./pages/PaymentS/AgencyInfoPage";
 Modal.setAppElement("#root");
+
 function App() {
   const [createTour, setCreateTour] = useState(false);
   const [tourCreated, setTourCreated] = useState(false);
@@ -91,8 +98,16 @@ function App() {
             />
           }
         />
+        <Route path="settings/info" element={<AgencyInfoPage />} />
+        <Route
+          path="settings/notifications"
+          element={<EditProfileNotificationsPage />}
+        />
+        <Route path="settings/payment" element={<EditProfilePayment />} />
+        <Route path="settings/language" element={<EditProfileLanguagePage />} />
         <Route path="messages" element={<Messages />} />
       </Route>
+      <Route path="/travelpage" element={<TravelPage />} />
     </Routes>
   );
 }

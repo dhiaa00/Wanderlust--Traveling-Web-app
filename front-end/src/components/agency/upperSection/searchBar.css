@@ -193,6 +193,13 @@
       padding: 0 5px 0 0;
     }
   }
+  .regular-search-icon {
+    cursor: pointer;
+    width: 20px;
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
 }
 @keyframes appearing {
   0% {
@@ -310,5 +317,14 @@
   }
   100% {
     height: 50%;
+  }
+}
+
+@media (max-width: 568px) {
+  .agency-search-bar {
+    max-width: fit-content;
+    .voice-waves-icon {
+      display: none;
+    }
   }
 }

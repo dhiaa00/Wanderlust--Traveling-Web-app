@@ -1,0 +1,19 @@
+
+body {
+    background-color: rgba(247, 247, 247, 1);
+}
+
+
+.travel_page {
+    height: 100%;
+    padding-top: 40%;
+    padding-bottom: 2%;
+    position: relative;
+    z-index: 1;
+    scroll-behavior: smooth;
+}
+.background-image {
+    position: absolute;
+    top: 0px;
+    z-index: -1;
+}

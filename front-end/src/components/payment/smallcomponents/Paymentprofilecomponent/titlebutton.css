@@ -1,0 +1,24 @@
+.title-button-container {
+    display: flex;
+    justify-content: space-between;
+    h2 {
+        font-weight: 600;
+        font-size: 20px;
+    }
+
+}
+.beautiful-button {
+    background-color: white;
+    cursor: pointer;
+    border: solid;
+    border-width: 1px;
+    border-color: rgba(0, 0, 0, 0.28);
+    padding: 0.1rem 0.6rem;
+    font-family: inherit;
+    border-radius: 12px;
+    font-weight: 600;
+    transition: background-color 0.5s ease;
+}
+.beautiful-button :hover {
+    background-color: rgba(0, 0, 0, 0.28);
+}

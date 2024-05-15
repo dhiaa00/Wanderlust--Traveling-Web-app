@@ -1,0 +1,120 @@
+.editprofile-langauge {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 1rem 0rem;
+  }
+  h1 {
+    font-weight: 700;
+    font-size: 30px;
+  }
+  h2 {
+    font-size: 20px;
+    font-weight: 700;
+  }
+}
+.choice-of-language-container {
+  background-color: white;
+  padding: 4rem;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.choices-container {
+  display: flex;
+  gap: 10rem;
+}
+.row {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.input {
+  display: flex;
+  gap: 0.5rem;
+  label {
+    font-size: 16px;
+    font-weight: 700;
+  }
+}
+.Choose-button {
+  width: 15%;
+}
+.radio-input-button {
+  appearance: none;
+  width: 25px;
+}
+.radio-input-button::before {
+  content: "";
+  display: block;
+  background-color: rgba(247, 247, 247, 1);
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: solid;
+  border-width: 1px;
+  border-color: rgb(14, 243, 167);
+}
+.radio-input-button:checked::before {
+  width: 20px;
+  height: 20px;
+  background-image: var(--gradient2);
+}
+
+.Choose-button {
+  cursor: pointer;
+  --border-width: 1px;
+  --border-radius: 10px;
+  position: relative;
+  padding: 0.5rem;
+  background: var(--gradient);
+  font-size: 16px;
+  font: transparent;
+  font: inherit;
+  border: 0;
+  border-radius: var(--border-radius);
+  z-index: 1;
+}
+.Choose-button::before {
+  content: "";
+  display: block;
+
+  height: calc(100% - calc(var(--border-width) * 2));
+  width: calc(100% - calc(var(--border-width) * 2));
+
+  background: white;
+  position: absolute;
+  top: var(--border-width);
+  left: var(--border-width);
+  border-radius: calc(var(--border-radius) - var(--border-width));
+  z-index: -1;
+}
+
+.Choose-button::after {
+  content: "";
+  position: absolute;
+  width: 0%;
+  height: 100%;
+  top: 0px;
+  left: 0px;
+  background: var(--gradient);
+  border-radius: 9.8px;
+  z-index: 0;
+  transition: 0.6s;
+}
+.Choose-button:hover::after {
+  width: 100%;
+  color: white;
+}
+.Choose-button .Choose-button-text {
+  transition: 0.6s;
+}
+.the-actual-content-language {
+  max-width: 100%;
+}

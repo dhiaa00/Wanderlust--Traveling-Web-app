@@ -1,0 +1,79 @@
+.profile-picture-container {
+    padding-left: 2rem;
+    padding-top: 1.5rem;
+    padding-right: 27rem;
+    padding-bottom: 1.5rem;
+    display: flex;
+    gap: 3.5rem;
+}
+
+:root {
+    --gradient3 : linear-gradient(to bottom,rgba(0, 193, 182, 0.61),rgba(0, 75, 108, 0.61));
+}
+
+.upload-new-photo {
+    cursor: pointer;
+    --border-width: 2px;
+    --border-radius: 18px;
+    position: relative;
+    padding: 0.6rem 1.3rem;
+    background: var(--gradient3);
+    font-size: 16px;
+    font: transparent;
+    font: inherit;
+    border: 0;
+    border-radius: var(--border-radius);
+    z-index: 1;
+}
+.upload-new-photo::before {
+    content: '';
+    display: block;
+    
+    height: calc(100% - calc(var(--border-width)*2));
+    width: calc(100% - calc(var(--border-width)*2));
+
+    background: white;
+    position: absolute;
+    top: var(--border-width);
+    left: var(--border-width);
+    border-radius: calc(var(--border-radius) - var(--border-width));
+    z-index: -1;
+}
+.upload-new-photo-text {
+    color: transparent;
+    font-size: 21px;
+    font-weight: 600;
+    background: var(--gradient3);
+    -webkit-background-clip: text;
+}
+.upload-new-photo::after {
+    content: "";
+    position: absolute;
+    width: 0%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    background: var(--gradient3);
+    border-radius: var(--border-radius);
+    z-index: 0;
+    transition: 0.6s;
+  }
+  .upload-new-photo:hover::after {
+    width: 100%;
+  }
+  .upload-new-photo:hover .upload-new-photo-text {
+    transition: 0.5s;  
+    color: black;
+  }
+  
+  .instruction-text-container {
+    p {
+        opacity: 54%;
+    }
+  }
+  .upload-picutre-profile {
+    padding: 1rem 0px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
