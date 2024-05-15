@@ -27,4 +27,112 @@
       width: 5%;
     }
   }
+  /* responsive */
+  @media (max-width: 1100px) {
+    .agency-main-section {
+      align-items: center;
+      padding-left: 5rem;
+    }
+    .agency-upper-section {
+      .agency-upper-section-buttons {
+        width: 35%;
+      }
+      .search-and-management-buttons {
+        width: 50%;
+        .agency-search-bar {
+          p {
+            font-size: 0.7rem;
+            text-align: center;
+            margin: 0 5px;
+          }
+          img {
+            width: 15px;
+          }
+        }
+      }
+    }
+    .tour-list-titles {
+      font-size: 0.8rem;
+    }
+    .chevron-button {
+      width: fit-content;
+      font-size: 0.8rem;
+      padding: 5px 10px;
+    }
+    .create-tour-button {
+      width: fit-content;
+      font-size: 0.8rem;
+    }
+  }
+  @media (max-width: 750px) {
+    .agencyTours {
+      display: flex;
+      flex-direction: column;
+    }
+    .agency-navbar-container {
+      display: none;
+    }
+    .agency-main-section {
+      align-items: center;
+      padding-left: unset;
+      margin: unset;
+    }
+  }
+  @media (max-width: 550px) {
+    padding: 10px 10px;
+    .agency-upper-section {
+      .agency-upper-section-buttons {
+        .chevron-button {
+          font-size: 0.6rem;
+          padding: 6px 6px;
+          img {
+            display: none;
+          }
+        }
+        .create-tour-button {
+          font-size: 0.6rem;
+          padding: 6px 6px;
+          &::after {
+            display: none;
+          }
+          &::before {
+            display: none;
+          }
+        }
+      }
+      .search-and-management-buttons {
+        width: 60%;
+        gap: 10px;
+        .agency-search-bar {
+          .agency-search {
+            &::after {
+              display: none;
+            }
+            padding: 0;
+          }
+          p {
+            font-size: 0.6rem;
+            text-align: center;
+            margin: 0;
+          }
+          img {
+            width: 10px;
+          }
+        }
+        .management-buttons {
+          gap: 5px;
+          .management-button {
+            img {
+              width: 12px;
+            }
+          }
+        }
+      }
+    }
+    .agency-tour-list-item {
+      .image-container {
+        display: none;
+      }
+    }
+  }
 }

@@ -165,4 +165,79 @@
       max-width: 450px;
     }
   }
+  @media (max-width: 1100px) {
+    .swiper-container {
+      max-width: 400px;
+      min-width: 400px;
+      .swiper {
+        max-width: 400px;
+        margin: 0;
+      }
+      img {
+        max-width: 400px;
+      }
+    }
+    .agency-bottom-section {
+      flex-direction: column;
+      .info-cards {
+        flex-wrap: wrap;
+        gap: 1rem;
+        .agency-tour-info-card {
+          min-width: 250px;
+        }
+        .destination-info-card {
+          min-width: 400px;
+        }
+      }
+      .agency-right-side {
+        width: 100%;
+        &::after {
+          display: none;
+        }
+      }
+      .timeline {
+        width: 100%;
+      }
+    }
+  }
+  @media (max-width: 600px) {
+    .agency-bottom-section {
+      .agency-left-side {
+        margin-right: 0;
+      }
+      .info-cards {
+        margin: 20px 0;
+      }
+      .agency-tour-info-card {
+        width: 100%;
+      }
+      .images-and-expenses {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+        .swiper-container {
+          max-width: 100%;
+          min-width: 100%;
+          align-self: center;
+        }
+        .expenses {
+          align-self: center;
+        }
+      }
+      .map-and-collaborations {
+        flex-direction: column-reverse;
+
+        gap: 1rem;
+        .map-container {
+          width: 100%;
+        }
+        .collaborations {
+          width: 100%;
+          margin: 0;
+        }
+      }
+    }
+  }
 }
