@@ -1,0 +1,20 @@
+body {
+  background-color: rgba(247, 247, 247, 1);
+}
+.payement-page-container {
+  padding: 20px;
+}
+.payment-page {
+  display: flex;
+  flex-direction: column;
+}
+.payment-page-content {
+  display: flex;
+  max-width: 100%;
+}
+.choice-of-language-container {
+  padding: 2rem 1rem;
+  .choices-container {
+    flex-wrap: wrap;
+  }
+}

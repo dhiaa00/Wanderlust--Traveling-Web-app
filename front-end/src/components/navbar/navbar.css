@@ -3,10 +3,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 2rem var(--x-padding);
+  padding: 1.5rem var(--x-padding);
+  img {
+    width: 200px;
+  }
   nav {
-    width: 80%;
-    margin-left: calc(80px);
+    flex: 1;
     display: flex;
     align-items: center;
     justify-content: center;

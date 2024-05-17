@@ -6,11 +6,10 @@ import SignUpAgency from "./pages/forms/SignUpAgency";
 import SingleTourPage from "./pages/Agency/SignleTour/SingleTourPage";
 import ConfirmYourEmail from "./pages/forms/ConfirmYourEmail";
 import AgencyTours from "./pages/Agency/Tours/AgencyTours";
-import TravelPage from "./pages/Travels/TravelPage";
-import PaymentPage from "./pages/PaymentS/AgencyInfoPage";
-import EditProfileLanguagePage from "./pages/PaymentS/EditProfileLanguagePage";
-import EditProfileNotificationsPage from "./pages/PaymentS/EditProfileNotificationsPage";
-import EditProfilePayment from "./pages/PaymentS/EditProfilePayment";
+import TravelPage from "./pages/Tourist/TravelPage/TravelPage";
+import EditProfileLanguagePage from "./pages/Tourist/PaymentS/EditProfileLanguagePage";
+import EditProfileNotificationsPage from "./pages/Tourist/PaymentS/EditProfileNotificationsPage";
+import EditProfilePayment from "./pages/Tourist/PaymentS/EditProfilePayment";
 import Login from "./pages/forms/login/Login";
 import Modal from "react-modal";
 import { Suspense, useState } from "react";
@@ -18,7 +17,8 @@ import AgencyNavbar from "./components/agency/navbar/AgencyNavbar";
 import AgencyUpperSection from "./components/agency/upperSection/AgencyUpperSection";
 import "/src/pages/Agency/Tours/agencyTours.css";
 import Messages from "./pages/Agency/Massages/Messages";
-import AgencyInfoPage from "./pages/PaymentS/AgencyInfoPage";
+import AgencyInfoPage from "./pages/Tourist/PaymentS/AgencyInfoPage";
+import SingleTravelPage from "./pages/Tourist/Travels/SingleTravelPage";
 Modal.setAppElement("#root");
 
 function App() {
@@ -30,31 +30,24 @@ function App() {
   return (
     <Routes>
       <Route
-        path="/signup"
+        path="/"
         element={
           <>
             <NavBar />
             <Outlet />
           </>
         }>
-        <Route index element={<SignUp />} />
-        <Route path="tourist" element={<SignUpTourist />} />
-        <Route path="agency" element={<SignUpAgency />} />
+        <Route index element={<TravelPage />} />
+        <Route path="signup" element={<SignUp />} />
+        <Route path="signup/tourist" element={<SignUpTourist />} />
+        <Route path="signup/agency" element={<SignUpAgency />} />
         <Route
-          path="confirmation/:type/:confirmationId"
+          path="signup/confirmation/:type/:confirmationId"
           element={<ConfirmYourEmail />}
         />
+        <Route path="/login" element={<Login />} />
       </Route>
-      <Route
-        path="/login"
-        element={
-          <>
-            <NavBar />
-            <Outlet />
-          </>
-        }>
-        <Route index element={<Login />} />
-      </Route>
+
       <Route
         path="/agency/:agencyId/"
         element={

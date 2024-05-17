@@ -19,7 +19,7 @@ const Timeline = ({ tour }) => {
         <div className="flight-timeline">
           {
             // repeat timeline-item from flightTime to flightTime + flightDuration
-            Array.from({ length: flightDuration }, (_, i) => (
+            Array.from({ length: flightDuration + 1 }, (_, i) => (
               <div className="timeline-item" key={i}>{`${
                 Number(hour) + i
               }:${minutes}`}</div>

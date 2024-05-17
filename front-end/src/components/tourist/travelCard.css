@@ -1,0 +1,78 @@
+.travel-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
+  width: 20%;
+}
+
+.travel-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px 10px 0 0px;
+}
+
+.travel-description {
+  padding: 10px;
+  width: 100%;
+  flex: 1;
+}
+
+.travel-title {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.travel-date,
+.travel-duration {
+  font-size: 14px;
+  color: #888;
+}
+
+.rating {
+  font-size: 16px;
+  font-weight: bold;
+  color: #f90;
+}
+
+.price-and-details {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.price {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 20px;
+}
+
+.price p {
+  font-size: 1.2rem;
+  font-weight: 700;
+  -webkit-text-stroke: 0.5px black;
+  min-width: fit-content;
+  &:last-child {
+    margin: 0;
+    color: var(--main-gradient);
+    -webkit-text-stroke: 0.5px var(--main-gradient);
+  }
+}
+
+.details-button {
+  padding: 8px 16px;
+  background-color: var(--main-gradient);
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  &::hover {
+    transform: scale(1.2);
+  }
+}

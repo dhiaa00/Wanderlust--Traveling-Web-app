@@ -1,0 +1,68 @@
+.navbar {
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 0 10px 10px 0;
+}
+.main-travel-page {
+  .hero-section {
+    position: relative;
+    margin-bottom: 5rem;
+  }
+  h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+  }
+  .recommended-travels {
+    padding: 2rem var(--x-padding);
+    .swiper {
+      padding: 1rem 0;
+      height: fit-content;
+      position: relative;
+      &::after {
+        content: "";
+        position: absolute;
+        height: 100%;
+        width: 25%;
+        background: linear-gradient(
+          to left,
+          rgba(255, 255, 255, 1) 0%,
+          rgba(255, 255, 255, 0) 85%
+        );
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 1;
+      }
+    }
+    .swiper-slide {
+      border-radius: 20px;
+      box-shadow: rgba(50, 50, 93, 0.25) 0px 7px 15px -2px,
+        rgba(0, 0, 0, 0.3) 0px 4px 8px -4px;
+      overflow: hidden;
+      height: fit-content;
+    }
+    .swiper-slide-active {
+      min-width: 55%;
+    }
+    .swiper-pagination {
+      bottom: 0;
+      transform: translateY(30%);
+    }
+  }
+  .all-travels {
+    margin-top: 5rem;
+  }
+  .all-travels-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+  }
+  .travel-page-pagination {
+    margin-top: 1rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}

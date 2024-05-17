@@ -60,6 +60,10 @@ const offerSchema = new mongoose.Schema(
       type: String,
       default: "",
     },
+    categories: {
+      type: Array,
+      required: true,
+    },
     collaborations: [
       {
         name: {

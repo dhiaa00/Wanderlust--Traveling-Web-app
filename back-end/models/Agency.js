@@ -29,6 +29,10 @@ const agencySchema = new mongoose.Schema(
       required: true,
       trim: true,
     },
+    preferences: {
+      type: Array,
+      default: [],
+    },
     password: {
       type: String,
       minlength: 8,

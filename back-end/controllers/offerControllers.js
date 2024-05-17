@@ -17,6 +17,7 @@ const createOffer = async (req, res) => {
       thumbImageUrl,
       otherImagesUrl,
       videoUrl,
+      categories,
       agencyId,
     } = req.body;
     const offer = new Offer({
@@ -33,6 +34,7 @@ const createOffer = async (req, res) => {
       thumbImageUrl,
       otherImagesUrl,
       videoUrl,
+      categories,
       agency: agencyId,
     });
     const savedOffer = await offer.save();

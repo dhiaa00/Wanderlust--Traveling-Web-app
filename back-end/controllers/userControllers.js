@@ -1,6 +1,9 @@
 import { User, verifySignUp, verifyUpdateUser } from "../models/User.js";
+import { Offer } from "../models/Offer.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import axios from "axios";
+import { Agency } from "../models/Agency.js";
 
 const updateUser = async (req, res) => {
   try {
@@ -145,4 +148,57 @@ const verifyUser = async (req, res) => {
   }
 };
 
-export { updateEmail, updateUser, updatePassword, deleteUser, verifyUser };
+const getAllOffersForUser = async (req, res) => {
+  try {
+    const offers = await Offer.find();
+    res
+      .status(200)
+      .json({ message: "Offers fetched successfully", data: offers });
+  } catch (error) {
+    res
+      .status(500)
+      .json({ message: "Failed to fetch offers", error: error.message });
+  }
+};
+
+const getRecommendation = async (req, res) => {
+  try {
+    const userId = req.body.userId;
+    const userPreferencesObject = await Agency.findById(userId).select(
+      "preferences"
+    );
+    const userPreferences = userPreferencesObject.preferences;
+    const data = await Offer.find();
+
+    const response = await axios.post("http://127.0.0.1:5000/recommendations", {
+      userPreferences,
+      data,
+    });
+
+    const recommendations_ids = response.data.recommendations;
+    //get recommendations using ids list
+    const recommendations = await Offer.find({
+      _id: { $in: recommendations_ids },
+    });
+
+    res.status(200).json({
+      message: "Recommendations fetched successfully",
+      data: recommendations,
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: "Failed to fetch recommendations",
+      error: error.message,
+    });
+  }
+};
+
+export {
+  updateEmail,
+  updateUser,
+  updatePassword,
+  deleteUser,
+  verifyUser,
+  getAllOffersForUser,
+  getRecommendation,
+};

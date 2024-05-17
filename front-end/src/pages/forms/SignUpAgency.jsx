@@ -3,7 +3,7 @@ import agency from "../../images/signUpAgency.png";
 import InputField from "../../components/Sign/InputField";
 import MainButton from "../../components/buttons/MainButton";
 import "./signupagency.css";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const SignUpAgency = () => {
@@ -87,7 +87,7 @@ const SignUpAgency = () => {
               />
               <MainButton text="Create" onClickFunc={handleSubmit} />
               <p>
-                Already Have An Account? <a href="">Log in</a>
+                Already Have An Account? <Link to="/login">Log in</Link>
               </p>
             </div>
             <div className="left-part">

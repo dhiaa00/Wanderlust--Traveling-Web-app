@@ -1,0 +1,77 @@
+.navbar {
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 0 10px 10px 0;
+}
+.main-agencies-page {
+  .hero-section {
+    display: flex;
+    justify-content: center;
+    min-height: 50vh;
+  }
+
+  .hero-section-left-side {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 10rem 0 2rem 7rem;
+  }
+
+  .hero-section-left-side h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+  }
+
+  .hero-section-left-side p {
+    /* Add your styles for the paragraph here */
+    font-size: 16px;
+    color: #666;
+  }
+
+  .hero-section-buttons {
+    /* Add your styles for the buttons container here */
+    display: flex;
+    align-items: center;
+    margin-top: 2rem;
+    margin-left: 1rem;
+  }
+
+  .hero-section-buttons img {
+    margin-right: 1rem;
+  }
+
+  .hero-section-buttons a {
+    text-decoration: none;
+    color: var(--main-gradient);
+    font-size: 1.2rem;
+    font-weight: 600;
+    border: 1.5px solid var(--main-gradient);
+    padding: 8px 20px;
+    border-radius: 10px;
+  }
+
+  .hero-section-right-side {
+    min-width: 40%;
+    min-height: 100%;
+    position: relative;
+  }
+
+  .hero-section-right-side img {
+    /* Add your styles for the hero section image here */
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translateY(-15%);
+    z-index: -1;
+  }
+
+  /* Add your styles for the absolute positioned images here */
+  .main-travel-page .left-cards {
+    /* Add your styles for the absolute positioned images here */
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translate(-30%, 40%);
+  }
+}

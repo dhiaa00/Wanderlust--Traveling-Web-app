@@ -4,7 +4,7 @@ import InputField from "../../components/Sign/InputField";
 import MainButton from "../../components/buttons/MainButton";
 import GoogleAuth from "../../components/Sign/GoogleAuth";
 import "./signuptourist.css";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const SignUpTourist = () => {
@@ -77,7 +77,7 @@ const SignUpTourist = () => {
             />
             <MainButton text="Create" onClickFunc={handleSubmit} />
             <p>
-              Already Have An Account? <a href="">Log in</a>
+              Already Have An Account? <Link to="/login">Log in</Link>
             </p>
           </form>
         </div>
