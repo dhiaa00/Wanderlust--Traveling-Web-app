@@ -1,6 +1,8 @@
 from flask import Flask, request, jsonify
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
+from flask_limiter import Limiter
+from flask_limiter.util import get_remote_address
 
 def generate_recommendations(user_preferences, data):
     # Sample travel offers data (for demonstration purposes)
@@ -40,7 +42,7 @@ def generate_recommendations(user_preferences, data):
     similarities = cosine_similarity(user_preferences_vector, tag_vectors[:-1])
 
     # Incorporate rating and agency location proximity into similarity scores with weights
-    for i, offer in enumerate(travel_offers):
+    for i in range(len(travel_offers)):
         rating_weight = 4.5 / 5.0  # Normalize rating to range [0, 1]
         location_weight = 1.0 / (1.0 + (sum(((40.7128, -74.0060)[j] - (40.7128, -74.0060)[j]) ** 2 for j in range(2))) ** 0.5)
         preference_similarity = sum(preference_weights[pos] * similarities[0][i] for pos in range(num_preferences))
@@ -62,13 +64,23 @@ def generate_recommendations(user_preferences, data):
 
 app = Flask(__name__)
 
-@app.route('/recommendations', methods=['POST'])
+
+limiter = Limiter(app, key_func=get_remote_address)
+
 def get_recommendations():
     user_preferences = request.json.get('userPreferences')
     data = request.json.get('data')
     recommendations = generate_recommendations(user_preferences, data)
     print(recommendations)
     return jsonify({'recommendations': recommendations})
+
+# Set the rate limit rules
+limiter.limit("100/minute")(get_recommendations)  # Limit the rate to 100 requests per minute
+
+@app.route('/recommendations', methods=['POST'])
+@limiter.exempt  # Exempt this route from rate limiting
+def recommendations_route():
+    return get_recommendations()
 
 if __name__ == '__main__':
     app.run(debug=True)
