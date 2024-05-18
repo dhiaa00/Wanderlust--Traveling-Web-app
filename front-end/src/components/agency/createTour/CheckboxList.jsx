@@ -80,8 +80,8 @@ const CheckboxList = ({ options, handleCheckboxChange }) => {
 
   return (
     <Swiper
-      spaceBetween={10}
-      slidesPerView="auto"
+      spaceBetween={20}
+      slidesPerView="1"
       navigation={true}
       className="checkbox-list-container">
       {renderCheckboxes()}

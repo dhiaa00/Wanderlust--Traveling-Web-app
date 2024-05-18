@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
+import CircularProgress from "@mui/material/CircularProgress";
 
 // Import Swiper styles
 import "swiper/css";
@@ -17,7 +18,9 @@ const RecommendedSwiper = () => {
 
   const getRecommendedTravels = async () => {
     try {
-      const userId = JSON.parse(localStorage.getItem("agency"))._id;
+      const userId = JSON.parse(localStorage.getItem("user"))
+        ? JSON.parse(localStorage.getItem("user"))._id
+        : -1;
       const response = await axios.post(
         "http://localhost:8080/user/getRecommendation",
         {
@@ -25,6 +28,7 @@ const RecommendedSwiper = () => {
         }
       );
       setTravels(response.data.data);
+      console.log(response.data.data);
       setIsLoading(false);
     } catch (error) {
       console.log(error);
@@ -38,7 +42,9 @@ const RecommendedSwiper = () => {
   return (
     <>
       {isLoading ? (
-        "loading..."
+        <div className="loading-container">
+          <CircularProgress disableShrink />
+        </div>
       ) : (
         <Swiper
           autoplay={{ delay: 3000 }}

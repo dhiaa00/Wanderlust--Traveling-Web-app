@@ -12,6 +12,13 @@
     font-size: 1.5rem;
     font-weight: 700;
   }
+  .loading-container {
+    width: 100%;
+    min-height: 20vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
   .recommended-travels {
     padding: 2rem var(--x-padding);
     .swiper {
@@ -43,6 +50,9 @@
     }
     .swiper-slide-active {
       min-width: 55%;
+      .rating {
+        display: flex;
+      }
     }
     .swiper-pagination {
       bottom: 0;

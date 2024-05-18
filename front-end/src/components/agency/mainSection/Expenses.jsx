@@ -38,24 +38,46 @@ const Expenses = ({ collaborations }) => {
     percentages.other = Math.round((percentages.other / total) * 100);
   };
 
+  const DEVISER = 1.5;
+
+  const [centerElement, setCenterElement] = useState({});
+  const centerElementFunc = () => {
+    const nonZeroElements = [
+      percentages.transport,
+      percentages.hotels,
+      percentages.other,
+    ].filter((value) => value !== 0);
+    if (nonZeroElements.length === 1) {
+      setCenterElement({
+        position: "absolute",
+        top: "50%",
+        left: "50%",
+        transform: "translate(-50%, -50%)",
+      });
+    } else {
+      setCenterElement({});
+    }
+  };
+
   useEffect(() => {
     if (collaborations) {
       calculatePercentages(collaborations);
       setHotelsStyle({
-        width: `${percentages.hotels / 1.3}%`,
-        height: `${percentages.hotels / 1.3}%`,
+        width: `${percentages.hotels / DEVISER}%`,
+        height: `${percentages.hotels / DEVISER}%`,
       });
       setTransportStyle({
-        width: `${percentages.transport / 1.3}%`,
-        height: `${percentages.transport / 1.3}%`,
+        width: `${percentages.transport / DEVISER}%`,
+        height: `${percentages.transport / DEVISER}%`,
       });
       setOtherStyle({
-        width: `${percentages.other / 1.3}%`,
-        height: `${percentages.other / 1.3}%`,
+        width: `${percentages.other / DEVISER}%`,
+        height: `${percentages.other / DEVISER}%`,
       });
       setTransportDataName(`transport: ${percentages.transport}%`);
       setHotelsDataName(`hotels: ${percentages.hotels}%`);
       setOtherDataName(`other: ${percentages.other}%`);
+      centerElementFunc();
     }
   }, [collaborations]);
 
@@ -70,7 +92,7 @@ const Expenses = ({ collaborations }) => {
           <div
             data-name={transportDataName}
             className="transport-expenses expense"
-            style={transportStyle}>
+            style={{ ...transportStyle, ...centerElement }}>
             {collaborations && percentages.transport !== 0
               ? `${percentages.transport}%`
               : ""}
@@ -78,7 +100,7 @@ const Expenses = ({ collaborations }) => {
           <div
             data-name={hotelsDataName}
             className="hotels-expenses expense"
-            style={hotelsStyle}>
+            style={{ ...hotelsStyle, ...centerElement }}>
             {collaborations && percentages.hotels !== 0
               ? `${percentages.hotels}%`
               : ""}
@@ -86,7 +108,7 @@ const Expenses = ({ collaborations }) => {
           <div
             data-name={otherDataName}
             className="other-expenses expense"
-            style={otherStyle}>
+            style={{ ...otherStyle, ...centerElement }}>
             {collaborations && percentages.other !== 0
               ? `${percentages.other}%`
               : ""}

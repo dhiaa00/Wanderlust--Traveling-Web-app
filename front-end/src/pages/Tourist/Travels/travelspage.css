@@ -1,19 +1,44 @@
-
 body {
-    background-color: rgba(247, 247, 247, 1);
+  background-color: rgba(247, 247, 247, 1);
 }
-
 
 .travel_page {
-    height: 100%;
-    padding-top: 40%;
-    padding-bottom: 2%;
-    position: relative;
+  height: 100%;
+  padding-bottom: 2%;
+  position: relative;
+  z-index: 1;
+  scroll-behavior: smooth;
+}
+.loading-container {
+  width: 100%;
+  min-height: 20vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.background-image-container {
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    height: 50%;
+    width: 100%;
+    background: linear-gradient(
+      to top,
+      rgba(255, 255, 255, 1) 10%,
+      rgba(255, 255, 255, 0) 85%
+    );
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
     z-index: 1;
-    scroll-behavior: smooth;
+  }
 }
 .background-image {
-    position: absolute;
-    top: 0px;
-    z-index: -1;
+  top: 0px;
+  z-index: -1;
+  height: 500px;
+  /* fill */
+  width: 100%;
+  object-fit: cover;
 }

@@ -1,152 +1,147 @@
 .travelpage-price-container {
-    background-color: white;
-    margin: 10px 13%;
-    display: flex;
-    flex-direction: column;
-    gap: 3rem;
-    border: solid;
-    border-width: 1px;
-    border-color: rgba(0, 0, 0, 0.13);;
-    border-radius: 22px;
-    padding-bottom: 2rem;
+  background-color: white;
+  margin: 10px 13%;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  border: solid;
+  border-width: 1px;
+  border-color: rgba(0, 0, 0, 0.13);
+  border-radius: 22px;
+  padding-bottom: 2rem;
 }
-.travelpage-classes-prices-container{
-    display: flex;
-    justify-content: center;
-    gap: 5rem;
+.travelpage-classes-prices-container {
+  display: flex;
+  justify-content: center;
+  gap: 5rem;
 }
 
 .travelpage-thirdclass-container {
-    display: flex;
-    --border-radius:10px;
-    --border-width:1px;
-    background: var(--gradient);
-    position: relative;
-    flex-direction: column;
-    justify-content: center;
-    gap: 15px;
-    border: none;
-    border-radius: var(--border-radius);
-    padding: 5rem 20px;
-    z-index: 1;
-
+  display: flex;
+  --border-radius: 10px;
+  --border-width: 1px;
+  background: var(--gradient);
+  position: relative;
+  flex-direction: column;
+  justify-content: center;
+  gap: 15px;
+  border: none;
+  border-radius: var(--border-radius);
+  padding: 5rem 20px;
+  z-index: 1;
 }
 .travelpage-thirdclass-container::before {
-    position: absolute;
-    background-color: white;
-    content: '';
-    display: block;
-    width: calc(100% - var(--border-width)*2);
-    height: calc(100% - var(--border-width)*2);
-    top: var(--border-width);
-    left: var(--border-width);
-    border-radius: calc(var(--border-radius) - var(--border-width));
-    z-index: -1;
-
+  position: absolute;
+  background-color: white;
+  content: "";
+  display: block;
+  width: calc(100% - var(--border-width) * 2);
+  height: calc(100% - var(--border-width) * 2);
+  top: var(--border-width);
+  left: var(--border-width);
+  border-radius: calc(var(--border-radius) - var(--border-width));
+  z-index: -1;
 }
 .class-title {
-    font-size: 18px;
-    font-weight: 700;
+  font-size: 18px;
+  font-weight: 700;
 }
 
 .class-price-details-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0px;
 }
 
 .class-price {
-    font-size: 60px;
-    font-weight: 600;
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: var(--main-gradient);
 }
 .class-details {
-    font-size: 11px;
-    font-weight: 600;
-    opacity: 0.36;
-    width: 280px;
+  font-size: 11px;
+  font-weight: 600;
+  opacity: 0.36;
+  width: 280px;
 }
 .travelpage-class-getstarted {
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
-    width: 280px;
-    padding: 10px 0;
-    --border-radius:7px;
-    --border-width:1px;
-    background: var(--gradient);
-    position: relative;
-    border: none;
-    border-radius: var(--border-radius);
-    font-family: inherit;
-    font-weight: 600;
-    z-index: 1;
-    
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  width: 280px;
+  padding: 10px 0;
+  --border-radius: 7px;
+  --border-width: 1px;
+  background: var(--gradient);
+  position: relative;
+  border: none;
+  border-radius: var(--border-radius);
+  font-family: inherit;
+  font-weight: 600;
+  z-index: 1;
 }
 .travelpage-class-getstarted::before {
-    content: '';
-    display: block;
-    position: absolute;
-    background-color: white;
-    width: calc(100% - var(--border-width)*2);
-    height: calc(100% - var(--border-width)*2);
-    top: var(--border-width);
-    left: var(--border-width);
-    border-radius: calc();
-    border-radius: calc(var(--border-radius) - var(--border-width));
-    z-index: -1;
+  content: "";
+  display: block;
+  position: absolute;
+  background-color: white;
+  width: calc(100% - var(--border-width) * 2);
+  height: calc(100% - var(--border-width) * 2);
+  top: var(--border-width);
+  left: var(--border-width);
+  border-radius: calc();
+  border-radius: calc(var(--border-radius) - var(--border-width));
+  z-index: -1;
 }
 .travelpage-class-includes-container {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 .class-include-title {
-    font-size: 18px;
-    font-weight: 700;
+  font-size: 18px;
+  font-weight: 700;
 }
 .check-mark-thatlooksstupid {
 }
-.class-includes-options{
-    display: flex;
-    gap: 5px;
-    font-size: 12px;
-    font-weight: 500;
-    
+.class-includes-options {
+  display: flex;
+  gap: 5px;
+  font-size: 12px;
+  font-weight: 500;
 }
 .class-includes {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 }
 
 .feedback-container {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .feedback-title {
-    padding-left: 25px;
-    padding-top: 0.5%;
-    padding-bottom: 0.5%;
-    font-weight: 600;
-    color: rgba(0, 0, 0, 0.57);
-    
+  padding-left: 25px;
+  padding-top: 0.5%;
+  padding-bottom: 0.5%;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.57);
 }
 .feedback-text {
-    font-size: 18px;
-    font-weight: 600;
-    padding-left: 7.8rem;
-    width: 92%;
+  font-size: 18px;
+  font-weight: 600;
+  padding-left: 7.8rem;
+  width: 92%;
 }
 .travelpage-price-title {
-    padding-left: 25px;
-    padding-top: 0.5%;
-    padding-bottom: 0.5%;
-    font-weight: 600;
-    color: rgba(0, 0, 0, 0.57);
-    border-bottom: solid;
-    border-color: rgba(0, 0, 0, 0.13);
-    border-width: 0.5px;
+  padding-left: 25px;
+  padding-top: 0.5%;
+  padding-bottom: 0.5%;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.57);
+  border-bottom: solid;
+  border-color: rgba(0, 0, 0, 0.13);
+  border-width: 0.5px;
 }

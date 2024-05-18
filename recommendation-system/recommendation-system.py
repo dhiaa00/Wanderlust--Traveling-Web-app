@@ -28,7 +28,6 @@ def generate_recommendations(user_preferences, data):
 
     # Combine user preferences with travel offers' tags
     all_tags = [" ".join(offer['categories']) for offer in travel_offers] + [" ".join(user_preferences)]
-    print(all_tags)
 
     # Convert combined tags into text and feature vectors
     vectorizer = TfidfVectorizer()

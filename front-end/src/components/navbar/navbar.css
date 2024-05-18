@@ -6,6 +6,7 @@
   padding: 1.5rem var(--x-padding);
   img {
     width: 200px;
+    cursor: pointer;
   }
   nav {
     flex: 1;
@@ -20,22 +21,37 @@
       text-decoration: none;
       padding: 5px 10px;
       border-radius: 5px;
-      transition: 0.1s;
       &:hover {
         background: var(--main-gradient);
         color: transparent;
         background-clip: text;
+        font-size: 1.3rem;
+        transform: translateY(-2px);
       }
+    }
+    a.active-navlink {
+      background: var(--main-gradient);
+      color: transparent;
+      background-clip: text;
+      font-size: 1.3rem;
+      transform: translateY(-2px);
     }
   }
   .main-button {
     justify-self: flex-end;
-    padding: 5px 10px;
     min-width: 85px;
     justify-content: center;
     p {
       font-size: 1rem;
       font-weight: 600;
+    }
+  }
+  .log-out-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    img {
+      width: 30px;
     }
   }
 }

@@ -8,7 +8,6 @@ import axios from "axios";
 const TourListItem = ({ order, tour, setAgencyTours }) => {
   const navigate = useNavigate();
   const handleTourClick = () => {
-    console.log(tour);
     navigate(`./${tour.id}`);
   };
   const handleDeleteOffer = (event) => {

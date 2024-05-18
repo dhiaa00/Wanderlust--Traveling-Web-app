@@ -54,7 +54,6 @@ const EditTour = ({ setEditTourOpen, setTourUpdated }) => {
   };
 
   const tourId = window.location.pathname.split("/").pop();
-  const agencyId = JSON.parse(localStorage.getItem("agency"))._id;
 
   const handleEditPost = async () => {
     try {

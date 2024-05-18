@@ -10,8 +10,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 150px; /* Adjust width as needed */
-  height: 50px; /* Adjust height as needed */
+  width: 170px; /* Adjust width as needed */
+  height: 70px; /* Adjust height as needed */
   background: var(--main-gradient-up-to-down);
   border-radius: 10px;
   box-shadow: rgba(99, 99, 99, 0.3) 0px 4px 10px 0px;

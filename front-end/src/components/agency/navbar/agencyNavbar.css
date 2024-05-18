@@ -11,17 +11,23 @@
   flex-direction: column;
   align-items: center;
   border-radius: 10px;
-  .agency-navbar__logo {
-    background-image: url(https://static.vecteezy.com/system/resources/thumbnails/020/765/399/small/default-profile-account-unknown-icon-black-silhouette-free-vector.jpg);
-    background-size: cover;
+  .logo-container {
+    position: relative;
+    width: fit-content;
+    height: fit-content;
+    border-radius: 50%;
     width: 60px;
     height: 60px;
     border-radius: 50%;
-    position: relative;
     margin-bottom: 2rem;
+  }
+  .agency-navbar__logo {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
     cursor: pointer;
   }
-  .agency-navbar__logo::after {
+  .logo-container::after {
     content: "";
     position: absolute;
     background-color: white;
@@ -31,7 +37,7 @@
     left: 50%;
     transform: translateX(-50%);
   }
-  .agency-navbar__logo::before {
+  .logo-container::before {
     content: "";
     position: absolute;
     width: 100%;
@@ -46,7 +52,7 @@
     z-index: -1;
     transition: all 0.3s;
   }
-  .agency-navbar__logo:hover::before {
+  .logo-container:hover::before {
     padding: 5px;
   }
   .agency-navbar__links {

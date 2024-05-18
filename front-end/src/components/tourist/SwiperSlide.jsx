@@ -3,6 +3,7 @@ import "./swiperSlide.css";
 import starIcon from "/src/SVGs/HomePage/Tourist/icon _star_.svg";
 import seeDetailsIcon from "/src/SVGs/HomePage/Tourist/see-details-button-icon.svg";
 import testImage from "/src/images/testing/japan/japan1.png";
+import { Link } from "react-router-dom";
 
 const RecommendedSwiperSlide = ({ travel }) => {
   const tour = travel;
@@ -13,10 +14,12 @@ const RecommendedSwiperSlide = ({ travel }) => {
       <div className="rating recommend-slide-element">
         4.5 <img src={starIcon} alt="star" />
       </div>
-      <div className="see-details-button recommend-slide-element">
+      <Link
+        to={`./tours/${travel._id}`}
+        className="see-details-button recommend-slide-element">
         <img src={seeDetailsIcon} alt="icon" />
         See Details
-      </div>
+      </Link>
       <img
         className="swiper-main-image"
         src={travel.thumbImageUrl}

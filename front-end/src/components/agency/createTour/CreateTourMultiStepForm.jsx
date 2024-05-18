@@ -20,7 +20,7 @@ const CreateTourMultiStepForm = ({ setCreateTour, setTourCreated }) => {
     placeTo: "",
     price: 0,
     description: "",
-    categories: [], // Array to hold selected categories
+    categories: "",
     visibility: "public",
     thumbImageUrl: "",
     otherImagesUrl: [],
@@ -43,14 +43,15 @@ const CreateTourMultiStepForm = ({ setCreateTour, setTourCreated }) => {
   };
 
   const handleCheckboxChange = (category) => {
-    const updatedCategories = [...formData.categories];
+    const updatedCategories = formData.categories.split(", ").filter(Boolean); // Split the categories string into an array and filter out any empty strings
     const categoryIndex = updatedCategories.indexOf(category);
     if (categoryIndex === -1) {
       updatedCategories.push(category);
     } else {
       updatedCategories.splice(categoryIndex, 1);
     }
-    setFormData({ ...formData, categories: updatedCategories });
+    const categoriesString = updatedCategories.join(", ");
+    setFormData({ ...formData, categories: categoriesString });
   };
 
   const handleCreateSubmit = () => {

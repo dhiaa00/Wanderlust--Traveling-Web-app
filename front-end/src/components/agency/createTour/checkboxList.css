@@ -5,7 +5,11 @@
   margin-top: 10px;
   max-width: 100%;
   min-height: 100px;
+  .swiper-slide {
+    opacity: 0;
+  }
   .swiper-slide-active {
+    opacity: 1;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -44,7 +48,6 @@
     justify-content: center;
     font-size: 15px;
     font-weight: 600;
-    margin-bottom: 10px;
     gap: calc(25% / 3);
     width: 80%;
     .checkbox-item {

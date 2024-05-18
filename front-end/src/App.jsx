@@ -19,6 +19,7 @@ import "/src/pages/Agency/Tours/agencyTours.css";
 import Messages from "./pages/Agency/Massages/Messages";
 import AgencyInfoPage from "./pages/Tourist/PaymentS/AgencyInfoPage";
 import SingleTravelPage from "./pages/Tourist/Travels/SingleTravelPage";
+import AgenciesHomePage from "./pages/Agency/AgencyHomePage/AgenciesHomePage";
 Modal.setAppElement("#root");
 
 function App() {
@@ -38,6 +39,7 @@ function App() {
           </>
         }>
         <Route index element={<TravelPage />} />
+        <Route path="/agencies" element={<AgenciesHomePage />} />
         <Route path="signup" element={<SignUp />} />
         <Route path="signup/tourist" element={<SignUpTourist />} />
         <Route path="signup/agency" element={<SignUpAgency />} />
@@ -100,7 +102,7 @@ function App() {
         <Route path="settings/language" element={<EditProfileLanguagePage />} />
         <Route path="messages" element={<Messages />} />
       </Route>
-      <Route path="/travelpage" element={<TravelPage />} />
+      <Route path="/tours/:travelId" element={<SingleTravelPage />} />
     </Routes>
   );
 }

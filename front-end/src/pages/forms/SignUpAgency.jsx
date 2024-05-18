@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import agency from "../../images/signUpAgency.png";
+import agency from "../../images/signUpAgency.svg";
 import InputField from "../../components/Sign/InputField";
 import MainButton from "../../components/buttons/MainButton";
 import "./signupagency.css";

@@ -36,7 +36,7 @@ const Login = () => {
           navigate(`/agency/${response.data.data._id}/tours`);
         }
         if (accountType == "user") {
-          navigate(`/user/${response.data.data._id}`);
+          navigate(`/`);
         }
       } else {
         console.log("Login failed");

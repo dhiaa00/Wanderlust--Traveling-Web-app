@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 const ManagementButtons = ({ notificationsOpen, setNotificationsOpen }) => {
   const navigate = useNavigate();
-  const agencyId = JSON.parse(localStorage.getItem("agency"))._id;
+  const agencyId = JSON.parse(localStorage.getItem("user"))._id;
 
   const handleClickMessages = () => {
     navigate("/agency/" + agencyId + "/messages");

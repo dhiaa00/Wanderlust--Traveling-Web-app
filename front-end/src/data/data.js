@@ -1,6 +1,7 @@
 import ImageSwiper from "../components/agency/mainSection/ImageSwiper";
 
 export const tripCategoryOptions = [
+  { value: "islamic", label: "Islamic" },
   { value: "adventure", label: "Adventure" },
   { value: "beach", label: "Beach" },
   { value: "cultural", label: "Cultural" },
@@ -10,17 +11,14 @@ export const tripCategoryOptions = [
   { value: "honeymoon", label: "Honeymoon" },
   { value: "luxury", label: "Luxury" },
   { value: "relaxation", label: "Relaxation" },
-  { value: "religious", label: "Religious" },
   { value: "romantic", label: "Romantic" },
-  { value: "ski", label: "Ski" },
-  { value: "solo", label: "Solo Travel" },
-  { value: "wellness", label: "Wellness" },
+  { value: "wildlife", label: "Wildlife" },
+  { value: "historic", label: "Historic" },
+  { value: "city", label: "City" },
+  { value: "nature", label: "Nature" },
+  { value: "educational", label: "Educational" },
+  { value: "national", label: "National" },
   { value: "other", label: "Other" },
-  { value: "adventure", label: "Adventure" },
-  { value: "beach", label: "Beach" },
-  { value: "cultural", label: "Cultural" },
-  { value: "eco-tourism", label: "Eco-Tourism" },
-  { value: "family", label: "Family" },
 ];
 
 export const tours = [

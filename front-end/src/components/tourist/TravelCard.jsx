@@ -1,7 +1,7 @@
 import React from "react";
-import travelImage from "/src/images/testing/japan/japan2.jpg";
 import "./travelCard.css";
 import { calculateDaysNumber } from "../../utils/calculateDaysNumber";
+import { Link } from "react-router-dom";
 
 const TravelCard = ({ travel }) => {
   return (
@@ -19,7 +19,9 @@ const TravelCard = ({ travel }) => {
             <p>Starts From:</p>
             <p>{travel.price} DA</p>
           </div>
-          <div className="details-button">Details</div>
+          <Link to={`./tours/${travel._id}`} className="details-button">
+            Details
+          </Link>
         </div>
       </div>
     </div>

@@ -10,7 +10,7 @@ import "/src/components/travelpage/travelpagepictures.css";
 // import required modules
 import { Pagination, Navigation } from "swiper/modules";
 
-export default function TravelPagePictures() {
+export default function TravelPagePictures({ travel }) {
   const [swiperRef, setSwiperRef] = useState(null);
 
   let appendNumber = 4;
@@ -58,30 +58,13 @@ export default function TravelPagePictures() {
           navigation={true}
           modules={[Pagination, Navigation]}
           className="mySwiper">
-          <SwiperSlide>
-            <img
-              src="/src/images/travelpage/TravelpagePictures/1262499a99b7a4673e7318c74fee1c98.png"
-              alt=""
-            />
-          </SwiperSlide>
-          <SwiperSlide>
-            <img
-              src="/src/images/travelpage/TravelpagePictures/9ffaa2c4b10dd2edc5386afc8f1b6849.jpg"
-              alt=""
-            />
-          </SwiperSlide>
-          <SwiperSlide>
-            <img
-              src="/src/images/travelpage/TravelpagePictures/c6dc2cbfb7c07764c72f775338baf2eb.jpg"
-              alt=""
-            />
-          </SwiperSlide>
-          <SwiperSlide>
-            <img
-              src="/src/images/travelpage/TravelpagePictures/1262499a99b7a4673e7318c74fee1c98.png"
-              alt=""
-            />
-          </SwiperSlide>
+          {[...travel.otherImagesUrl, travel.thumbImageUrl].map(
+            (image, index) => (
+              <SwiperSlide key={index}>
+                <img src={image} alt="slide" />
+              </SwiperSlide>
+            )
+          )}
         </Swiper>
       </div>
     </>

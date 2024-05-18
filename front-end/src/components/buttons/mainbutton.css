@@ -4,33 +4,18 @@
   gap: 10px;
   align-items: center;
   justify-content: flex-start;
-  padding: 10px 20px;
-  border-radius: 10px;
   background: white;
   align-self: center;
   cursor: pointer;
   border: none;
+  border: 1px solid var(--main-gradient);
+  border-radius: 5px;
+  padding: 10px 15px;
 }
 .main-button p {
   font-size: 20px;
   font-weight: 600;
-  background: var(--main-gradient);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  transition: 0.6s;
-}
-
-.main-button::after {
-  content: "";
-  position: absolute;
-  top: -1.2px;
-  right: -1.5px;
-  bottom: -1.5px;
-  left: -1.5px;
-  background: var(--main-gradient);
-  border-radius: 12px;
-  z-index: -1;
+  color: var(--main-gradient);
 }
 .main-button::before {
   content: "";
@@ -40,7 +25,7 @@
   top: 0px;
   left: 0px;
   background: var(--main-gradient);
-  border-radius: 9.8px;
+  border-radius: 5px;
   z-index: 0;
   transition: 0.5s;
 }

@@ -4,9 +4,16 @@
   align-items: center;
   justify-content: space-between;
   border: 1px solid #ccc;
-  border-radius: 10px;
+  border-radius: 11px;
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
   width: 20%;
+  min-width: 250px;
+  max-width: 300px;
+  transition: 0.2s;
+  &:hover {
+    transform: scale(1.02);
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  }
 }
 
 .travel-card img {

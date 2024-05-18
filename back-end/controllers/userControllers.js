@@ -4,6 +4,7 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import axios from "axios";
 import { Agency } from "../models/Agency.js";
+import { Review } from "../models/Review.js";
 
 const updateUser = async (req, res) => {
   try {
@@ -148,6 +149,31 @@ const verifyUser = async (req, res) => {
   }
 };
 
+const getOfferForUser = async (req, res) => {
+  try {
+    const offerId = req.params.id;
+    const offer = await Offer.findById(offerId);
+    if (!offer) {
+      return res.status(404).json({ message: "Offer not found", data: null });
+    }
+    // send the offer without clients field and with adding agencyName using agency
+    const agency = await Agency.findById(offer.agency);
+
+    offer.clients = undefined;
+    res.status(200).json({
+      message: "Offer fetched successfully",
+      data: {
+        ...offer._doc,
+        agencyName: agency.agencyName,
+        agencyPhoto: agency.agencyPhoto,
+      },
+    });
+  } catch (error) {
+    res
+      .status(500)
+      .json({ message: "Failed to fetch offer", error: error.message });
+  }
+};
 const getAllOffersForUser = async (req, res) => {
   try {
     const offers = await Offer.find();
@@ -161,12 +187,67 @@ const getAllOffersForUser = async (req, res) => {
   }
 };
 
+const updatePreferences = async (req, res) => {
+  try {
+    const userId = req.params.id;
+    const preferences = req.body.preferences;
+    let user = await User.findById(userId);
+    if (!user) {
+      user = await Agency.findById(userId);
+      if (!user) {
+        return res.status(404).json({ message: "User not found", data: null });
+      }
+    }
+    user.preferences = preferences;
+    await user.save();
+    res.status(200).json({
+      message: "Preferences updated successfully",
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: "Failed to update preferences",
+      error: error.message,
+    });
+  }
+};
+
 const getRecommendation = async (req, res) => {
   try {
     const userId = req.body.userId;
-    const userPreferencesObject = await Agency.findById(userId).select(
+    // if userId is -1 then return the first 5 offers by rating
+    if (userId === -1) {
+      try {
+        const topReviews = await Review.find().sort({ rating: -1 }).limit(5);
+        if (topReviews.length === 0) {
+          // return any 5 offers
+          const offers = await Offer.find().limit(5);
+          return res.status(200).json({
+            message: "Recommendations if if fetched successfully",
+            data: offers,
+          });
+        }
+        const offers = [];
+        for (let i = 0; i < topReviews.length; i++) {
+          const offer = await Offer.findById(topReviews[i].offerId);
+          offers.push(offer);
+        }
+        return res.status(200).json({
+          message: "Recommendations if fetched successfully",
+          data: offers,
+        });
+      } catch (error) {
+        return res.status(500).json({
+          message: "Failed if case to fetch recommendations",
+          error: error.message,
+        });
+      }
+    }
+    let userPreferencesObject = await Agency.findById(userId).select(
       "preferences"
     );
+    if (!userPreferencesObject) {
+      userPreferencesObject = await User.findById(userId).select("preferences");
+    }
     const userPreferences = userPreferencesObject.preferences;
     const data = await Offer.find();
 
@@ -199,6 +280,8 @@ export {
   updatePassword,
   deleteUser,
   verifyUser,
+  getOfferForUser,
   getAllOffersForUser,
+  updatePreferences,
   getRecommendation,
 };

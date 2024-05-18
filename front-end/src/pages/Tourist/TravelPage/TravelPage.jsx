@@ -8,6 +8,7 @@ import Footer from "../../../components/tourist/Footer";
 import { paginate } from "../../../utils/paginate";
 import axios from "axios"; // Add this line
 import TravelPagePagination from "../Pagination/TravelPagePagination";
+import { CircularProgress } from "@mui/material";
 
 const TravelPage = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -51,12 +52,14 @@ const TravelPage = () => {
           <div className="all-travels">
             <h2>All:</h2>
             <div className="all-travels-container">
-              {isLoading
-                ? "Loading..."
-                : currentTravels &&
-                  currentTravels.map((travel) => (
-                    <TravelCard travel={travel} key={travel.id} />
-                  ))}
+              {isLoading ? (
+                <CircularProgress disableShrink />
+              ) : (
+                currentTravels &&
+                currentTravels.map((travel) => (
+                  <TravelCard travel={travel} key={travel.id} />
+                ))
+              )}
             </div>
             <div className="travel-page-pagination">
               <TravelPagePagination

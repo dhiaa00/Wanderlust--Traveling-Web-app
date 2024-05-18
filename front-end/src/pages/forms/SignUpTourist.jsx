@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import tourist from "../../images/signUpTourist.png";
+import tourist from "../../images/signUpTourist.svg";
 import InputField from "../../components/Sign/InputField";
 import MainButton from "../../components/buttons/MainButton";
 import GoogleAuth from "../../components/Sign/GoogleAuth";
