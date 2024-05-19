@@ -13,7 +13,7 @@ Welcome to the algerian E-Traveling Platform repository! This repository contain
 
 ## Introduction
 
-The E-Traveling Platform is a cutting-edge web and mobile application designed to revolutionize the way travelers explore, plan, and book their adventures. Our platform offers a seamless and personalized user experience, combining powerful features such as travel search capabilities, booking management, secure communication channels, and AI-powered recommendations.
+The E-Traveling Platform is a cutting-edge web and mobile application designed to revolutionize the way travelers explore, plan, and book their adventures. Our platform offers a seamless and personalized user experience, combining powerful features such as travel search capabilities, booking management, secure communication channels, and personalized recommendations.
 
 ## Features
 
@@ -25,6 +25,7 @@ Our platform boasts a wide range of features to cater to the diverse needs of tr
 - **User Profile Management**: Customize travel preferences, payment methods, and communication settings.
 - **Secure Communication Channels**: Connect with travel providers via encrypted messaging for peace of mind.
 - **Interactive Travel Content**: Access destination guides, insider tips, and curated recommendations for unforgettable experiences.
+- **Agency Interface**: Travel agencies can sign up, access a general dashboard, view tour lists, and manage tours (create, edit, delete) along with changing settings.
 
 ## Technologies Used
 
