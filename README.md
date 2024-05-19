@@ -9,8 +9,7 @@ Welcome to the algerian E-Traveling Platform repository! This repository contain
 3. [Technologies Used](#technologies-used)
 4. [Getting Started](#getting-started)
 5. [Contributing](#contributing)
-6. [License](#license)
-7. [Acknowledgements](#acknowledgements)
+6. [Acknowledgements](#acknowledgements)
 
 ## Introduction
 
