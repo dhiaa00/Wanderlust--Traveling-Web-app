@@ -1,4 +1,5 @@
 flask
 scikit-learn
 flask-limiter
-gunicon
+gunicorn
+Flask-Talisman
