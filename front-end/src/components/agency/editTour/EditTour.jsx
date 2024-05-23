@@ -58,7 +58,7 @@ const EditTour = ({ setEditTourOpen, setTourUpdated }) => {
   const handleEditPost = async () => {
     try {
       const response = await axios.put(
-        `http://localhost:8080/offer/update/${tourId}`,
+        `https://wanderlust-backend-server.onrender.com/offer/update/${tourId}`,
         formData,
         {
           withCredentials: true,
