@@ -29,7 +29,7 @@ const SignUpTourist = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:8080/auth/user/register",
+        "https://wanderlust-backend-server.onrender.com/auth/user/register",
         formData,
         {
           withCredentials: true,
