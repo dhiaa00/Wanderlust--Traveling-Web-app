@@ -2,3 +2,4 @@ flask
 scikit-learn
 flask-limiter
 gunicorn
+Flask-Talisman
