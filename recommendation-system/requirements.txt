@@ -1,5 +1,4 @@
-Flask
-Flask-Limiter
-Flask-Talisman
-scikit-learn
-gunicorn
+scikit-learn>=1.5.0
+Flask~=3.0.2
+gunicorn~=21.2.0
+jinja2~=3.1.3
