@@ -68,7 +68,7 @@
 
 
 
-from flask import Flask, request, jsonify, redirect
+from flask import Flask, request, jsonify
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 import numpy as np
