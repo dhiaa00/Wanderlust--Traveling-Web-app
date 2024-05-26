@@ -32,7 +32,7 @@ const SignUpAgency = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:8080/auth/agency/register",
+        "https://wanderlust-backend-server.onrender.com/auth/agency/register",
         formData,
         {
           withCredentials: true,

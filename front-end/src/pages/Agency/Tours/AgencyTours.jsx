@@ -23,7 +23,7 @@ const AgencyTours = ({
   const handleSearch = debounce(async () => {
     try {
       const response = await axios.post(
-        "http://localhost:8080/offer/search",
+        "https://wanderlust-backend-server.onrender.com/offer/search",
         {
           id: agencyId,
           searchInput: seachInput,
@@ -40,7 +40,7 @@ const AgencyTours = ({
     const getTours = async () => {
       try {
         const response = await axios.post(
-          "http://localhost:8080/offer/getAll",
+          "https://wanderlust-backend-server.onrender.com/offer/getAll",
           {
             id: agencyId,
           },

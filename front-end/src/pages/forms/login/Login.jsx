@@ -20,8 +20,8 @@ const Login = () => {
     try {
       const response = await axios.post(
         accountType == "agency"
-          ? "http://localhost:8080/auth/agency/login"
-          : "http://localhost:8080/auth/user/login",
+          ? "https://wanderlust-backend-server.onrender.com/auth/agency/login"
+          : "https://wanderlust-backend-server.onrender.com/auth/user/login",
         formData,
         {
           withCredentials: true,

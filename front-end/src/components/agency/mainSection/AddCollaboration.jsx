@@ -22,7 +22,7 @@ const AddCollaboration = ({ addCollaboration, setAddCollaboration }) => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        `http://localhost:8080/offer/addCollaboration/${offerId}`,
+        `https://wanderlust-backend-server.onrender.com/offer/addCollaboration/${offerId}`,
         formData,
         {
           withCredentials: true,

@@ -16,7 +16,7 @@ const SingleTravelPage = () => {
   const getTravel = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:8080/user/getOffer/${id}`
+        `https://wanderlust-backend-server.onrender.com/user/getOffer/${id}`
       );
       setTravel(response.data.data);
       setIsLoading(false);
@@ -43,7 +43,7 @@ const SingleTravelPage = () => {
     // save them to db and to local storage
     try {
       const response = axios.post(
-        `http://localhost:8080/user/updatePreferences/${user._id}`,
+        `https://wanderlust-backend-server.onrender.com/user/updatePreferences/${user._id}`,
         {
           preferences: userPreferences,
         }
