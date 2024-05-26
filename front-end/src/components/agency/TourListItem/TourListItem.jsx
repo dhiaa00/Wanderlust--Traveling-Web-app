@@ -14,7 +14,7 @@ const TourListItem = ({ order, tour, setAgencyTours }) => {
     event.stopPropagation();
     try {
       const response = axios.delete(
-        `https://wanderlust-backend-server.onrender.com/offer/delete/${tour.id}`,
+        `http://localhost:8080/offer/delete/${tour.id}`,
         {
           agency: {
             _id: tour.agency,

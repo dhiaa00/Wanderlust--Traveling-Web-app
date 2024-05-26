@@ -57,7 +57,7 @@ const CreateTourMultiStepForm = ({ setCreateTour, setTourCreated }) => {
   const handleCreateSubmit = () => {
     try {
       const response = axios.post(
-        "https://wanderlust-backend-server.onrender.com/offer/create",
+        "http://localhost:8080/offer/create",
         formData
       );
       setTourCreated(true);

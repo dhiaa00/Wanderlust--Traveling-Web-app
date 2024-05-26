@@ -24,8 +24,8 @@ const ConfirmYourEmail = () => {
     try {
       const response = await axios.post(
         type === "agency"
-          ? `https://wanderlust-backend-server.onrender.com/agency/verify/${confirmationId}`
-          : `https://wanderlust-backend-server.onrender.com/user/verify/${confirmationId}`,
+          ? `http://localhost:8080/agency/verify/${confirmationId}`
+          : `http://localhost:8080/user/verify/${confirmationId}`,
         formData,
         {
           withCredentials: true,

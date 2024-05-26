@@ -38,7 +38,7 @@ const SingleTourPage = ({
     const getTour = async () => {
       try {
         const tour = await axios.get(
-          `https://wanderlust-backend-server.onrender.com/offer/get/${tourId}`,
+          `http://localhost:8080/offer/get/${tourId}`,
           {
             withCredentials: true,
           }
