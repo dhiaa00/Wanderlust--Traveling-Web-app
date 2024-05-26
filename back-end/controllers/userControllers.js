@@ -257,7 +257,7 @@ const getRecommendation = async (req, res) => {
     const userPreferences = userPreferencesObject.preferences;
     const data = await Offer.find();
 
-    const response = await axios.post("http://127.0.0.1:5000/recommendations", {
+    const response = await axios.post("https://wanderlust-traveling-web-app.onrender.com/recommendations", {
       userPreferences,
       data,
     });
