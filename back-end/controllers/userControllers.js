@@ -191,23 +191,29 @@ const updatePreferences = async (req, res) => {
   try {
     const userId = req.params.id;
     const preferences = req.body.preferences;
-    let user = await User.findById(userId);
-    if (!user) {
-      user = await Agency.findById(userId);
-      if (!user) {
-        return res.status(404).json({ message: "User not found", data: null });
-      }
-    }
+    const user = await User.findById(userId);
+    console.log("user", user);
     user.preferences = preferences;
     await user.save();
     res.status(200).json({
       message: "Preferences updated successfully",
     });
   } catch (error) {
-    res.status(500).json({
-      message: "Failed to update preferences",
-      error: error.message,
-    });
+    try {
+      const userId = req.params.id;
+      const preferences = req.body.preferences;
+      const user = await Agency.findById(userId);
+      user.preferences = preferences;
+      await user.save();
+      res.status(200).json({
+        message: "Preferences updated successfully",
+      });
+    } catch (error) {
+      res.status(500).json({
+        message: "Failed to update user preferences",
+        error: error.message,
+      });
+    }
   }
 };
 

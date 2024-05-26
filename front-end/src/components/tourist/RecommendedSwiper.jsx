@@ -22,7 +22,7 @@ const RecommendedSwiper = () => {
         ? JSON.parse(localStorage.getItem("user"))._id
         : -1;
       const response = await axios.post(
-        "https://wanderlust-backend-server.onrender.com/user/getRecommendation",
+        "http://localhost:8080/user/getRecommendation",
         {
           userId: userId,
         }

@@ -15,7 +15,10 @@ const app = express();
 
 app.use(
   cors({
-    origin: "https://wanderlust-e-travelling.netlify.app",
+    origin: [
+      "https://wanderlust-e-travelling.netlify.app",
+      "http://localhost:5173",
+    ],
     credentials: true,
   })
 );
