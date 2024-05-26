@@ -19,7 +19,9 @@ const TravelPage = () => {
 
   const getTravels = async () => {
     try {
-      const response = await axios.get("http://localhost:8080/user/getOffers");
+      const response = await axios.get(
+        "https://wanderlust-backend-server.onrender.com/user/getOffers"
+      );
       setTravelList(response.data.data);
       setIsLoading(false);
     } catch (error) {
