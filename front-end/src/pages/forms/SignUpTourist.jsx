@@ -1,13 +1,15 @@
 import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 import tourist from "../../images/signUpTourist.svg";
 import InputField from "../../components/Sign/InputField";
 import MainButton from "../../components/buttons/MainButton";
 import GoogleAuth from "../../components/Sign/GoogleAuth";
 import "./signuptourist.css";
-import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const SignUpTourist = () => {
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     username: "",
@@ -29,15 +31,19 @@ const SignUpTourist = () => {
 
     try {
       const response = await axios.post(
-        "https://wanderlust-backend-server.onrender.com/auth/user/register",
+        `${backendUrl}/auth/user/register`,
         formData,
         {
           withCredentials: true,
         }
       );
 
-      navigate(`/signup/confirmation/user/${response.data.confirmationId}`);
+      toast.success(response.data.message);
+      navigate(`/signup/confirmation/user/${response.data.confirmationId}`, {
+        state: { email: formData.email },
+      });
     } catch (error) {
+      toast.error(error.response.data.message);
       console.error("Error sending signup data:", error);
     }
   };

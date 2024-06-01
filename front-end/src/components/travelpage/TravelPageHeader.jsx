@@ -1,7 +1,7 @@
 import React from "react";
 import "./travelpageheader.css";
 import travelpageimages from "/src/images/travelpage/Travelpageheader/sahitmamaas.png";
-const TravelPageHeader = ({ travel }) => {
+const TravelPageHeader = ({ travel, reviews }) => {
   return (
     <div className="travelpageheader">
       <div className="logo-container">
@@ -34,7 +34,7 @@ const TravelPageHeader = ({ travel }) => {
           <div className="Rating-evaluation evaluation-item">
             <div className="star-chkoupi">
               <p className="evaluation-container-header">
-                4.5{" "}
+                {travel.rating}
                 <img src="/src/images/travelpage/Travelpageheader/Vector.png" />
               </p>
             </div>
@@ -43,7 +43,7 @@ const TravelPageHeader = ({ travel }) => {
             </div>
           </div>
           <div className="Evaluatoin-evaluation evaluation-item">
-            <p className="evaluation-container-header2">3</p>
+            <p className="evaluation-container-header2">{reviews.length}</p>
             <div className="comments-evaluation-container">
               <p>Evaluations</p>
             </div>

@@ -8,16 +8,16 @@ import "./travelspage.css";
 import axios from "axios";
 import { CircularProgress } from "@mui/material";
 const SingleTravelPage = () => {
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
   const [isLoading, setIsLoading] = useState(true);
   const [travel, setTravel] = useState({});
+  const [reviews, setReviews] = useState([]);
 
   const id = window.location.pathname.split("/").pop();
 
   const getTravel = async () => {
     try {
-      const response = await axios.get(
-        `https://wanderlust-backend-server.onrender.com/user/getOffer/${id}`
-      );
+      const response = await axios.get(`${backendUrl}/user/getOffer/${id}`);
       setTravel(response.data.data);
       setIsLoading(false);
     } catch (error) {
@@ -43,12 +43,11 @@ const SingleTravelPage = () => {
     // save them to db and to local storage
     try {
       const response = axios.post(
-        `https://wanderlust-backend-server.onrender.com/user/updatePreferences/${user._id}`,
+        `${backendUrl}/user/updatePreferences/${user._id}`,
         {
           preferences: userPreferences,
         }
       );
-      console.log(response);
     } catch (err) {
       console.log(err);
     }
@@ -61,7 +60,20 @@ const SingleTravelPage = () => {
     );
   };
 
+  const getReviews = async () => {
+    try {
+      const response = await axios.get(
+        `${backendUrl}/offer/review/get/${travel._id}`
+      );
+      setReviews(response.data.data);
+      console.log(response.data.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   useEffect(() => {
+    getReviews();
     getTravel();
   }, []);
 
@@ -84,10 +96,10 @@ const SingleTravelPage = () => {
               className="background-image"
             />
           </div>
-          <TravelPageHeader travel={travel} />
+          <TravelPageHeader travel={travel} reviews={reviews} />
           <TravelPagePictures travel={travel} />
           <TravelPageDescription description={travel.description} />
-          <TravelPageEvaluation travel={travel} />
+          <TravelPageEvaluation travel={travel} reviews={reviews} />
           <TravelPagePrice travel={travel} />
         </div>
       )}

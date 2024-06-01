@@ -21,6 +21,7 @@ const SingleTourPage = ({
   setTourCreated,
   notificationsOpen,
 }) => {
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
   const [editTourOpen, setEditTourOpen] = useState(false);
   const [tourUpdated, setTourUpdated] = useState(false);
   const [addCollaboration, setAddCollaboration] = useState(false);
@@ -37,12 +38,9 @@ const SingleTourPage = ({
   useEffect(() => {
     const getTour = async () => {
       try {
-        const tour = await axios.get(
-          `https://wanderlust-backend-server.onrender.com/offer/get/${tourId}`,
-          {
-            withCredentials: true,
-          }
-        );
+        const tour = await axios.get(`${backendUrl}/offer/get/${tourId}`, {
+          withCredentials: true,
+        });
         setTour(tour.data.data);
       } catch {
         console.error("Error getting tour:", error);

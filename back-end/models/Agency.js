@@ -10,7 +10,7 @@ const agencySchema = new mongoose.Schema(
     agencyName: {
       type: String,
       required: true,
-      trim: true, // Trim whitespace from the beginning and end of the string
+      trim: true,
     },
     registrationNumber: {
       type: String, // Assuming registration number can contain characters as well

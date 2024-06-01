@@ -11,6 +11,7 @@ import TravelPagePagination from "../Pagination/TravelPagePagination";
 import { CircularProgress } from "@mui/material";
 
 const TravelPage = () => {
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
   const [isLoading, setIsLoading] = useState(true);
   const [travelList, setTravelList] = useState([]);
   const [pagesNumber, setPagesNumber] = useState(0);
@@ -19,9 +20,7 @@ const TravelPage = () => {
 
   const getTravels = async () => {
     try {
-      const response = await axios.get(
-        "https://wanderlust-backend-server.onrender.com/user/getOffers"
-      );
+      const response = await axios.get(`${backendUrl}/user/getOffers`);
       setTravelList(response.data.data);
       setIsLoading(false);
     } catch (error) {

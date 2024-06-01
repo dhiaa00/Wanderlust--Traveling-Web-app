@@ -4,8 +4,10 @@ import "./login.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { saveToLocalStorage } from "../../../utils/localStorageOp";
+import toast from "react-hot-toast";
 
 const Login = () => {
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
   const navigate = useNavigate();
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [accountType, setAccountType] = useState("agency");
@@ -20,14 +22,15 @@ const Login = () => {
     try {
       const response = await axios.post(
         accountType == "agency"
-          ? "https://wanderlust-backend-server.onrender.com/auth/agency/login"
-          : "https://wanderlust-backend-server.onrender.com/auth/user/login",
+          ? `${backendUrl}/auth/agency/login`
+          : `${backendUrl}/auth/user/login`,
         formData,
         {
           withCredentials: true,
         }
       );
       if (response.status === 200) {
+        toast.success("Login successful");
         saveToLocalStorage(
           accountType == "agency" ? "agency" : "user",
           response.data.data
@@ -39,9 +42,11 @@ const Login = () => {
           navigate(`/`);
         }
       } else {
+        toast.error(response.data.message);
         console.log("Login failed");
       }
     } catch (err) {
+      toast.error(err.response.data.message);
       console.log(err);
     }
   };

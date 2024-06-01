@@ -9,6 +9,8 @@ const CreateTourStepTwo = ({
   closeModal,
   handleInputChange,
   setFileIsUploading,
+  fileIsUploading,
+  formData,
 }) => {
   const [visibility, setVisibility] = useState("public");
   const selectVisibility = useRef();
@@ -16,6 +18,8 @@ const CreateTourStepTwo = ({
   const handleVisibilityChange = () => {
     setVisibility(selectVisibility.current.value);
   };
+  console.log("fileIsUploading", fileIsUploading);
+  console.log("img", formData.videoUrl);
   return (
     <div className="create-tour-step">
       <div className="post-background post-background-step-two">
@@ -27,6 +31,19 @@ const CreateTourStepTwo = ({
           handleInputChange={handleInputChange}
           setFileIsUploading={setFileIsUploading}
         />
+        {!fileIsUploading &&
+          FormData.videoUrl !== "" &&
+          formData.videoUrl !== undefined && (
+            <video
+              style={{
+                width: "80px",
+                margin: "10px",
+                border: "1px solid black",
+              }}
+              src={`${formData.videoUrl}`}
+              alt="no uploaded images"
+            />
+          )}
         <h2>Post Pictures</h2>
         <ImportButton
           text={"Import Images"}
@@ -35,6 +52,27 @@ const CreateTourStepTwo = ({
           handleInputChange={handleInputChange}
           setFileIsUploading={setFileIsUploading}
         />
+        {!fileIsUploading &&
+          FormData.otherImagesUrl != [] &&
+          formData.otherImagesUrl !== undefined && (
+            <div
+              className="other-images"
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                width: "100%",
+              }}>
+              {formData.otherImagesUrl.map((url, index) => (
+                <img
+                  key={index}
+                  style={{ width: "80px", margin: "10px" }}
+                  src={url}
+                  alt="no uploaded images"
+                />
+              ))}
+            </div>
+          )}
       </div>
       <div className="post-description-details post-description-details-step-two">
         <div className="post-description">

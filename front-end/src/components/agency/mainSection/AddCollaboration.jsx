@@ -4,6 +4,7 @@ import "./addCollaboration.css";
 import Modal from "react-modal";
 
 const AddCollaboration = ({ addCollaboration, setAddCollaboration }) => {
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
   const [isOpen, setIsOpen] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
@@ -22,7 +23,7 @@ const AddCollaboration = ({ addCollaboration, setAddCollaboration }) => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        `https://wanderlust-backend-server.onrender.com/offer/addCollaboration/${offerId}`,
+        `${backendUrl}/offer/addCollaboration/${offerId}`,
         formData,
         {
           withCredentials: true,
