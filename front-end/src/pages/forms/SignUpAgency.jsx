@@ -1,12 +1,14 @@
 import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 import agency from "../../images/signUpAgency.svg";
 import InputField from "../../components/Sign/InputField";
 import MainButton from "../../components/buttons/MainButton";
 import "./signupagency.css";
-import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const SignUpAgency = () => {
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
   const navigate = useNavigate();
 
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -32,7 +34,7 @@ const SignUpAgency = () => {
 
     try {
       const response = await axios.post(
-        "https://wanderlust-backend-server.onrender.com/auth/agency/register",
+        `${backendUrl}/auth/agency/register`,
         formData,
         {
           withCredentials: true,
@@ -40,8 +42,12 @@ const SignUpAgency = () => {
       );
 
       console.log(response.data.message);
-      navigate(`/signup/confirmation/agency/${response.data.confirmationId}`);
+      toast.success(response.data.message);
+      navigate(`/signup/confirmation/agency/${response.data.confirmationId}`, {
+        state: { email: formData.email },
+      });
     } catch (error) {
+      toast.error(error.response.data.message);
       console.error("Error sending signup data:", error.response.data.message);
     }
   };

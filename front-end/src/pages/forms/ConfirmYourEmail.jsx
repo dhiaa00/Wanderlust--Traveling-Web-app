@@ -2,13 +2,17 @@ import React, { useState } from "react";
 import "./confirmEmail.css";
 import confirmationIcon from "/src/images/confirmation.svg";
 import MainButton from "../../components/buttons/MainButton";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import ConfirmationCode from "./ConfirmationCode";
 import axios from "axios";
 import { saveToLocalStorage } from "../../utils/localStorageOp";
+import toast from "react-hot-toast";
 
 const ConfirmYourEmail = () => {
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
   const navigate = useNavigate();
+  const location = useLocation();
+  const email = location.state?.email;
   const confirmationId = window.location.pathname.split("/").pop();
   const typeList = window.location.pathname
     .replace(confirmationId, "")
@@ -24,25 +28,26 @@ const ConfirmYourEmail = () => {
     try {
       const response = await axios.post(
         type === "agency"
-          ? `https://wanderlust-backend-server.onrender.com/agency/verify/${confirmationId}`
-          : `https://wanderlust-backend-server.onrender.com/user/verify/${confirmationId}`,
+          ? `${backendUrl}/agency/verify/${confirmationId}`
+          : `${backendUrl}/user/verify/${confirmationId}`,
         formData,
         {
           withCredentials: true,
         }
       );
+      console.log(response.data);
       if (response.status == 200) {
-        saveToLocalStorage(
-          type == "agency" ? "agency" : "user",
-          response.data.agency
-        );
+        toast.success(response.data.message);
+        console.log(response.data.data);
+        saveToLocalStorage("user", response.data.data);
         type == "agency"
           ? navigate(`/agency/${response.data.data._id}`)
           : navigate(`/user/${response.data.data.id}`);
       } else {
-        console.log("else " + response);
+        toast.error(response.data.message);
       }
     } catch (error) {
+      toast.error(error.response.data.message);
       console.error("Error sending signup data:", error);
     }
   };
@@ -53,8 +58,8 @@ const ConfirmYourEmail = () => {
         <div className="confirmation-text">
           <h1>Confirm Your Email</h1>
           <p>
-            we have sent email to{" "}
-            <span className="email-adresse">test@gmail.com</span>
+            we have sent email to
+            <span className="email-adresse">{` ${email} `}</span>
             to confirm the validity of your email adress.
           </p>
           <p>Enter the six numbers sent to your email !</p>

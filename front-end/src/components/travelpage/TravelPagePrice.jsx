@@ -1,4 +1,5 @@
 import React from "react";
+import MapComponent from "../agency/mainSection/MapComponent";
 import "/src/components/travelpage/travelpageprice.css";
 
 const TravelPagePrice = ({ travel }) => {
@@ -53,17 +54,7 @@ const TravelPagePrice = ({ travel }) => {
         </div>
       </div>
       <div className="feedback-container">
-        <p className="feedback-title">Feedback</p>
-        <p className="feedback-text">
-          When purchasing tickets, tourists with children are eligible for a
-          discounted rate. For each child accompanying the adult, the ticket
-          price is calculated at 70% of the adult price. This policy aims to
-          make visits more accessible for families, acknowledging the additional
-          cost burden often associated with traveling with children. By offering
-          a reduced rate for children, we hope to encourage families to explore
-          and enjoy our attractions without financial constraints hindering
-          their experience.
-        </p>
+        <MapComponent place={travel.placeTo} />
       </div>
     </div>
   );

@@ -16,6 +16,13 @@ const createReview = async (req, res) => {
         .json({ message: "User or offer not found", data: null });
     }
 
+    // make the offer owner not able to review his own offer
+    if (offer.agency == userId) {
+      return res
+        .status(403)
+        .json({ message: "You are not allowed to review your own offer" });
+    }
+
     // Create new review
     const review = new Review({
       userId,
@@ -26,6 +33,11 @@ const createReview = async (req, res) => {
 
     // Save the review to the database
     await review.save();
+
+    // Calculate the new rating for the offer
+    const newRating = await calculateOfferRating(offerId);
+    offer.rating = newRating;
+    await offer.save();
 
     res
       .status(201)
@@ -51,6 +63,20 @@ const getReviewsByOffer = async (req, res) => {
     res
       .status(500)
       .json({ message: "Failed to get reviews", error: error.message });
+  }
+};
+
+const calculateOfferRating = async (offerId) => {
+  try {
+    const reviews = await Review.find({ offerId });
+    if (reviews.length === 0) {
+      return 0;
+    }
+
+    const totalRating = reviews.reduce((acc, review) => acc + review.rating, 0);
+    return totalRating / reviews.length;
+  } catch (error) {
+    return 0;
   }
 };
 
@@ -100,4 +126,10 @@ const deleteReview = async (req, res) => {
   }
 };
 
-export { getReviewsByOffer, createReview, updateReview, deleteReview };
+export {
+  getReviewsByOffer,
+  createReview,
+  calculateOfferRating,
+  updateReview,
+  deleteReview,
+};

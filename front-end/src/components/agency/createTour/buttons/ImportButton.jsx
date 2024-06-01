@@ -30,7 +30,8 @@ const ImportButton = ({
             formData
           );
 
-          urls.push(response.data.secure_url); // Add the URL to the array
+          urls.push(response.data.secure_url); // Add the URL to
+          console.log("multiple", urls);
         } catch (error) {
           console.error("Error uploading file:", error);
         }

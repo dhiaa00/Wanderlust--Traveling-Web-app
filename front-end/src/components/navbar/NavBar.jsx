@@ -15,8 +15,7 @@ const NavBar = () => {
 
   // check if users logged
   useEffect(() => {
-    const user = JSON.parse(localStorage.getItem("user"));
-    if (user) {
+    if (localStorage.getItem("user")) {
       setLogged(true);
     }
   }, []);

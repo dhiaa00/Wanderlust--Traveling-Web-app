@@ -1,5 +1,4 @@
 import React from "react";
-import NavBar from "../../components/navbar/NavBar";
 import Select from "../../components/Sign/Select";
 import select1 from "../../images/select1.png";
 import select2 from "../../images/select2.png";

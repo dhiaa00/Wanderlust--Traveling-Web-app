@@ -14,6 +14,7 @@ const AgencyTours = ({
   notificationsOpen,
   seachInput,
 }) => {
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
   const [agencyTours, setAgencyTours] = useState([]);
   const agencyId = window.location.pathname
     .split("agency/")
@@ -23,7 +24,7 @@ const AgencyTours = ({
   const handleSearch = debounce(async () => {
     try {
       const response = await axios.post(
-        "https://wanderlust-backend-server.onrender.com/offer/search",
+        `${backendUrl}/offer/search`,
         {
           id: agencyId,
           searchInput: seachInput,
@@ -40,7 +41,7 @@ const AgencyTours = ({
     const getTours = async () => {
       try {
         const response = await axios.post(
-          "https://wanderlust-backend-server.onrender.com/offer/getAll",
+          `${backendUrl}/offer/getAll`,
           {
             id: agencyId,
           },

@@ -6,6 +6,7 @@ import deleteIcon from "/src/SVGs/delete.svg";
 import axios from "axios";
 
 const TourListItem = ({ order, tour, setAgencyTours }) => {
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
   const navigate = useNavigate();
   const handleTourClick = () => {
     navigate(`./${tour.id}`);
@@ -13,15 +14,12 @@ const TourListItem = ({ order, tour, setAgencyTours }) => {
   const handleDeleteOffer = (event) => {
     event.stopPropagation();
     try {
-      const response = axios.delete(
-        `https://wanderlust-backend-server.onrender.com/offer/delete/${tour.id}`,
-        {
-          agency: {
-            _id: tour.agency,
-          },
-          withCredentials: true,
-        }
-      );
+      const response = axios.delete(`${backendUrl}/offer/delete/${tour.id}`, {
+        agency: {
+          _id: tour.agency,
+        },
+        withCredentials: true,
+      });
       setAgencyTours((prev) => prev.filter((item) => item.id !== tour.id));
     } catch (error) {
       console.log(error);

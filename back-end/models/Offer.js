@@ -94,6 +94,10 @@ const offerSchema = new mongoose.Schema(
         ref: "user",
       },
     ],
+    rating: {
+      type: Number,
+      default: 0,
+    },
   },
   { timestamps: true, toJSON: { virtuals: true }, toObject: { virtuals: true } }
 );

@@ -6,8 +6,10 @@ import CreateTourStepTwo from "./CreateTourStepTwo";
 import axios from "axios";
 import FileUploading from "../FileUploading";
 import CreateTourStepThree from "./CreateTourStepThree";
+import toast from "react-hot-toast";
 
 const CreateTourMultiStepForm = ({ setCreateTour, setTourCreated }) => {
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
   const [fileIsUploading, setFileIsUploading] = useState(false);
   const agencyId = window.location.pathname
     .split("agency/")
@@ -56,13 +58,12 @@ const CreateTourMultiStepForm = ({ setCreateTour, setTourCreated }) => {
 
   const handleCreateSubmit = () => {
     try {
-      const response = axios.post(
-        "https://wanderlust-backend-server.onrender.com/offer/create",
-        formData
-      );
+      const response = axios.post(`${backendUrl}/offer/create`, formData);
+      toast.success(response.data.message);
       setTourCreated(true);
       closeModal();
     } catch (error) {
+      toast.error(error.response.data.message);
       console.log(error);
     }
   };
@@ -89,7 +90,9 @@ const CreateTourMultiStepForm = ({ setCreateTour, setTourCreated }) => {
             nextStep={nextStep}
             handleInputChange={handleInputChange}
             handleCheckboxChange={handleCheckboxChange}
+            fileIsUploading={fileIsUploading}
             setFileIsUploading={setFileIsUploading}
+            formData={formData}
           />
         ); // Return the JSX for Step 1 content
       case 2:
@@ -101,7 +104,9 @@ const CreateTourMultiStepForm = ({ setCreateTour, setTourCreated }) => {
               nextStep={nextStep}
               closeModal={closeModal}
               handleInputChange={handleInputChange}
+              fileIsUploading={fileIsUploading}
               setFileIsUploading={setFileIsUploading}
+              formData={formData}
             />
           </>
         );

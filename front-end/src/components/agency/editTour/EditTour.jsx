@@ -8,6 +8,7 @@ import EditTourStepTwo from "./EditTourStepTwo";
 import axios from "axios";
 
 const EditTour = ({ setEditTourOpen, setTourUpdated }) => {
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
   const [isOpen, setIsOpen] = useState(true);
   const [fileIsUploading, setFileIsUploading] = useState(false);
   const [currentStep, setCurrentStep] = useState(1);
@@ -58,7 +59,7 @@ const EditTour = ({ setEditTourOpen, setTourUpdated }) => {
   const handleEditPost = async () => {
     try {
       const response = await axios.put(
-        `https://wanderlust-backend-server.onrender.com/offer/update/${tourId}`,
+        `${backendUrl}/offer/update/${tourId}`,
         formData,
         {
           withCredentials: true,

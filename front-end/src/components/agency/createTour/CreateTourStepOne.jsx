@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import "./createTourStepOne.css";
 import CheckboxList from "./CheckboxList";
 import { tripCategoryOptions } from "../../../data/data";
-import ImportButton from "./buttons/ImportButton";
 import ImageUpload from "./buttons/ImportButton"; // Import ImageUpload component
 
 const CreateTourStepOne = ({
@@ -11,7 +10,9 @@ const CreateTourStepOne = ({
   nextStep,
   handleInputChange,
   handleCheckboxChange,
+  fileIsUploading,
   setFileIsUploading,
+  formData,
 }) => {
   return (
     <div className="create-tour-step">
@@ -25,6 +26,15 @@ const CreateTourStepOne = ({
           handleInputChange={handleInputChange}
           setFileIsUploading={setFileIsUploading}
         />
+        {!fileIsUploading &&
+          FormData.thumbImageUrl !== "" &&
+          formData.thumbImageUrl !== undefined && (
+            <img
+              style={{ width: "100px", margin: "10px" }}
+              src={`${formData.thumbImageUrl}`}
+              alt="no uploaded images"
+            />
+          )}
       </div>
       <div className="post-description-details">
         <div className="post-description">

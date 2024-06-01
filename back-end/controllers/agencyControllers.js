@@ -140,7 +140,7 @@ const verifyAgency = async (req, res) => {
     agency.password = undefined;
     res
       .status(200)
-      .json({ message: "User verified successfully", agency: agency });
+      .json({ message: "User verified successfully", data: agency });
   } catch (error) {
     res
       .status(500)

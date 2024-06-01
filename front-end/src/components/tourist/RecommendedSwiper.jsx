@@ -13,6 +13,7 @@ import RecommendedSwiperSlide from "./SwiperSlide";
 import axios from "axios";
 
 const RecommendedSwiper = () => {
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
   const [isLoading, setIsLoading] = useState(true);
   const [travels, setTravels] = useState([]);
 
@@ -22,13 +23,12 @@ const RecommendedSwiper = () => {
         ? JSON.parse(localStorage.getItem("user"))._id
         : -1;
       const response = await axios.post(
-        "https://wanderlust-backend-server.onrender.com/user/getRecommendation",
+        `${backendUrl}/user/getRecommendation`,
         {
           userId: userId,
         }
       );
       setTravels(response.data.data);
-      console.log(response.data.data);
       setIsLoading(false);
     } catch (error) {
       console.log(error);
