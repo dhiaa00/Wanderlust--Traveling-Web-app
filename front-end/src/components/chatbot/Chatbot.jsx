@@ -17,15 +17,13 @@ const Chatbot = ({ chatbotOpened, setChatbotOpened }) => {
     : "[]";
 
   const handleGenerateResponse = async () => {
+    const backendUrl = process.env.REACT_APP_BACKEND_URL;
     try {
-      const response = await axios.post(
-        "http://localhost:8080/user/generateResponse",
-        {
-          question: userInput,
-          previousConversation: messages[messages.length - 1].message,
-          preferences: preferences,
-        }
-      );
+      const response = await axios.post(`${backendUrl}/user/generateResponse`, {
+        question: userInput,
+        previousConversation: messages[messages.length - 1].message,
+        preferences: preferences,
+      });
       setMessages([
         ...messages,
         { message: userInput, type: "user" },
