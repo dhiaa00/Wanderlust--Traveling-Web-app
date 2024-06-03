@@ -16,7 +16,6 @@ const SignUpTourist = () => {
     email: "",
     password: "",
   });
-  console.log(formData);
   const handleInputChange = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
   };
@@ -78,7 +77,7 @@ const SignUpTourist = () => {
             <InputField
               title="Password"
               name="confirmPassword"
-              value={formData.password}
+              value={confirmPassword}
               onChange={handleConfirmPasswordChange}
             />
             <MainButton text="Create" onClickFunc={handleSubmit} />

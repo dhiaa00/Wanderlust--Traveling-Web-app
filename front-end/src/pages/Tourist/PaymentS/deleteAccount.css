@@ -1,0 +1,36 @@
+.delete-account-container {
+  h1 {
+    font-size: 30px;
+    font-weight: 700;
+  }
+
+  h2 {
+    font-size: 20px;
+    font-weight: 600;
+  }
+
+  .list-of-stuff {
+    font-size: 20px;
+    font-weight: 400;
+    ul {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      .click-stuff-text {
+        color: rgba(14, 153, 215, 1);
+        cursor: pointer;
+      }
+    }
+  }
+
+  .button-deletion {
+    padding: 1rem 1.5rem;
+    border-radius: 10px;
+    background-color: rgba(14, 153, 215, 1);
+    color: white;
+    font-size: 18px;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+  }
+}

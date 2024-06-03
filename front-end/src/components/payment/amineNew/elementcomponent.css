@@ -1,0 +1,21 @@
+.container-componenet {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    padding-right: 9rem;
+    padding-left: 2rem;
+    background-color: rgba(14, 153, 215, 0.11);
+    div {
+        font-size: 22px;
+        font-weight: 500;
+        color: rgba(0, 0, 0, 1);
+    }
+    .amount-container {
+        padding-right: 4rem;
+    }
+    .category-container {
+        padding-left: 0rem;
+        padding-right: 1.5rem;
+    }
+    }

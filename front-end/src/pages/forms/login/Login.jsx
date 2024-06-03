@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import googleLogo from "/src/SVGs/googleLogo.svg";
 import "./login.css";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { saveToLocalStorage } from "../../../utils/localStorageOp";
 import toast from "react-hot-toast";
 
@@ -94,6 +94,9 @@ const Login = () => {
             Sign in with Google
           </button>
         </div>
+        <p>
+          Don't have an account ? <Link to="/signup">Sign Up</Link>
+        </p>
       </div>
     </div>
   );

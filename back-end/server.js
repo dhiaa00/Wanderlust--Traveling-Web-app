@@ -8,9 +8,10 @@ import offerRouter from "./routes/offerRouter.js";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import connectToDb from "./lib/connectToDb.js";
-// import notificationRouter from "./routes/notifications.js";
-// import http from "http";
-// import { Server as SocketIoServer } from "socket.io";
+import notificationRouter from "./routes/notificationRouter.js";
+import http from "http";
+import { Server as SocketIoServer } from "socket.io";
+import rateLimit from "express-rate-limit"; // Import rate-limit
 
 // Load environment variables
 dotenv.config();
@@ -31,34 +32,42 @@ app.use(
 app.use(express.json());
 app.use(cookieParser());
 
+// Define a rate limit rule
+const apiLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100, // Limit each IP to 100 requests per windowMs
+  message: "Too many requests from this IP, please try again after 15 minutes",
+});
+
+// Apply the rate limit rule to all API requests
+app.use("/auth", apiLimiter, authRouter);
+app.use("/user", apiLimiter, userRouter);
+app.use("/agency", apiLimiter, agencyRouter);
+app.use("/offer", apiLimiter, offerRouter);
+app.use("/offer/review", apiLimiter, reviewRouter);
+app.use("/notifications", apiLimiter, notificationRouter);
+
 // Connect to MongoDB
 const DB_STRING_URL = process.env.DB_STRING_URL;
 connectToDb(DB_STRING_URL);
 
-// Define routes
-app.use("/auth", authRouter);
-app.use("/user", userRouter);
-app.use("/agency", agencyRouter);
-app.use("/offer", offerRouter);
-app.use("/offer/review", reviewRouter);
-// app.use("/notifications", notificationRouter);
-
 // Create HTTP server
-// const server = http.createServer(app);
+const server = http.createServer(app);
 
 // Set up socket.io
-// const io = new SocketIoServer(server);
-// io.on("connection", (socket) => {
-//   console.log("A user connected");
-//   socket.on("disconnect", () => {
-//     console.log("A user disconnected");
-//   });
-// });
+const io = new SocketIoServer(server);
+io.on("connection", (socket) => {
+  console.log("A user connected");
+  socket.on("disconnect", () => {
+    console.log("A user disconnected");
+  });
+});
 
 // Start the server
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
+server.listen(PORT, () => {
+  // Updated to server.listen to use the correct server instance
   console.log(`Server started on port ${PORT}`);
 });
 
-// export { app, server, io };
+export { app, server, io };

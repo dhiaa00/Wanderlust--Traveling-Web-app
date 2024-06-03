@@ -9,7 +9,7 @@ const NavBar = () => {
   const [logged, setLogged] = useState(false);
   const navigate = useNavigate();
   const onClickFunc = () => {
-    navigate("/signup");
+    navigate("/login");
   };
   const path = window.location.pathname.split("/").pop();
 
@@ -47,7 +47,7 @@ const NavBar = () => {
         </Link>
       </nav>
       {!logged ? (
-        <MainButton text="Sign Up" onClickFunc={onClickFunc} />
+        <MainButton text="Log in" onClickFunc={onClickFunc} />
       ) : (
         <div className="log-out-container">
           <img src={settingsIcon} alt="settings" />
