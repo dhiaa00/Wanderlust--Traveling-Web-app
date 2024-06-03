@@ -99,15 +99,12 @@ const PaymentPageSideBar = () => {
                 />
                 Payments
               </p>
-              <p className="paymet-page-category">
-                <img
-                  src="/src/SVGs/money.svg"
-                  alt=""
-                  className="payment-page-category-icon"
-                />
-                Taxes
-              </p>
-              <p className="paymet-page-category">
+              <p
+                onClick={() => handleNavigate("transactions")}
+                className={
+                  "paymet-page-category " +
+                  (activeElement == "transactions" ? "active" : "")
+                }>
                 <img
                   src="/src/SVGs/Layer 3.svg"
                   alt=""
@@ -122,7 +119,12 @@ const PaymentPageSideBar = () => {
               <p className="title">Secure</p>
             </div>
             <div className="categories-container">
-              <p className="paymet-page-category">
+              <p
+                onClick={() => handleNavigate("changePassword")}
+                className={
+                  "paymet-page-category " +
+                  (activeElement == "changePassword" ? "active" : "")
+                }>
                 <img
                   src="/src/SVGs/Group 330 (1).svg"
                   alt=""
@@ -130,19 +132,16 @@ const PaymentPageSideBar = () => {
                 />
                 Password
               </p>
-              <p className="paymet-page-category">
-                <img
-                  src="/src/SVGs/Vector (5).svg"
-                  alt=""
-                  className="payment-page-category-icon"
-                />
-                Access
-              </p>
             </div>
           </div>
           <div className="section-container-Delete-account">
             <div className="this-bar-that-doesnotmakesense"></div>
-            <p className="paymet-page-category">
+            <p
+              onClick={() => handleNavigate("deleteAccount")}
+              className={
+                "paymet-page-category " +
+                (activeElement == "deleteAccount" ? "active" : "")
+              }>
               <img
                 src="/src/SVGs/Vector (6).svg"
                 alt=""

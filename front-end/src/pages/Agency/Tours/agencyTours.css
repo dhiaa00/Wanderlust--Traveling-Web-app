@@ -1,6 +1,5 @@
 .agencyTours {
   width: 100%;
-  display: flex;
   padding: 10px 20px;
   .agency-tour-list {
     width: 100%;
@@ -27,6 +26,9 @@
     .delete {
       width: 5%;
     }
+  }
+  .agency-main-section {
+    padding-left: 6.5rem;
   }
   /* responsive */
   @media (max-width: 1100px) {

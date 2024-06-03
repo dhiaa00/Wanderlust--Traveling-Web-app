@@ -12,7 +12,7 @@ const RecommendedSwiperSlide = ({ travel }) => {
       <div className="country recommend-slide-element">{tour.country}</div>
       <div className="place-to recommend-slide-element">{tour.placeTo}</div>
       <div className="rating recommend-slide-element">
-        4.5 <img src={starIcon} alt="star" />
+        {travel.rating} <img src={starIcon} alt="star" />
       </div>
       <Link
         to={`./tours/${travel._id}`}

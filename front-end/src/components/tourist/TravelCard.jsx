@@ -13,7 +13,7 @@ const TravelCard = ({ travel }) => {
         <div className="travel-duration">
           {calculateDaysNumber(travel.startDate, travel.endDate)} Days
         </div>
-        <div className="rating">4.5</div>
+        <div className="rating">{travel.rating} stars</div>
         <div className="price-and-details">
           <div className="price">
             <p>Starts From:</p>

@@ -257,10 +257,13 @@ const getRecommendation = async (req, res) => {
     const userPreferences = userPreferencesObject.preferences;
     const data = await Offer.find();
 
-    const response = await axios.post("https://wanderlust-traveling-web-app.onrender.com/recommendations", {
-      userPreferences,
-      data,
-    });
+    const response = await axios.post(
+      "https://wanderlust-traveling-web-app.onrender.com/recommendations",
+      {
+        userPreferences,
+        data,
+      }
+    );
 
     const recommendations_ids = response.data.recommendations;
     //get recommendations using ids list

@@ -1,0 +1,114 @@
+.chatbot {
+  position: fixed;
+  bottom: 0;
+  right: 20px;
+  border-radius: 10px;
+  z-index: 1000;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+
+  .chatbot-image {
+    width: 100px;
+    height: 100px;
+    padding: 0;
+  }
+  .chatbot__container {
+    min-height: 500px;
+    max-height: 500px;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border: 4px solid var(--main-gradient);
+    border-radius: 10px;
+    position: absolute;
+    z-index: -1;
+    bottom: 90px;
+  }
+
+  .chatbot__header {
+    padding: 10px;
+    color: var(--main-gradient);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    &::after {
+      position: absolute;
+      content: "";
+      width: 90%;
+      height: 1px;
+      bottom: 0;
+      left: 50%;
+      transform: translate(-50%, 100%);
+      background-color: var(--main-gradient);
+    }
+  }
+
+  .chatbot__header h3 {
+    margin: 0;
+  }
+
+  .chatbot__header button {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+  }
+
+  .chatbot__body {
+    height: 100%;
+    flex: 1;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    overflow-y: auto;
+  }
+  .conversation {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex: 1;
+    overflow-y: scroll;
+    scrollbar-width: none;
+  }
+
+  .chatbot__message {
+    background-color: #f2f2f2;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  }
+
+  .user__message {
+    background-color: var(--main-gradient);
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  }
+
+  .send-message {
+    display: flex;
+    align-items: flex-end;
+    margin-top: 10px;
+  }
+
+  .send-message input {
+    flex-grow: 1;
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+    margin-right: 5px;
+  }
+
+  .send-message img {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+  }
+}

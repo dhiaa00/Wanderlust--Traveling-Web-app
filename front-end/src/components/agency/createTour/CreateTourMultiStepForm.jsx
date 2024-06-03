@@ -33,6 +33,7 @@ const CreateTourMultiStepForm = ({ setCreateTour, setTourCreated }) => {
     flightDuration: "",
     agencyId: agencyId,
   });
+  console.log(formData);
   const handleInputChange = (event, url) => {
     const { name, value } = event.target;
     if (name === "thumbImageUrl" || name === "videoUrl") {
@@ -56,9 +57,10 @@ const CreateTourMultiStepForm = ({ setCreateTour, setTourCreated }) => {
     setFormData({ ...formData, categories: categoriesString });
   };
 
-  const handleCreateSubmit = () => {
+  const handleCreateSubmit = async () => {
     try {
-      const response = axios.post(`${backendUrl}/offer/create`, formData);
+      const response = await axios.post(`${backendUrl}/offer/create`, formData);
+      console.log(response);
       toast.success(response.data.message);
       setTourCreated(true);
       closeModal();

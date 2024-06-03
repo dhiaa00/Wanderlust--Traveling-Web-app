@@ -1,0 +1,29 @@
+.transactions-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  .elements-container {
+    background-color: white;
+    padding: 0rem 2rem;
+  }
+  .container-of-element {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    max-height: 800px;
+    overflow-y: scroll;
+  }
+  .settings-title-container {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding-right: 9rem;
+    padding-left: 5rem;
+    h2 {
+      font-weight: 500;
+      font-size: 25px;
+      color: rgba(14, 153, 215, 1);
+    }
+  }
+}

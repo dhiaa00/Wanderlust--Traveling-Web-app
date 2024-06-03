@@ -4,6 +4,9 @@ import Modal from "react-modal";
 import AgencyUpperSection from "./components/agency/upperSection/AgencyUpperSection";
 import CircularProgress from "@mui/material/CircularProgress";
 import "/src/pages/Agency/Tours/agencyTours.css";
+import Transactions from "./pages/Tourist/PaymentS/Transactions";
+import DeleteAccount from "./pages/Tourist/PaymentS/DeleteAccount";
+import ChangePassword from "./pages/Tourist/PaymentS/ChangePassword";
 
 const NavBar = lazy(() => import("./components/navbar/NavBar"));
 const AgencyNavbar = lazy(() =>
@@ -38,6 +41,7 @@ const SingleTravelPage = lazy(() =>
 const AgenciesHomePage = lazy(() =>
   import("./pages/Agency/AgencyHomePage/AgenciesHomePage")
 );
+const Chatbot = lazy(() => import("./components/chatbot/Chatbot"));
 
 Modal.setAppElement("#root");
 
@@ -46,6 +50,7 @@ function App() {
   const [tourCreated, setTourCreated] = useState(false);
   const [notificationsOpen, setNotificationsOpen] = useState(false);
   const [seachInput, setSearchInput] = useState("");
+  const [chatbotOpened, setChatbotOpened] = useState(false);
 
   return (
     <Suspense
@@ -62,6 +67,10 @@ function App() {
           element={
             <>
               <NavBar />
+              <Chatbot
+                chatbotOpened={chatbotOpened}
+                setChatbotOpened={setChatbotOpened}
+              />
               <Outlet />
             </>
           }>
@@ -91,6 +100,7 @@ function App() {
                   setNotificationsOpen={setNotificationsOpen}
                   setSearchInput={setSearchInput}
                 />
+
                 <Outlet />
               </div>
             </div>
@@ -130,6 +140,9 @@ function App() {
             path="settings/language"
             element={<EditProfileLanguagePage />}
           />
+          <Route path="settings/transactions" element={<Transactions />} />
+          <Route path="settings/deleteAccount" element={<DeleteAccount />} />
+          <Route path="settings/changePassword" element={<ChangePassword />} />
           <Route path="messages" element={<Messages />} />
         </Route>
         <Route path="/tours/:travelId" element={<SingleTravelPage />} />

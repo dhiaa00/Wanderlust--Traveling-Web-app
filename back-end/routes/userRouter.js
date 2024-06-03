@@ -31,6 +31,6 @@ userRouter.route("/updatePreferences/:id").post(updatePreferences);
 
 userRouter.route("/getRecommendation").post(getRecommendation);
 
-userRouter.route("/generateResponse").get(generateResponse);
+userRouter.route("/generateResponse").post(generateResponse);
 
 export default userRouter;
