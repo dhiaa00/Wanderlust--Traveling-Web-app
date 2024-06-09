@@ -10,17 +10,22 @@ const createReview = async (req, res) => {
     const user = await User.findById(userId);
     const offer = await Offer.findById(offerId);
 
-    if (!user || !offer) {
+    if (!user) {
       return res
         .status(404)
-        .json({ message: "User or offer not found", data: null });
+        .json({ message: "Only tourists can review offers", data: null });
     }
 
-    // make the offer owner not able to review his own offer
-    if (offer.agency == userId) {
+    if (!offer) {
+      return res.status(404).json({ message: "Offer not found", data: null });
+    }
+
+    // Check if the user has already reviewed the offer
+    const existingReview = await Review.findOne({ userId, offerId });
+    if (existingReview) {
       return res
-        .status(403)
-        .json({ message: "You are not allowed to review your own offer" });
+        .status(400)
+        .json({ message: "You have already reviewed this offer" });
     }
 
     // Create new review

@@ -10,7 +10,7 @@ const TravelPagePrice = ({ travel }) => {
         <div className="travelpage-thirdclass-container">
           <p className="class-title">Start Price</p>
           <div className="class-price-details-container">
-            <p className="class-price">{travel.price} DA</p>
+            <p className="class-price">{travel.price} DZD</p>
             <p className="class-details">This offer is very economist,</p>
           </div>
           <button className="travelpage-class-getstarted">Get Started</button>

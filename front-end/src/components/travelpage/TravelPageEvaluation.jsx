@@ -11,18 +11,25 @@ const TravelPageEvaluation = ({ travel, reviews }) => {
 
   const handleMakeReview = async () => {
     try {
-      const response = await axios.post(`${backendUrl}/offer/review/create`, {
-        userId: JSON.parse(localStorage.getItem("user"))._id,
-        offerId: travel._id,
-        rating: rate,
-        comment: comment,
-      });
-      if (response.status === 201) {
-        toast.success("Review added successfully");
-        setRate(0);
-        setComment("");
+      // check if the user is logged in
+      const user = JSON.parse(localStorage.getItem("user"));
+      if (!user) {
+        toast.error("You need to be logged in to make a review");
+        return;
       } else {
-        toast.error("Failed to add review");
+        const response = await axios.post(`${backendUrl}/offer/review/create`, {
+          userId: user._id,
+          offerId: travel._id,
+          rating: rate,
+          comment: comment,
+        });
+        if (response.status === 201) {
+          toast.success("Review added successfully");
+          setRate(0);
+          setComment("");
+        } else {
+          toast.error("Failed to add review");
+        }
       }
     } catch (err) {
       toast.error(err.response.data.message);

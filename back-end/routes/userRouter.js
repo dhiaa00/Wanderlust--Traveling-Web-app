@@ -9,6 +9,7 @@ import {
   updatePreferences,
   updateUser,
   verifyUser,
+  searchTravels,
 } from "../controllers/userControllers.js";
 import generateResponse from "../utils/generateResponse.js";
 
@@ -26,6 +27,8 @@ userRouter.route("/delete/:id").delete(deleteUser);
 userRouter.route("/getOffer/:id").get(getOfferForUser);
 
 userRouter.route("/getOffers").get(getAllOffersForUser);
+
+userRouter.route("/search").post(searchTravels);
 
 userRouter.route("/updatePreferences/:id").post(updatePreferences);
 

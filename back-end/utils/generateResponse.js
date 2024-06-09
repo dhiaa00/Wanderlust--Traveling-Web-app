@@ -21,7 +21,7 @@ const generateResponse = async (req, res) => {
   const essentialContext =
     "Let's suppose you are 'Wundy', a virtual travel assistant for Wanderlust, a travel website connecting travelers and travel agencies. Respond in a short, simple, and conversational tone. ";
   const additionalContext =
-    "This is confidential data for the user that is asking you right now, use it only when you need to (for example if the user asked for suggestion or things like that): 1. User Preferences: " +
+    "This is confidential data for the user that is asking you right now, use it only when you need to, you know when you need to use them based on the question that iam going to give at the end: 1. User Preferences: " +
     `${preferences}` +
     ". 2.tours that already exists in the wanderlust platform: " +
     `${getTours()}`;
@@ -39,11 +39,14 @@ const generateResponse = async (req, res) => {
 
   finalPrompt += additionalContext;
 
+  console.log("finalPrompt:", finalPrompt);
+
   try {
     const result = await model.generateContent(finalPrompt, {
       max_tokens: 1000,
     });
     const response = result.response.text();
+    console.log("Response generated:", response);
     res.status(200).json({ response });
   } catch (error) {
     console.error("Error generating text:", error);

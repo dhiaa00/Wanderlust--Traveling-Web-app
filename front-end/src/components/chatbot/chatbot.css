@@ -78,6 +78,7 @@
   .chatbot__message {
     background-color: #f2f2f2;
     padding: 10px;
+    padding-left: 20px;
     border-radius: 5px;
     margin-bottom: 10px;
     box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
@@ -87,6 +88,7 @@
     background-color: var(--main-gradient);
     color: white;
     padding: 10px;
+    padding-left: 20px;
     border-radius: 5px;
     margin-bottom: 10px;
     box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
@@ -94,16 +96,17 @@
 
   .send-message {
     display: flex;
-    align-items: flex-end;
+    align-items: center;
     margin-top: 10px;
   }
 
   .send-message input {
     flex-grow: 1;
-    padding: 5px;
+    padding: 10px 5px;
     border: none;
     border-radius: 5px;
     margin-right: 5px;
+    outline: none;
   }
 
   .send-message img {

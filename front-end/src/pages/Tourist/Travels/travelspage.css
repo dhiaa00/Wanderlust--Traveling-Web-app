@@ -8,6 +8,35 @@ body {
   position: relative;
   z-index: 1;
   scroll-behavior: smooth;
+  .return-to-homepage-button {
+    background-color: white;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 2px 5px;
+    position: fixed;
+    top: 0;
+    right: 0;
+    margin: 2%;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+    img {
+      width: 30px;
+      height: 30px;
+    }
+    a {
+      text-decoration: none;
+      color: black;
+      font-size: 1.2rem;
+      font-weight: 500;
+    }
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
 }
 .loading-container {
   width: 100%;
@@ -25,7 +54,7 @@ body {
     width: 100%;
     background: linear-gradient(
       to top,
-      rgba(255, 255, 255, 1) 10%,
+      rgba(247, 247, 247, 1) 10%,
       rgba(255, 255, 255, 0) 85%
     );
     bottom: 0;

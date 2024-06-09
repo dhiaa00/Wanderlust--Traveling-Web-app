@@ -22,7 +22,21 @@ const NavBar = () => {
   const Logout = () => {
     localStorage.removeItem("user");
     setLogged(false);
-    navigate("/");
+    if (path === "settings") {
+      navigate("/");
+    } else {
+      window.location.reload();
+    }
+  };
+
+  const User = JSON.parse(localStorage.getItem("user"));
+
+  const handleGoToSettings = () => {
+    if (User.agencyName) {
+      navigate(`/agency/${User._id}/settings/info`);
+    } else {
+      navigate(`/user/settings`);
+    }
   };
 
   return (
@@ -50,7 +64,7 @@ const NavBar = () => {
         <MainButton text="Log in" onClickFunc={onClickFunc} />
       ) : (
         <div className="log-out-container">
-          <img src={settingsIcon} alt="settings" />
+          <img src={settingsIcon} alt="settings" onClick={handleGoToSettings} />
           <button className="main-button" onClick={Logout}>
             <p>Log out</p>
           </button>

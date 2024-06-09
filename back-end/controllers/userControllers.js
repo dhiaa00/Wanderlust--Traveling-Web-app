@@ -187,6 +187,31 @@ const getAllOffersForUser = async (req, res) => {
   }
 };
 
+const searchTravels = async (req, res) => {
+  try {
+    const { destination, startDate, endDate, budget } = req.body;
+
+    // the user is not required to enter all the fields
+    let query = {};
+    if (destination)
+      query.$or = [{ placeTo: destination }, { country: destination }];
+    if (startDate) query.startDate = { $gte: startDate };
+    if (endDate) query.endDate = { $lte: endDate };
+    if (budget) query.price = { $lte: budget };
+
+    const offers = await Offer.find(query);
+    res.status(200).json({
+      message: "Offers fetched successfully",
+      data: offers,
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: "Failed to fetch offers",
+      error: error.message,
+    });
+  }
+};
+
 const updatePreferences = async (req, res) => {
   try {
     const userId = req.params.id;
@@ -223,20 +248,7 @@ const getRecommendation = async (req, res) => {
     // if userId is -1 then return the first 5 offers by rating
     if (userId === -1) {
       try {
-        const topReviews = await Review.find().sort({ rating: -1 }).limit(5);
-        if (topReviews.length === 0) {
-          // return any 5 offers
-          const offers = await Offer.find().limit(5);
-          return res.status(200).json({
-            message: "Recommendations if if fetched successfully",
-            data: offers,
-          });
-        }
-        const offers = [];
-        for (let i = 0; i < topReviews.length; i++) {
-          const offer = await Offer.findById(topReviews[i].offerId);
-          offers.push(offer);
-        }
+        const offers = await Offer.find().sort({ rating: -1 }).limit(5);
         return res.status(200).json({
           message: "Recommendations if fetched successfully",
           data: offers,
@@ -291,6 +303,7 @@ export {
   verifyUser,
   getOfferForUser,
   getAllOffersForUser,
+  searchTravels,
   updatePreferences,
   getRecommendation,
 };

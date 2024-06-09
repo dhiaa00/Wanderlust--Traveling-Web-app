@@ -50,13 +50,10 @@ const TravelPageHeader = ({ travel, reviews }) => {
           </div>
           <div className="time-comments-evaluation evaluation-item">
             <div className="this-is-getting-outofhand">
-              <p className="evaluation-container-header-time">+2</p>
-              <p className="evaluation-container-header-year">years</p>
+              <p className="evaluation-container-header-time">Starting Price</p>
             </div>
             <div className="comments-evaluation-container">
-              <p>-Walking for a long time.</p>
-              <p>-Infant discomfort.</p>
-              <p>-Especially directed to newly married.</p>
+              <p>{travel.price} DZD</p>
             </div>
           </div>
         </div>

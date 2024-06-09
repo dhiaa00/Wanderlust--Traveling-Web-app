@@ -7,6 +7,9 @@ import TravelPagePrice from "../../../components/travelpage/TravelPagePrice";
 import "./travelspage.css";
 import axios from "axios";
 import { CircularProgress } from "@mui/material";
+import returnIcon from "../../../SVGs/travelpage/return-to-homepage.svg";
+import { Link } from "react-router-dom";
+
 const SingleTravelPage = () => {
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
   const [isLoading, setIsLoading] = useState(true);
@@ -31,7 +34,6 @@ const SingleTravelPage = () => {
 
     const travelTags =
       travel.categories.length != 0 ? travel.categories[0].split(", ") : [];
-    console.log(travelTags);
     // join them to the userPreferences as this example "luxury, beach, sea, summer"
     const localUserPreferences = user.preferences || [];
     const userPreferencesSet = new Set([
@@ -89,6 +91,10 @@ const SingleTravelPage = () => {
         </div>
       ) : (
         <div className="travel_page">
+          <div className="return-to-homepage-button">
+            <img src={returnIcon} alt="return to homepage" />
+            <Link to="..">Home</Link>
+          </div>
           <div className="background-image-container">
             <img
               src={travel.thumbImageUrl}
