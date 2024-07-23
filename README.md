@@ -1,6 +1,6 @@
-# Wanderlust "E-Traveling Platform"
+# Wanderlust "Traveling Platform"
 
-Welcome to the algerian E-Traveling Platform repository! This repository contains all the source code, documentation, and resources related to our innovative e-traveling platform. Whether you're a developer looking to contribute, a stakeholder seeking project updates, or a user interested in learning more about our platform, you've come to the right place.
+Welcome to the algerian Traveling Platform repository! This repository contains all the source code, documentation, and resources related to our innovative e-traveling platform. Whether you're a developer looking to contribute, a stakeholder seeking project updates, or a user interested in learning more about our platform, you've come to the right place.
 
 ## Table of Contents
 
