@@ -17,11 +17,21 @@ const Footer = () => {
             <img src={footerLogo} alt="logo" />
           </div>
           <nav className="footer-links">
-            <img src={instagram} alt="instagram" />
-            <img src={facebook} alt="facebook" />
-            <img src={twitter} alt="twitter" />
-            <img src={linkedin} alt="linkedin" />
-            <img src={youtube} alt="youtube" />
+            <a href="">
+              <img src={instagram} alt="instagram" />
+            </a>
+            <a href="">
+              <img src={facebook} alt="facebook" />
+            </a>
+            <a href="">
+              <img src={twitter} alt="twitter" />
+            </a>
+            <a href="">
+              <img src={linkedin} alt="linkedin" />
+            </a>
+            <a href="">
+              <img src={youtube} alt="youtube" />
+            </a>
           </nav>
         </div>
         <div className="titles">
@@ -43,15 +53,15 @@ const Footer = () => {
             <a href="/">Services</a>
           </div>
           <div className="contact-us">
-            <a href="/">+123456789</a>
-            <a href="/">1234 North Avenue, New York, NY 12345</a>
+            <a href="/">+213 550 61 42 84</a>
+            <a href="/">Tipaza, Algeria</a>
           </div>
           <div className="latest-news">
             <img src={latestNews} alt="news" />
           </div>
         </div>
         <p className="footer-last-element">
-          Copyright © Wanderlust | Created by A Great Team{" "}
+          Copyright © Wanderlust 2024 | Created by A Great Team
         </p>
       </div>
     </footer>

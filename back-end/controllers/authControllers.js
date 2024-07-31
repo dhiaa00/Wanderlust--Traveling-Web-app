@@ -8,6 +8,8 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import crypto from "crypto";
 import sendVerificationCode from "../utils/sendVerificationCode.js";
+import oauth2Client from "../utils/oauth2client.js";
+import passport from "passport";
 
 const loginController = async (req, res) => {
   const { error } = verifyLogin(req.body);
@@ -27,6 +29,19 @@ const loginController = async (req, res) => {
       .status(400)
       .json({ message: "invalid email or password", data: null });
   }
+
+  if (!user.verified) {
+    // resend a verification code
+    const verificationCode = Math.floor(100000 + Math.random() * 900000); // generates a six digit number
+    user.verificationCode = verificationCode;
+    await user.save();
+    sendVerificationCode(email, verificationCode);
+    return res.status(400).json({
+      message: "Please verify your email",
+      confirmationId: user.confirmationId,
+    });
+  }
+
   const token = jwt.sign(
     { id: user._id, isAdmin: user.isAdmin },
     process.env.JWT_PASSWORD,
@@ -108,6 +123,18 @@ const loginAgency = async (req, res) => {
       return res
         .status(400)
         .json({ message: "Invalid email or password", data: null });
+    }
+
+    if (!agency.Verified) {
+      // resend a verification code
+      const verificationCode = Math.floor(100000 + Math.random() * 900000); // generates a six digit number
+      agency.verificationCode = verificationCode;
+      await agency.save();
+      sendVerificationCode(email, verificationCode);
+      return res.status(400).json({
+        message: "Please verify your email",
+        confirmationId: agency.confirmationId,
+      });
     }
 
     const token = jwt.sign({ id: agency._id }, process.env.JWT_PASSWORD, {
@@ -197,4 +224,59 @@ const registerAgency = async (req, res) => {
   }
 };
 
-export { loginController, registerController, loginAgency, registerAgency };
+const googleLogin = (req, res, next) => {
+  passport.authenticate("google", { scope: ["profile", "email"] })(
+    req,
+    res,
+    next
+  );
+};
+
+// Google callback function
+const googleCallback = (req, res) => {
+  try {
+    // User is authenticated, you can create a token or redirect
+    console.log("User authenticated:", req.user);
+    const token = jwt.sign(
+      { id: req.user._id, isAdmin: req.user.isAdmin },
+      process.env.JWT_PASSWORD,
+      { expiresIn: "30d" }
+    );
+
+    res.cookie("authorization", token, {
+      secure: false,
+      httpOnly: true,
+      sameSite: "strict",
+    });
+
+    res.redirect("http://localhost:5173/");
+  } catch (error) {
+    console.error("Error in googleCallback:", error);
+    res.status(500).send("Internal Server Error");
+  }
+};
+
+// const googleCallback = (req, res) => {
+//   passport.authenticate("google", { failureRedirect: "/login" }),
+//     (req, res) => {
+//       // User is authenticated
+//       console.log("User authenticated:", req.user);
+
+//       // Generate JWT token (if needed)
+//       const token = jwt.sign({ id: req.user._id }, process.env.JWT_SECRET, {
+//         expiresIn: "1h",
+//       });
+//       res.cookie("jwt", token, { httpOnly: true });
+
+//       res.redirect("/dashboard");
+//     };
+// };
+
+export {
+  loginController,
+  registerController,
+  loginAgency,
+  registerAgency,
+  googleLogin,
+  googleCallback,
+};

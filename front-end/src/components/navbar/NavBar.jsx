@@ -4,8 +4,12 @@ import "./navbar.css";
 import MainButton from "../buttons/MainButton";
 import logo from "/src/SVGs/HomePage/Wanderlust-logo.svg";
 import settingsIcon from "/src/SVGs/settings-icon.svg";
+import menuIcon from "/src/SVGs/menu.svg";
+import closeMenuIcon from "/src/SVGs/close-menu.svg";
+import Modal from "react-modal";
 
 const NavBar = () => {
+  const [menuOpened, setMenuOpened] = useState(false);
   const [logged, setLogged] = useState(false);
   const navigate = useNavigate();
   const onClickFunc = () => {
@@ -19,7 +23,15 @@ const NavBar = () => {
       setLogged(true);
     }
   }, []);
-  const Logout = () => {
+
+  // handling logout
+
+  const [isModalOpen, setIsModalOpen] = useState(false); // Track modal visibility state
+
+  const openLogoutModal = () => setIsModalOpen(true);
+  const closeLogoutModal = () => setIsModalOpen(false);
+
+  const handleLogout = () => {
     localStorage.removeItem("user");
     setLogged(false);
     if (path === "settings") {
@@ -39,10 +51,27 @@ const NavBar = () => {
     }
   };
 
+  // handle menu opening
+
+  const handleMenuOpen = () => {
+    setMenuOpened(!menuOpened);
+  };
+
+  const menuStyle =
+    menuOpened && window.innerWidth < 768
+      ? { clipPath: "polygon(100% 0, 0 0, 0 100%, 100% 100%)" }
+      : {};
+
   return (
     <div className="navbar">
-      <img src={logo} alt="logo" onClick={() => navigate("/")} />
-      <nav className="nav-links">
+      <img
+        className="navbar-logo"
+        src={logo}
+        alt="logo"
+        onClick={() => navigate("/")}
+      />
+      <div className="space-taker"></div>
+      <nav className="nav-links" style={menuStyle}>
         <Link to="/" className={path === "" ? "active-navlink" : ""}>
           Travel
         </Link>
@@ -65,13 +94,66 @@ const NavBar = () => {
       ) : (
         <div className="log-out-container">
           <img src={settingsIcon} alt="settings" onClick={handleGoToSettings} />
-          <button className="main-button" onClick={Logout}>
+          <button className="main-button" onClick={openLogoutModal}>
             <p>Log out</p>
           </button>
+          <LogoutModal
+            isOpen={isModalOpen}
+            onClose={closeLogoutModal}
+            onLogout={handleLogout}
+          />
         </div>
+      )}
+      {menuOpened ? (
+        <img
+          className="menu-icon-navbar"
+          src={closeMenuIcon}
+          alt="menu"
+          onClick={handleMenuOpen}
+        />
+      ) : (
+        <img
+          className="menu-icon-navbar"
+          src={menuIcon}
+          alt="menu"
+          onClick={handleMenuOpen}
+        />
       )}
     </div>
   );
 };
 
 export default NavBar;
+
+function LogoutModal({ isOpen, onClose, onLogout }) {
+  return (
+    <Modal
+      isOpen={isOpen}
+      onRequestClose={onClose}
+      style={{
+        overlay: {
+          backgroundColor: "rgba(0, 0, 0, 0.75)",
+        },
+        content: {
+          position: "absolute",
+          top: "50%",
+          left: "50%",
+          transform: "translate(-50%, -50%)",
+          backgroundColor: "white",
+          padding: "20px",
+          border: "1px solid #ccc",
+          borderRadius: "5px",
+        },
+      }}>
+      <h2>Are you sure you want to logout?</h2>
+      <button onClick={onClose}>Cancel</button>
+      <button
+        onClick={() => {
+          onLogout();
+          onClose();
+        }}>
+        Confirm Logout
+      </button>
+    </Modal>
+  );
+}

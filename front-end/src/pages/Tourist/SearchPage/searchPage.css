@@ -1,0 +1,42 @@
+.navbar {
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 0 10px 10px 0;
+}
+.main-travel-page {
+  .hero-section {
+    position: relative;
+    margin-bottom: 0rem !important;
+  }
+  h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+  }
+  .loading-container {
+    width: 100%;
+    min-height: 20vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .all-travels {
+    margin: 5rem 0 2rem 0;
+    padding: 0 1rem;
+  }
+  .all-travels-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+  }
+  .travel-page-pagination {
+    margin-top: 1rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+.ReactModal__Overlay {
+  z-index: 1000;
+}

@@ -1,5 +1,6 @@
 import express from "express";
 import dotenv from "dotenv";
+import session from "express-session"; // Import express-session
 import authRouter from "./routes/authRouter.js";
 import userRouter from "./routes/userRouter.js";
 import agencyRouter from "./routes/agencyRouter.js";
@@ -11,7 +12,9 @@ import connectToDb from "./lib/connectToDb.js";
 import notificationRouter from "./routes/notificationRouter.js";
 import http from "http";
 import { Server as SocketIoServer } from "socket.io";
-import rateLimit from "express-rate-limit"; // Import rate-limit
+import apiLimiter from "./middleware/ratelimiter.js";
+import passport from "passport"; // Import passport
+import "./utils/passport-setup.js"; // Import the passport setup
 
 // Load environment variables
 dotenv.config();
@@ -20,6 +23,12 @@ dotenv.config();
 const app = express();
 
 // Middleware
+
+app.use((req, res, next) => {
+  res.setHeader("Cross-Origin-Opener-Policy", "same-origin");
+  next();
+});
+
 app.use(
   cors({
     origin: [
@@ -32,12 +41,22 @@ app.use(
 app.use(express.json());
 app.use(cookieParser());
 
-// Define a rate limit rule
-const apiLimiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 100, // Limit each IP to 100 requests per windowMs
-  message: "Too many requests from this IP, please try again after 15 minutes",
-});
+// Set up session management
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET || "your_secret_secret_secret_key", // Replace with your own secret
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+      secure: process.env.NODE_ENV === "production", // Use true in production to ensure cookies are sent over HTTPS
+      maxAge: 1000 * 60 * 60 * 24, // 1 day (adjust as necessary)
+    },
+  })
+);
+
+// After defining your middlewares
+app.use(passport.initialize());
+app.use(passport.session()); // Use session management for Passport
 
 // Apply the rate limit rule to all API requests
 app.use("/auth", apiLimiter, authRouter);

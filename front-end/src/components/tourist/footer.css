@@ -68,6 +68,9 @@ footer {
         &:last-child {
           width: 40%;
         }
+        &:nth-child(2) {
+          width: 15%;
+        }
       }
     }
     .links {
@@ -92,6 +95,9 @@ footer {
             transform: translateX(2px);
           }
         }
+      }
+      .service {
+        width: 15%;
       }
       .latest-news {
         align-items: flex-start;

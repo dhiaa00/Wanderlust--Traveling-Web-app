@@ -37,7 +37,7 @@ const Schema = new mongoose.Schema(
       trim: true,
       unique: true,
     },
-    Verified: {
+    verified: {
       type: Boolean,
       default: false,
     },
@@ -63,6 +63,8 @@ const Schema = new mongoose.Schema(
       },
     ],
 
+    googleId: String,
+
     // isAccountVerified: {
     //   type: Boolean,
     //   default: false,
@@ -75,7 +77,13 @@ const verifySignUp = (object) => {
   const Schema = joi.object({
     username: joi.string().required().trim().min(2).max(20),
     email: joi.string().required().trim().min(5).max(50).email(),
-    password: joiPasswordComplexity().required(),
+    password: joiPasswordComplexity({
+      min: 8,
+      max: 100,
+      upperCase: 1,
+      lowerCase: 1,
+      numeric: 1,
+    }).required(),
     // profilePhoto: joi.object().default({
     //     url : "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png ",
     //     publicId: null,
@@ -90,7 +98,13 @@ const verifySignUp = (object) => {
 const verifyLogin = (obj) => {
   const loginSchema = joi.object({
     email: joi.string().required().trim().min(5).max(50).email(),
-    password: joi.string().required().trim().min(8).max(100),
+    password: joiPasswordComplexity({
+      min: 8,
+      max: 100,
+      upperCase: 1,
+      lowerCase: 1,
+      numeric: 1,
+    }).required(),
   });
 
   return loginSchema.validate(obj);
@@ -99,7 +113,13 @@ const verifyLogin = (obj) => {
 const verifyUpdateUser = (obj) => {
   const schema = joi.object({
     username: joi.string().trim().min(2).max(20),
-    password: joiPasswordComplexity(),
+    password: joiPasswordComplexity({
+      min: 8,
+      max: 100,
+      upperCase: 1,
+      lowerCase: 1,
+      numeric: 1,
+    }).required(),
     // bio: joi.string(),
   });
   return schema.validate(obj);

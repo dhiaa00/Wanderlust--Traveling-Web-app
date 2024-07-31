@@ -1,5 +1,5 @@
 .navbar {
-  background-color: white;
+  background-color: white !important;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   border-radius: 0 10px 10px 0;
 }
@@ -15,12 +15,44 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 10rem 0 2rem 7rem;
+    padding: 7rem 0 2rem 6rem;
+    position: relative;
+    .soft-star {
+      position: absolute;
+      width: 80px;
+      bottom: -30%;
+      right: 30%;
+      transform: translate(-50%, -100%);
+      z-index: -1;
+    }
+    .light-elipse {
+      position: absolute;
+      top: 50%;
+      right: 0;
+      transform: translate(50%, -30%);
+      z-index: -2;
+    }
   }
 
   .hero-section-left-side h1 {
-    font-size: 3.5rem;
+    font-size: 3rem;
     font-weight: 700;
+    position: relative;
+    span {
+      display: block;
+    }
+    .shape1 {
+      position: absolute;
+      width: 50px;
+      top: 0;
+      left: -10%;
+    }
+    .lightning {
+      position: absolute;
+      width: 50px;
+      top: -30%;
+      right: 20%;
+    }
   }
 
   .hero-section-left-side p {
@@ -60,18 +92,19 @@
   .hero-section-right-side img {
     /* Add your styles for the hero section image here */
     position: absolute;
-    top: 0;
-    right: 0;
-    transform: translateY(-15%);
-    z-index: -1;
+    transform: scale(1.5);
+    top: -15%;
+    right: -9%;
+    z-index: -2;
   }
 
   /* Add your styles for the absolute positioned images here */
-  .main-travel-page .left-cards {
+  .left-cards {
     /* Add your styles for the absolute positioned images here */
     position: absolute;
-    top: 0;
+    top: 55%;
     left: 0;
-    transform: translate(-30%, 40%);
+    transform: translateX(-10%);
+    width: 150px;
   }
 }

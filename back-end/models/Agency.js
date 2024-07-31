@@ -1,4 +1,6 @@
+import Joi from "joi";
 import mongoose from "mongoose";
+import joiPasswordComplexity from "joi-password-complexity";
 
 const agencySchema = new mongoose.Schema(
   {
@@ -69,21 +71,35 @@ agencySchema.virtual("offers", {
 });
 
 const verifyAgencyLogin = (body) => {
-  const { email, password } = body;
-  if (!email || !password) {
-    return {
-      error: { details: [{ message: "Email and password are required" }] },
-    };
-  }
-  return { error: null };
+  const schema = Joi.object({
+    email: Joi.string().email().required(),
+    password: joiPasswordComplexity({
+      min: 8,
+      max: 100,
+      upperCase: 1,
+      lowerCase: 1,
+      numeric: 1,
+    }).required(),
+  });
+  return schema.validate(body);
 };
 
 const verifyAgencySignUp = (body) => {
-  const { agencyName, registrationNumber, email, password } = body;
-  if (!agencyName || !registrationNumber || !email || !password) {
-    return { error: { details: [{ message: "All fields are required" }] } };
-  }
-  return { error: null };
+  const schema = Joi.object({
+    agencyName: Joi.string().required(),
+    registrationNumber: Joi.string().required(),
+    email: Joi.string().email().required(),
+    phoneNumber: Joi.string().required().min(10).max(10),
+    location: Joi.string().required(),
+    password: joiPasswordComplexity({
+      min: 8,
+      max: 100,
+      upperCase: 1,
+      lowerCase: 1,
+      numeric: 1,
+    }).required(),
+  });
+  return schema.validate(body);
 };
 
 const Agency = mongoose.model("Agency", agencySchema);

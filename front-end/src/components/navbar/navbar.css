@@ -55,3 +55,145 @@
     }
   }
 }
+/* Modal.css */
+
+.ReactModal__Overlay {
+  /* Styles for the modal overlay (background behind the content) */
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.75); /* Adjust transparency as needed */
+  display: flex; /* Center the modal content vertically */
+  justify-content: center;
+  align-items: center;
+}
+
+.ReactModal__Content {
+  /* Styles for the modal content itself */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  max-width: 400px; /* Set a maximum width for responsiveness */
+  min-width: 300px; /* Set a minimum width for content */
+  text-align: center; /* Center the content horizontally */
+}
+
+.ReactModal__Content h2 {
+  /* Styles for the modal title (h2 element) */
+  margin: 0 0 15px; /* Add some margin below the title */
+  font-size: 1.2rem; /* Adjust font size as needed */
+}
+
+.ReactModal__Content button {
+  /* Styles for both buttons (Cancel and Confirm Logout) */
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 0 10px; /* Add some margin between buttons */
+}
+
+.ReactModal__Content button:hover {
+  /* Styles for buttons on hover */
+  background-color: #eee; /* Add a slight hover effect */
+}
+
+.ReactModal__Content button:first-child {
+  /* Styles for the Cancel button */
+  background-color: #ccc;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.ReactModal__Content button:last-child {
+  /* Styles for the Confirm Logout button */
+  background-color: #007bff; /* Blue color for confirmation */
+  color: white;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.menu-icon-navbar {
+  display: none;
+}
+
+.space-taker {
+  display: none;
+}
+
+@media screen and (max-width: 1100px) {
+  .navbar {
+    .navbar-logo {
+      width: 150px;
+    }
+    nav {
+      a.active-navlink {
+        font-size: 0.9rem;
+      }
+      a {
+        font-size: 0.8rem;
+        &:hover {
+          font-size: 0.9rem;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .navbar {
+    justify-content: space-between;
+    position: relative;
+    .navbar-logo {
+      width: 150px;
+    }
+    nav {
+      position: absolute;
+      top: 5.5rem;
+      right: 0;
+      clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%);
+      flex-direction: column;
+      gap: 0;
+      background-color: #eee;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      z-index: 10000000000000000;
+      width: 50%;
+      transition: all 0.3s ease;
+      a {
+        font-size: 1.2rem;
+        padding: 1rem 0;
+        &:hover {
+          font-size: 1.3rem;
+          background-color: var(--main-gradient);
+        }
+      }
+      a.active-navlink {
+        font-size: 1.3rem;
+      }
+    }
+    .space-taker {
+      display: block;
+      flex: 1;
+    }
+    .menu-icon-navbar {
+      display: block;
+      cursor: pointer;
+      width: 30px;
+      margin-left: 1rem;
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .navbar {
+    padding: 1rem 1rem;
+  }
+}

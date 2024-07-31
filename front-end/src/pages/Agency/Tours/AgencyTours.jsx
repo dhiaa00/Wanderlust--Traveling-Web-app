@@ -1,4 +1,5 @@
 import "./agencyTours.css";
+import planeSvg from "/src/SVGs/Plane.svg";
 import React, { Suspense, useEffect, useState } from "react";
 import CreateTourMultiStepForm from "../../../components/agency/createTour/CreateTourMultiStepForm";
 import TourListItem from "../../../components/agency/TourListItem/TourListItem";
@@ -60,26 +61,52 @@ const AgencyTours = ({
   useEffect(() => {
     handleSearch();
   }, [seachInput]);
+
+  console.log("agencyTours", agencyTours.length);
   return (
     <>
-      <div className="tour-list-titles">
-        <div className="id tour-list-title">Collection</div>
-        <div className="country tour-list-title">Country</div>
-        <div className="clients tour-list-title">Clients</div>
-        <div className="days tour-list-title">Days</div>
-        <div className="delete tour-list-title"></div>
-      </div>
+      {agencyTours.length != 0 && (
+        <div className="tour-list-titles">
+          <div className="id tour-list-title">Collection</div>
+          <div className="country tour-list-title">Country</div>
+          <div className="clients tour-list-title">Clients</div>
+          <div className="days tour-list-title">Days</div>
+          <div className="delete tour-list-title"></div>
+        </div>
+      )}
       <div className="agency-tour-list">
-        {agencyTours.map((tour, i) => {
-          return (
-            <TourListItem
-              key={tour.id}
-              order={i + 1}
-              tour={tour}
-              setAgencyTours={setAgencyTours}
-            />
-          );
-        })}
+        {agencyTours.length != 0 ? (
+          agencyTours.map((tour, i) => {
+            return (
+              <TourListItem
+                key={tour.id}
+                order={i + 1}
+                tour={tour}
+                setAgencyTours={setAgencyTours}
+              />
+            );
+          })
+        ) : (
+          <div
+            style={{
+              margin: "1rem 0",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              gap: "4rem",
+            }}>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+              }}>
+              <img src={planeSvg} alt="plane" style={{ width: "50%" }} />
+            </div>
+            <div className="no-tours" style={{ textAlign: "center" }}>
+              No tours found
+            </div>
+          </div>
+        )}
       </div>
       <Suspense fallback={<div>Loading...</div>}>
         {createTour && (

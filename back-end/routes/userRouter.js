@@ -26,9 +26,9 @@ userRouter.route("/delete/:id").delete(deleteUser);
 
 userRouter.route("/getOffer/:id").get(getOfferForUser);
 
-userRouter.route("/getOffers").get(getAllOffersForUser);
+userRouter.route("/getOffers").post(getAllOffersForUser);
 
-userRouter.route("/search").post(searchTravels);
+userRouter.route("/search").get(searchTravels);
 
 userRouter.route("/updatePreferences/:id").post(updatePreferences);
 

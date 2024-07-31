@@ -1,0 +1,54 @@
+.agency-management {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+
+  .side-image {
+    flex: 1;
+  }
+
+  .side-image img {
+    width: 100%;
+    height: auto;
+  }
+
+  .agency-management-description {
+    flex: 1;
+    padding: 20px;
+  }
+
+  .agency-management-description h2 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+
+  .agency-management-description p {
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+
+  .agency-management-element {
+    margin-bottom: 20px;
+  }
+
+  .agency-management-element h3 {
+    font-size: 18px;
+    font-weight: bold;
+    position: relative;
+  }
+
+  .agency-management-element h3::after {
+    content: "";
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background-color: blue;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: -20px;
+    transform: translateY(-50%);
+  }
+}

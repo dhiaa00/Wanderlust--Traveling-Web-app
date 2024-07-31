@@ -10,7 +10,7 @@ const Login = () => {
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
   const navigate = useNavigate();
   const [formData, setFormData] = useState({ email: "", password: "" });
-  const [accountType, setAccountType] = useState("agency");
+  const [accountType, setAccountType] = useState("user");
   const handleAccountType = (e) => {
     setAccountType(e.target.value);
   };
@@ -47,6 +47,21 @@ const Login = () => {
       }
     } catch (err) {
       toast.error(err.response.data.message);
+      if (err.response.data.confirmationId) {
+        accountType == "agency"
+          ? navigate(
+              `/signup/confirmation/agency/${err.response.data.confirmationId}`,
+              {
+                state: { email: formData.email },
+              }
+            )
+          : navigate(
+              `/signup/confirmation/user/${err.response.data.confirmationId}`,
+              {
+                state: { email: formData.email },
+              }
+            );
+      }
       console.log(err);
     }
   };
@@ -69,7 +84,8 @@ const Login = () => {
           <select
             name="accountType"
             id="accountType"
-            onChange={(e) => handleAccountType(e)}>
+            onChange={(e) => handleAccountType(e)}
+            value={accountType}>
             <option value="agency">Agency</option>
             <option value="user">Tourist</option>
           </select>
@@ -89,7 +105,12 @@ const Login = () => {
         </form>
         <div className="or">Or</div>
         <div className="google-auth">
-          <button>
+          <button
+            style={
+              accountType === "agency"
+                ? { filter: "grayscale(80%)", cursor: "not-allowed" }
+                : {}
+            }>
             <img src={googleLogo} alt="google" />
             Sign in with Google
           </button>

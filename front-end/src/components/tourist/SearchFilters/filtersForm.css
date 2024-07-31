@@ -1,0 +1,95 @@
+/* Style the container div */
+.filters-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.ReactModal__Content {
+  position: relative;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  width: 40%;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%);
+  min-height: fit-content;
+}
+
+/* Style the modal title */
+.ReactModal__Content h2 {
+  margin-top: 0;
+}
+
+/* Style the form inside the modal */
+.ReactModal__Content form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+}
+
+/* Style the form labels */
+.ReactModal__Content form label {
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Style the form inputs */
+.ReactModal__Content form input {
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.ReactModal__Content form input[name="budget"] {
+  position: relative;
+  &::after {
+    content: attr(minPrice);
+    position: absolute;
+    left: 10px;
+    top: 0px;
+    transform: translateY(-80%);
+  }
+  &::before {
+    content: attr(currentPrice);
+    position: absolute;
+    right: 10px;
+    top: 0px;
+    transform: translateY(-80%);
+  }
+}
+
+/* Style the submit button */
+.ReactModal__Content form button[type="submit"] {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.ReactModal__Content form button[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+/* Style the close button */
+.ReactModal__Content .close-button {
+  background-color: #ccc;
+  color: #fff;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.ReactModal__Content .close-button:hover {
+  background-color: #999;
+}

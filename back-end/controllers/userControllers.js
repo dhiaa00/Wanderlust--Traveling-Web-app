@@ -175,11 +175,20 @@ const getOfferForUser = async (req, res) => {
   }
 };
 const getAllOffersForUser = async (req, res) => {
+  const OFFERS_PER_PAGE = 9;
+  const currentPage = req.body.currentPage;
   try {
-    const offers = await Offer.find();
-    res
-      .status(200)
-      .json({ message: "Offers fetched successfully", data: offers });
+    const totalOffers = await Offer.countDocuments(); // Counts all documents
+    const totalPages = Math.ceil(totalOffers / OFFERS_PER_PAGE);
+    const offers = await Offer.find()
+      .skip((currentPage - 1) * OFFERS_PER_PAGE)
+      .limit(OFFERS_PER_PAGE);
+
+    res.status(200).json({
+      message: "Offers fetched successfully",
+      data: offers,
+      totalPages: totalPages, // Include the total pages in the response
+    });
   } catch (error) {
     res
       .status(500)
@@ -189,15 +198,20 @@ const getAllOffersForUser = async (req, res) => {
 
 const searchTravels = async (req, res) => {
   try {
-    const { destination, startDate, endDate, budget } = req.body;
-
+    // get query from the link
+    const { destination, budget, startDate, endDate } = req.query;
     // the user is not required to enter all the fields
+    console.log(req.query);
     let query = {};
     if (destination)
-      query.$or = [{ placeTo: destination }, { country: destination }];
+      query.$or = [
+        { placeTo: { $regex: new RegExp(`${destination}`, "i") } },
+        { country: { $regex: new RegExp(`${destination}`, "i") } },
+      ];
     if (startDate) query.startDate = { $gte: startDate };
     if (endDate) query.endDate = { $lte: endDate };
     if (budget) query.price = { $lte: budget };
+    console.log(query);
 
     const offers = await Offer.find(query);
     res.status(200).json({

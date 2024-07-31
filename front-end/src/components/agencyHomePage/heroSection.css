@@ -1,0 +1,107 @@
+.main-agencies-page {
+  .hero-section {
+    display: flex;
+    justify-content: center;
+    min-height: 50vh;
+    position: relative;
+  }
+
+  .hero-section-left-side {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 7rem 0 2rem 6rem;
+    margin-bottom: 4rem;
+    position: relative;
+    .soft-star {
+      position: absolute;
+      width: 80px;
+      bottom: -30%;
+      right: 30%;
+      transform: translate(-50%, -100%);
+      z-index: -1;
+    }
+    .light-elipse {
+      position: absolute;
+      top: 50%;
+      right: 0;
+      transform: translate(50%, -30%);
+      z-index: -2;
+    }
+  }
+
+  .hero-section-left-side h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    position: relative;
+    span {
+      display: block;
+    }
+    .shape1 {
+      position: absolute;
+      width: 50px;
+      top: 0;
+      left: -10%;
+    }
+    .lightning {
+      position: absolute;
+      width: 50px;
+      top: -30%;
+      right: 20%;
+    }
+  }
+
+  .hero-section-left-side p {
+    /* Add your styles for the paragraph here */
+    font-size: 16px;
+    color: #666;
+  }
+
+  .hero-section-buttons {
+    /* Add your styles for the buttons container here */
+    display: flex;
+    align-items: center;
+    margin-top: 2rem;
+    margin-left: 1rem;
+  }
+
+  .hero-section-buttons img {
+    margin-right: 1rem;
+  }
+
+  .hero-section-buttons a {
+    text-decoration: none;
+    color: var(--main-gradient);
+    font-size: 1.2rem;
+    font-weight: 600;
+    border: 1.5px solid var(--main-gradient);
+    padding: 8px 20px;
+    border-radius: 10px;
+  }
+
+  .hero-section-right-side {
+    min-width: 40%;
+    min-height: 100%;
+    position: relative;
+  }
+
+  .hero-section-right-side img {
+    /* Add your styles for the hero section image here */
+    position: absolute;
+    transform: scale(1.5);
+    top: -15%;
+    right: -9%;
+    z-index: -2;
+  }
+
+  /* Add your styles for the absolute positioned images here */
+  .left-cards {
+    /* Add your styles for the absolute positioned images here */
+    position: absolute;
+    top: 45%;
+    left: 0;
+    transform: translateX(-10%);
+    width: 150px;
+  }
+}

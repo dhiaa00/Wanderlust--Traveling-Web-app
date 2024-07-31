@@ -41,8 +41,8 @@ const ConfirmYourEmail = () => {
         console.log(response.data.data);
         saveToLocalStorage("user", response.data.data);
         type == "agency"
-          ? navigate(`/agency/${response.data.data._id}`)
-          : navigate(`/user/${response.data.data.id}`);
+          ? navigate(`/agency/${response.data.data._id}/tours`)
+          : navigate(`/`);
       } else {
         toast.error(response.data.message);
       }

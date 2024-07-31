@@ -1,27 +1,34 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import mainImage from "/src/SVGs/HomePage/Tourist/main-image.svg";
 import "./main-travel-page.css";
 import TravelPageSearch from "../../../components/tourist/TravelPageSearch";
 import RecommendedSwiper from "../../../components/tourist/RecommendedSwiper";
 import TravelCard from "../../../components/tourist/TravelCard";
 import Footer from "../../../components/tourist/Footer";
-import { paginate } from "../../../utils/paginate";
 import axios from "axios"; // Add this line
 import TravelPagePagination from "../Pagination/TravelPagePagination";
 import { CircularProgress } from "@mui/material";
 
 const TravelPage = () => {
+  const initialQuery = {
+    destination: "",
+    startDate: "",
+    endDate: "",
+    budget: "",
+  };
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
   const [isLoading, setIsLoading] = useState(true);
   const [travelList, setTravelList] = useState([]);
   const [pagesNumber, setPagesNumber] = useState(0);
-  const [currentTravels, setCurrentTravels] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
 
   const getTravels = async () => {
     try {
-      const response = await axios.get(`${backendUrl}/user/getOffers`);
+      const response = await axios.post(`${backendUrl}/user/getOffers`, {
+        currentPage: currentPage,
+      });
       setTravelList(response.data.data);
+      setPagesNumber(response.data.totalPages);
       setIsLoading(false);
     } catch (error) {
       console.log(error);
@@ -30,20 +37,14 @@ const TravelPage = () => {
 
   useEffect(() => {
     getTravels();
-  }, []);
-
-  useEffect(() => {
-    const result = paginate(travelList.length, currentPage, travelList);
-    setPagesNumber(result.pagesNumber);
-    setCurrentTravels(result.currentTours);
-  }, [travelList, currentPage]);
+  }, [currentPage]);
 
   return (
     <>
       <div className="main-travel-page">
         <div className="hero-section">
           <img src={mainImage} alt="main-image" />
-          <TravelPageSearch />
+          <TravelPageSearch query={initialQuery} />
         </div>
         <div className="recommended-travels">
           <h2>Recommended:</h2>
@@ -56,8 +57,8 @@ const TravelPage = () => {
               {isLoading ? (
                 <CircularProgress disableShrink />
               ) : (
-                currentTravels &&
-                currentTravels.map((travel) => (
+                travelList &&
+                travelList.map((travel) => (
                   <TravelCard travel={travel} key={travel.id} />
                 ))
               )}

@@ -1,12 +1,21 @@
 import { Routes, Route, Outlet } from "react-router-dom";
 import { Suspense, lazy, useState } from "react";
 import Modal from "react-modal";
-import AgencyUpperSection from "./components/agency/upperSection/AgencyUpperSection";
 import CircularProgress from "@mui/material/CircularProgress";
-import "/src/pages/Agency/Tours/agencyTours.css";
-import Transactions from "./pages/Tourist/PaymentS/Transactions";
-import DeleteAccount from "./pages/Tourist/PaymentS/DeleteAccount";
-import ChangePassword from "./pages/Tourist/PaymentS/ChangePassword";
+import SearchPage from "./pages/Tourist/SearchPage/SearchPage";
+const AgencyUpperSection = lazy(() =>
+  import("./components/agency/upperSection/AgencyUpperSection")
+);
+import("/src/pages/Agency/Tours/agencyTours.css");
+const Transactions = lazy(() =>
+  import("./pages/Tourist/PaymentS/Transactions")
+);
+const DeleteAccount = lazy(() =>
+  import("./pages/Tourist/PaymentS/DeleteAccount")
+);
+const ChangePassword = lazy(() =>
+  import("./pages/Tourist/PaymentS/ChangePassword")
+);
 
 const NavBar = lazy(() => import("./components/navbar/NavBar"));
 const AgencyNavbar = lazy(() =>
@@ -75,6 +84,7 @@ function App() {
             </>
           }>
           <Route index element={<TravelPage />} />
+          <Route path="/search/:searchedValue" element={<SearchPage />} />
           <Route path="/agencies" element={<AgenciesHomePage />} />
           <Route path="signup" element={<SignUp />} />
           <Route path="signup/tourist" element={<SignUpTourist />} />
