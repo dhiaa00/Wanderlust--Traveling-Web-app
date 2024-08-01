@@ -1,0 +1,15 @@
+<svg width="1010" height="1417" viewBox="0 0 1010 1417" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M823.503 1061.95L-1.31641 1416.58L-1.31647 0.102417L376.996 0.1024C548.692 0.102393 701.722 108.385 758.849 270.299L942.386 790.489C980.375 898.162 928.397 1016.85 823.503 1061.95Z" fill="#49DAFC"/>
+<mask id="mask0_1773_3569" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="-2" y="0" width="957" height="1417">
+<path d="M823.503 1061.95L-1.31641 1416.58L-1.31647 0.102417L376.996 0.1024C548.692 0.102393 701.722 108.385 758.849 270.299L942.386 790.489C980.375 898.162 928.397 1016.85 823.503 1061.95Z" fill="#48CFFD"/>
+</mask>
+<g mask="url(#mask0_1773_3569)">
+<path d="M-380.566 1183.8C-618.379 771.895 -478.776 246.075 -68.7535 9.34875C341.269 -227.378 866.444 -85.3681 1104.26 326.536C1342.07 738.441 1202.47 1264.26 792.444 1500.99C382.421 1737.71 -142.753 1595.7 -380.566 1183.8Z" fill="url(#paint0_angular_1773_3569)"/>
+</g>
+<defs>
+<radialGradient id="paint0_angular_1773_3569" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(361.845 755.168) rotate(-120) scale(861.198 795.886)">
+<stop stop-color="#0D9CDB"/>
+<stop offset="1" stop-color="#0D1E79"/>
+</radialGradient>
+</defs>
+</svg>

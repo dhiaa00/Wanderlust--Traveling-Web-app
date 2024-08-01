@@ -1,0 +1,115 @@
+.billing {
+  text-align: center;
+  padding: 20px 6rem;
+  margin: 4rem 0;
+  margin-bottom: 20rem;
+  position: relative;
+
+  h2 {
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 10px;
+  }
+
+  p {
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+
+  .billing-plans {
+    position: relative;
+    margin-top: 40px;
+  }
+
+  .billing-plan {
+    background-color: #f5f5f5;
+    padding: 20px;
+    margin-bottom: 20px;
+    position: absolute;
+    max-width: 40%;
+    min-height: 600px;
+    max-height: 600px;
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    display: flex;
+    flex-direction: column;
+
+    &:first-of-type {
+      bottom: 0;
+      left: 25%;
+      transform: translate(-50%, 50%);
+    }
+
+    &:last-child {
+      bottom: 0;
+      right: 25%;
+      transform: translate(50%, 50%);
+    }
+  }
+
+  .billing-plan h3 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    text-align: start;
+  }
+
+  .billing-plan p {
+    color: #444;
+    margin-bottom: 20px;
+    text-align: start;
+  }
+
+  .plan-features {
+    flex: 1;
+    ul {
+      list-style-type: none;
+      padding: 1rem;
+      position: relative;
+
+      &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 50%;
+        width: 80%;
+        height: 1px;
+        background-color: #cccccc;
+        transform: translate(-50%, -100%);
+        border-radius: 15px;
+      }
+    }
+  }
+  .plan-features li {
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 10px;
+    text-align: start;
+  }
+
+  .plan-features li::before {
+    content: "\2713";
+    position: absolute;
+    left: -10px;
+    color: #2fcf3f;
+    font-weight: bold;
+    font-size: 18px;
+  }
+
+  .choose-plan-button {
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border: none;
+    color: #444;
+    padding: 1rem 4rem;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s;
+
+    &:hover {
+      background-color: var(--main-gradient);
+      color: white;
+    }
+  }
+}

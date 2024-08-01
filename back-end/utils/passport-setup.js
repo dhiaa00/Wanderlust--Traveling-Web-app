@@ -4,6 +4,7 @@ import { User } from "../models/User.js"; // Adjust the path to your User model
 import dotenv from "dotenv";
 
 dotenv.config();
+console.log(process.env.GOOGLE_CLIENT_ID);
 
 passport.serializeUser((user, done) => {
   done(null, user);
@@ -20,7 +21,7 @@ passport.use(
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
       callbackURL: "/auth/google/callback",
     },
-    async (accessToken, refreshToken, profile, done) => {
+    async (profile, done) => {
       try {
         // Extract user information from profile object
         const { id, displayName, emails, photos } = profile;

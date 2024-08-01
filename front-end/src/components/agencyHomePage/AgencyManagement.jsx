@@ -1,10 +1,16 @@
 import React from "react";
 import "./agencyManagement.css";
 import agencyDashboardImage from "/src/SVGs/HomePage/agency-dashboard-image.svg";
+import agencyManagementBackground from "/src/SVGs/HomePage/agency-management-background.svg";
 
 const AgencyManagement = () => {
   return (
     <div className="agency-management">
+      <img
+        className="agency-management-background"
+        src={agencyManagementBackground}
+        alt=""
+      />
       <div className="side-image">
         <img src={agencyDashboardImage} alt="" />
       </div>

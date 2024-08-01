@@ -3,23 +3,35 @@
   align-items: center;
   justify-content: center;
   padding: 20px;
+  position: relative;
+  margin-top: 4rem;
+
+  .agency-management-background {
+    position: absolute;
+    top: 0;
+    left: -5%;
+    width: 700px;
+    z-index: -1;
+  }
 
   .side-image {
     flex: 1;
   }
 
   .side-image img {
-    width: 100%;
+    min-width: 600px;
     height: auto;
   }
 
   .agency-management-description {
     flex: 1;
     padding: 20px;
+    margin-bottom: 3rem;
+    max-width: 50%;
   }
 
   .agency-management-description h2 {
-    font-size: 24px;
+    font-size: 2rem;
     font-weight: bold;
     margin-bottom: 10px;
   }
@@ -31,6 +43,7 @@
 
   .agency-management-element {
     margin-bottom: 20px;
+    padding-left: 2rem;
   }
 
   .agency-management-element h3 {
@@ -42,13 +55,14 @@
   .agency-management-element h3::after {
     content: "";
     display: inline-block;
-    width: 10px;
-    height: 10px;
-    background-color: blue;
+    width: 15px;
+    height: 15px;
+    background-color: #47cfff;
+    stroke: #1eb1e5 1px solid;
     border-radius: 50%;
     position: absolute;
     top: 50%;
-    left: -20px;
+    left: -30px;
     transform: translateY(-50%);
   }
 }
