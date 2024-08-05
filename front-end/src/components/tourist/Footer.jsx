@@ -43,9 +43,9 @@ const Footer = () => {
         <div className="links">
           <div className="usefull-links">
             <a href="/">Home</a>
-            <a href="/">About</a>
-            <a href="/">Services</a>
-            <a href="/">Contact</a>
+            <a href="/travels">Travels</a>
+            <a href="/about">About</a>
+            <a href="/contact">Contact</a>
           </div>
           <div className="service">
             <a href="/">Sale</a>

@@ -19,7 +19,7 @@ const TravelCard = ({ travel }) => {
             <p>Starts From:</p>
             <p>{travel.price} DA</p>
           </div>
-          <Link to={`./tours/${travel._id}`} className="details-button">
+          <Link to={`/tours/${travel._id}`} className="details-button">
             Details
           </Link>
         </div>

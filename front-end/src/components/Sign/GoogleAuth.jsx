@@ -22,6 +22,8 @@ const GoogleAuth = (props) => {
   const onFailure = (response) => {
     console.error("Error logging in with Google:", response);
   };
+
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
   return (
     // <a
     //   href="http://localhost:8080/auth/google"
@@ -32,12 +34,18 @@ const GoogleAuth = (props) => {
     // </a>
     <>
       <GoogleLogin
-        clientId="1048104835010-e4a7ovk8h269mnthnqb4hvfhla7v9k9u.apps.googleusercontent.com"
-        buttonText="Sign up"
+        clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}
         onSuccess={onSuccess}
         onFailure={onFailure}
-        cookiePolicy={"single_host_origin"}
-        isSignedIn={true}
+        render={(renderProps) => (
+          <a
+            href="https://wanderlust-backend-server.onrender.com/auth/google"
+            className="sign-google"
+            onClick={renderProps.onClick}>
+            <img src={google} alt="google" />
+            <p>{props.text}</p>
+          </a>
+        )}
       />
     </>
   );

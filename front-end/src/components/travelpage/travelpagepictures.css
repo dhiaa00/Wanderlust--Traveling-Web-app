@@ -1,78 +1,74 @@
+.travelpagepictures-container {
+  background-color: white;
+  display: flex;
+  border: solid;
+  gap: 10px;
+  border-radius: 22px;
+  border-width: 1px;
+  padding: 10px 0;
+  margin: 4rem;
+  flex-direction: column;
+  border: solid;
+  border-width: 0.5px;
+  border-color: rgba(0, 0, 0, 0.13);
 
- .travelpagepictures-container{
-    background-color: white;
-    display: flex;
-    width: 74%;
-    border: solid;
-    gap: 10px;
-    border-radius: 22px;
-    border-width: 1px;
-    padding: 10px 0;
-    margin: 140px auto 10px auto;
-    flex-direction: column;
-    border: solid;
-    border-width: 0.5px;
+  p {
+    padding-left: 25px;
+    padding-bottom: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    color: rgba(0, 0, 0, 0.57);
+    border-bottom: solid;
     border-color: rgba(0, 0, 0, 0.13);
-    
-    p {
-        padding-left: 25px ;
-        padding-bottom: 10px;
-        font-size: 16px;
-        font-weight: 600;
-        color: rgba(0, 0, 0, 0.57);
-        border-bottom: solid;
-        border-color: rgba(0, 0, 0, 0.13);
-        border-width: 0.5px;
-    }
- }
-  .swiper {
-    width: 100%;
-    height: 100%;
+    border-width: 0.5px;
   }
-  
-  .swiper-slide {
-    text-align: center;
-    font-size: 18px;
-    background: #fff;
-  
-    /* Center slide text vertically */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .swiper-slide img {
-    display: block;
-    border-radius: 10px;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  
-  .swiper {
-    width: 100%;
-    height: 400px;
-  }
-  .append-buttons {
-    text-align: center;
-    margin-top: 20px;
-  }
-  
-  .append-buttons button {
-    display: inline-block;
-    cursor: pointer;
-    border: 1px solid #007aff;
-    color: #007aff;
-    text-decoration: none;
-    padding: 4px 10px;
-    border-radius: 4px;
-    margin: 0 10px;
-    font-size: 13px;
-  }
-  
-  .swiper-button-prev {
-    
-  }
-  .swiper-button-next {
+}
+.swiper {
+  width: 100%;
+  height: 100%;
+}
 
-  }
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+
+  /* Center slide text vertically */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.swiper-slide img {
+  display: block;
+  border-radius: 10px;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.swiper {
+  width: 100%;
+  height: 400px;
+}
+.append-buttons {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.append-buttons button {
+  display: inline-block;
+  cursor: pointer;
+  border: 1px solid #007aff;
+  color: #007aff;
+  text-decoration: none;
+  padding: 4px 10px;
+  border-radius: 4px;
+  margin: 0 10px;
+  font-size: 13px;
+}
+
+.swiper-button-prev {
+}
+.swiper-button-next {
+}

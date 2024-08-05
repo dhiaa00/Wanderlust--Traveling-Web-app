@@ -231,7 +231,6 @@ const updatePreferences = async (req, res) => {
     const userId = req.params.id;
     const preferences = req.body.preferences;
     const user = await User.findById(userId);
-    console.log("user", user);
     user.preferences = preferences;
     await user.save();
     res.status(200).json({

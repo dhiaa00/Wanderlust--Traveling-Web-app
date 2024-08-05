@@ -1,8 +1,10 @@
 import { Routes, Route, Outlet } from "react-router-dom";
-import { Suspense, lazy, useState } from "react";
+import React, { Suspense, lazy, useState } from "react";
 import Modal from "react-modal";
 import CircularProgress from "@mui/material/CircularProgress";
 import SearchPage from "./pages/Tourist/SearchPage/SearchPage";
+import About from "./pages/About/About";
+import Contact from "./pages/Contact/Contact";
 const AgencyUpperSection = lazy(() =>
   import("./components/agency/upperSection/AgencyUpperSection")
 );
@@ -83,9 +85,11 @@ function App() {
               <Outlet />
             </>
           }>
-          <Route index element={<TravelPage />} />
+          <Route index element={<AgenciesHomePage />} />
           <Route path="/search/:searchedValue" element={<SearchPage />} />
-          <Route path="/agencies" element={<AgenciesHomePage />} />
+          <Route path="/travels" element={<TravelPage />} />
+          <Route path="/about" element={<About />} />
+          <Route path="contact" element={<Contact />} />
           <Route path="signup" element={<SignUp />} />
           <Route path="signup/tourist" element={<SignUpTourist />} />
           <Route path="signup/agency" element={<SignUpAgency />} />

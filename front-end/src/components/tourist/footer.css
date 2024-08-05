@@ -122,3 +122,66 @@ footer {
     }
   }
 }
+
+@media screen and (max-width: 920px) {
+  footer {
+    padding: 2rem;
+    .footer-container {
+      .titles {
+        h2 {
+          font-size: 1rem;
+        }
+      }
+      .links {
+        .usefull-links,
+        .service,
+        .contact-us,
+        .latest-news {
+          a {
+            font-size: 0.9rem;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 578px) {
+  footer {
+    .footer-container {
+      .logo-and-links {
+        flex-direction: column;
+        .logo {
+          img {
+            width: 150px;
+          }
+        }
+        .footer-links {
+          margin-top: 2rem;
+          justify-content: space-around;
+          a {
+            font-size: 1rem;
+          }
+        }
+      }
+      .titles {
+        display: none;
+      }
+      .links {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        .usefull-links,
+        .service,
+        .contact-us,
+        .latest-news {
+          align-items: center;
+          width: 100%;
+        }
+        .latest-news {
+          display: none;
+        }
+      }
+    }
+  }
+}

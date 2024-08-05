@@ -52,3 +52,18 @@
     color: #888;
   }
 }
+
+@media (max-width: 568px) {
+  .testimonials {
+    .testimonials-container {
+      font-size: 1.5rem;
+    }
+
+    .stats {
+      width: 90%;
+      .stat p {
+        font-size: 0.7rem;
+      }
+    }
+  }
+}

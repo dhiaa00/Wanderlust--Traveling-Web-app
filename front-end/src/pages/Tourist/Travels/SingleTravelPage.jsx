@@ -22,6 +22,7 @@ const SingleTravelPage = () => {
     try {
       const response = await axios.get(`${backendUrl}/user/getOffer/${id}`);
       setTravel(response.data.data);
+      await getReviews();
       setIsLoading(false);
     } catch (error) {
       console.log(error);
@@ -64,9 +65,7 @@ const SingleTravelPage = () => {
 
   const getReviews = async () => {
     try {
-      const response = await axios.get(
-        `${backendUrl}/offer/review/get/${travel._id}`
-      );
+      const response = await axios.get(`${backendUrl}/offer/review/get/${id}`);
       setReviews(response.data.data);
       console.log(response.data.data);
     } catch (err) {
@@ -75,7 +74,6 @@ const SingleTravelPage = () => {
   };
 
   useEffect(() => {
-    getReviews();
     getTravel();
   }, []);
 
@@ -93,7 +91,7 @@ const SingleTravelPage = () => {
         <div className="travel_page">
           <div className="return-to-homepage-button">
             <img src={returnIcon} alt="return to homepage" />
-            <Link to="..">Home</Link>
+            <Link to="../">Return</Link>
           </div>
           <div className="background-image-container">
             <img

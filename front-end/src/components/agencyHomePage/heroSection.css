@@ -43,6 +43,11 @@
       width: 50px;
       top: 0;
       left: -10%;
+
+      /* responsive */
+      @media (max-width: 1000px) {
+        left: -20%;
+      }
     }
     .lightning {
       position: absolute;
@@ -68,6 +73,15 @@
 
   .hero-section-buttons img {
     margin-right: 1rem;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    width: 60px;
+    border-radius: 50%;
+  }
+
+  .hero-section-buttons .video-icon:hover {
+    filter: brightness(140%);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   }
 
   .hero-section-buttons a {
@@ -78,6 +92,11 @@
     border: 1.5px solid var(--main-gradient);
     padding: 8px 20px;
     border-radius: 10px;
+    transition: all 0.3s ease-in-out;
+    &:hover {
+      background-color: var(--main-gradient);
+      color: white;
+    }
   }
 
   .hero-section-right-side {
@@ -103,5 +122,84 @@
     left: 0;
     transform: translateX(-10%);
     width: 150px;
+  }
+  .video-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+
+  .video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+  }
+
+  .video-content {
+    position: relative;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    z-index: 1001;
+  }
+
+  .close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+  }
+}
+
+@media (max-width: 850px) {
+  .main-agencies-page {
+    .hero-section {
+      flex-direction: column;
+    }
+
+    .hero-section-left-side {
+      width: 100%;
+      padding: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .hero-section-left-side h1 {
+      font-size: 2rem;
+    }
+
+    .hero-section-right-side img {
+      display: none;
+    }
+
+    .hero-section-left-side .soft-star {
+      display: none;
+    }
+
+    .hero-section-left-side .light-elipse {
+      display: none;
+    }
+
+    .hero-section-buttons {
+      margin-left: 0;
+    }
+    .left-cards {
+      display: none;
+    }
+
+    .hero-section-left-side h1 .lightning {
+      right: 10%;
+    }
   }
 }

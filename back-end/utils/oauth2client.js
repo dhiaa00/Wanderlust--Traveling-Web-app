@@ -6,7 +6,7 @@ const GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET;
 const oauth2Client = new google.auth.OAuth2(
   GOOGLE_CLIENT_ID,
   GOOGLE_CLIENT_SECRET,
-  "http://localhost:5173/auth/google"
+  "https://wanderlust-backend-server.onrender.com/auth/google"
 );
 
 export default oauth2Client;

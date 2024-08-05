@@ -35,7 +35,7 @@ const NavBar = () => {
     localStorage.removeItem("user");
     setLogged(false);
     if (path === "settings") {
-      navigate("/");
+      navigate("/travels");
     } else {
       window.location.reload();
     }
@@ -73,13 +73,14 @@ const NavBar = () => {
       <div className="space-taker"></div>
       <nav className="nav-links" style={menuStyle}>
         <Link to="/" className={path === "" ? "active-navlink" : ""}>
-          Travel
+          Home
         </Link>
         <Link
-          to="/agencies"
-          className={path === "agencies" ? "active-navlink" : ""}>
-          Agencies
+          to="/travels"
+          className={path === "travels" ? "active-navlink" : ""}>
+          Travel
         </Link>
+
         <Link to="/about" className={path === "about" ? "active-navlink" : ""}>
           About
         </Link>

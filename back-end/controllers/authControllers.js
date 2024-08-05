@@ -249,7 +249,7 @@ const googleCallback = (req, res) => {
       sameSite: "strict",
     });
 
-    res.redirect("http://localhost:5173/");
+    res.redirect("https://wanderlust-e-travelling.netlify.app/");
   } catch (error) {
     console.error("Error in googleCallback:", error);
     res.status(500).send("Internal Server Error");
