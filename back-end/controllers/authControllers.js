@@ -8,7 +8,6 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import crypto from "crypto";
 import sendVerificationCode from "../utils/sendVerificationCode.js";
-import oauth2Client from "../utils/oauth2client.js";
 import passport from "passport";
 
 const loginController = async (req, res) => {

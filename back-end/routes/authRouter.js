@@ -4,8 +4,6 @@ import {
   loginController,
   registerAgency,
   registerController,
-  googleLogin,
-  googleCallback,
   handleGoogleSignup, // New import for handling Google login
 } from "../controllers/authControllers.js"; // Add googleLogin if it's in your controller
 import { verifyTokenAndAdmin, verifytoken } from "../utils/verifyToken.js";
