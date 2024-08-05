@@ -8,8 +8,8 @@ dotenv.config();
 passport.use(
   new GoogleStrategy(
     {
-      clientID: env.process.GOOGLE_CLIENT_ID,
-      clientSecret: env.process.GOOGLE_CLIENT_SECRET,
+      clientID: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
       callbackURL:
         "https://wanderlust-backend-server.onrender.com/auth/google/callback", // Replace with your callback URL
     },
