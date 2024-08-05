@@ -233,44 +233,39 @@ const googleLogin = (req, res, next) => {
 };
 
 // Google callback function
-const googleCallback = (req, res) => {
-  try {
-    // User is authenticated, you can create a token or redirect
-    console.log("User authenticated:", req.user);
-    const token = jwt.sign(
-      { id: req.user._id, isAdmin: req.user.isAdmin },
-      process.env.JWT_PASSWORD,
-      { expiresIn: "30d" }
-    );
+const handleGoogleSignup = async (req, res) => {
+  const { email, name } = req.body; // Assuming you get email and name from Google OAuth
 
+  try {
+    // Check if the user already exists
+    let user = await User.findOne({ email });
+
+    if (!user) {
+      // Create a new user
+      user = new User({
+        email,
+        name,
+      });
+
+      await user.save();
+    }
+
+    // Generate a JWT token
+    const token = jwt.sign({ id: user._id }, process.env.JWT_PASSWORD, {
+      expiresIn: "30d",
+    });
     res.cookie("authorization", token, {
       secure: false,
       httpOnly: true,
       sameSite: "strict",
     });
 
-    res.redirect("https://wanderlust-e-travelling.netlify.app/");
+    res.status(200).json({ message: "User signed up successfully", user });
   } catch (error) {
-    console.error("Error in googleCallback:", error);
-    res.status(500).send("Internal Server Error");
+    console.error("Error signing up with Google:", error);
+    res.status(500).json({ message: "Internal server error" });
   }
 };
-
-// const googleCallback = (req, res) => {
-//   passport.authenticate("google", { failureRedirect: "/login" }),
-//     (req, res) => {
-//       // User is authenticated
-//       console.log("User authenticated:", req.user);
-
-//       // Generate JWT token (if needed)
-//       const token = jwt.sign({ id: req.user._id }, process.env.JWT_SECRET, {
-//         expiresIn: "1h",
-//       });
-//       res.cookie("jwt", token, { httpOnly: true });
-
-//       res.redirect("/dashboard");
-//     };
-// };
 
 export {
   loginController,
@@ -278,5 +273,5 @@ export {
   loginAgency,
   registerAgency,
   googleLogin,
-  googleCallback,
+  handleGoogleSignup,
 };

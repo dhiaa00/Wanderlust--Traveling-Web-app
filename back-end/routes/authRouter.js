@@ -5,7 +5,8 @@ import {
   registerAgency,
   registerController,
   googleLogin,
-  googleCallback, // New import for handling Google login
+  googleCallback,
+  handleGoogleSignup, // New import for handling Google login
 } from "../controllers/authControllers.js"; // Add googleLogin if it's in your controller
 import { verifyTokenAndAdmin, verifytoken } from "../utils/verifyToken.js";
 
@@ -28,10 +29,14 @@ authRouter.route("/agency/register").post(registerAgency);
 // Agency login
 authRouter.route("/agency/login").post(loginAgency);
 
-// Google login route
-authRouter.route("/google").get(googleLogin); // Update the handler to googleLogin
+app.get(
+  "/google",
+  passport.authenticate("google", { scope: ["profile", "email"] })
+);
 
-// Callback route for Google to redirect to
-authRouter.route("/google/callback").get(googleCallback); // Update the handler to googleCallback
+router.get("/google/callback", passport.authenticate("google"), (req, res) => {
+  // Assuming passport attaches user information to req.user
+  handleGoogleSignup(req, res);
+});
 
 export default authRouter;

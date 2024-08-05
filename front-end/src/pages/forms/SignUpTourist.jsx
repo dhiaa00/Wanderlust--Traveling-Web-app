@@ -9,11 +9,9 @@ import "./signuptourist.css";
 import axios from "axios";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import { GoogleOAuthProvider } from "@react-oauth/google";
 
 const SignUpTourist = () => {
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
-  const clientId = import.meta.env.VITE_GOOGLE_CLIENT_ID;
   const navigate = useNavigate();
 
   const validationSchema = Yup.object().shape({
@@ -58,9 +56,8 @@ const SignUpTourist = () => {
       <div className="sign-up-tourist">
         <div className="section-info">
           <h1>Create Account</h1>
-          <GoogleOAuthProvider clientId={clientId}>
-            <GoogleAuth text="Sign up with Google" clientId={clientId} />
-          </GoogleOAuthProvider>
+
+          <GoogleAuth text="Sign up with Google" />
 
           <div className="or">Or</div>
           <Formik

@@ -4,56 +4,31 @@ import { User } from "../models/User.js"; // Adjust the path to your User model
 import dotenv from "dotenv";
 
 dotenv.config();
-console.log(process.env.GOOGLE_CLIENT_ID);
-
-passport.serializeUser((user, done) => {
-  done(null, user);
-});
-
-passport.deserializeUser(async (user, done) => {
-  done(null, user);
-});
 
 passport.use(
   new GoogleStrategy(
     {
-      clientID: process.env.GOOGLE_CLIENT_ID,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      callbackURL: "/auth/google/callback",
+      clientID: env.process.GOOGLE_CLIENT_ID,
+      clientSecret: env.process.GOOGLE_CLIENT_SECRET,
+      callbackURL:
+        "https://wanderlust-backend-server.onrender.com/auth/google/callback", // Replace with your callback URL
     },
-    async (profile, done) => {
+    (accessToken, refreshToken, profile, done) => {
+      // User profile is available in profile
+      console.log(profile);
       try {
-        // Extract user information from profile object
-        const { id, displayName, emails, photos } = profile;
+        const email = profile.emails[0].value;
+        const name = profile.displayName;
+        const profilePhoto = profile.photos[0].value;
 
-        // Find or create user based on profile ID or email
-        User.findOne({ googleId: id }, (err, existingUser) => {
-          if (err) {
-            return done(err);
-          }
+        // Log the extracted information
+        console.log("Google OAuth Profile:", profile);
+        console.log("Extracted Email:", email);
+        console.log("Extracted Name:", name);
 
-          if (!existingUser) {
-            // Create a new user
-            const newUser = new User({
-              googleId: id,
-              displayName,
-              email: emails[0].value,
-              photo: photos[0].value,
-            });
-
-            newUser.save((err) => {
-              if (err) {
-                return done(err);
-              }
-              return done(null, newUser);
-            });
-          } else {
-            // Existing user found
-            return done(null, existingUser);
-          }
-        });
-      } catch (err) {
-        done(err, null);
+        done(null, { email, name });
+      } catch (error) {
+        done(error, null);
       }
     }
   )

@@ -24,11 +24,6 @@ const app = express();
 
 // Middleware
 
-app.use((req, res, next) => {
-  res.setHeader("Cross-Origin-Opener-Policy", "same-origin");
-  next();
-});
-
 app.use(
   cors({
     origin: [
@@ -47,10 +42,6 @@ app.use(
     secret: process.env.SESSION_SECRET || "your_secret_secret_secret_key", // Replace with your own secret
     resave: false,
     saveUninitialized: true,
-    cookie: {
-      secure: process.env.NODE_ENV === "production", // Use true in production to ensure cookies are sent over HTTPS
-      maxAge: 1000 * 60 * 60 * 24, // 1 day (adjust as necessary)
-    },
   })
 );
 
