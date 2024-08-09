@@ -5,6 +5,7 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { saveToLocalStorage } from "../../../utils/localStorageOp";
 import toast from "react-hot-toast";
+import GoogleAuth from "../../../components/Sign/GoogleAuth";
 
 const Login = () => {
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
@@ -105,15 +106,18 @@ const Login = () => {
         </form>
         <div className="or">Or</div>
         <div className="google-auth">
-          <button
-            style={
-              accountType === "agency"
-                ? { filter: "grayscale(80%)", cursor: "not-allowed" }
-                : {}
-            }>
-            <img src={googleLogo} alt="google" />
-            Sign in with Google
-          </button>
+          {accountType !== "agency" ? (
+            <GoogleAuth />
+          ) : (
+            <button
+              style={
+                accountType === "agency"
+                  ? { filter: "grayscale(80%)", cursor: "not-allowed" }
+                  : {}
+              }>
+              <img src={googleLogo} alt="google logo" />
+            </button>
+          )}
         </div>
         <p>
           Don't have an account ? <Link to="/signup">Sign Up</Link>

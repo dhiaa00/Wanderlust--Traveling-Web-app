@@ -1,13 +1,19 @@
 import jwt from "jsonwebtoken";
 import { User } from "../models/User.js";
 import { Agency } from "../models/Agency.js";
+import RevokedToken from "../models/revokedToken.js";
 
 const verifytoken = async (req, res, next) => {
   const token = req.cookies.authorization;
-  console.log(token);
   if (!token) {
     return res.status(401).json({ message: "acces denied,no token provided" });
   }
+  // check if it is revoked
+  const revokedToken = await RevokedToken.findOne({ token });
+  if (revokedToken) {
+    return res.status(401).json({ message: "acces denied" });
+  }
+
   try {
     const decodedPayload = jwt.verify(token, process.env.JWT_PASSWORD);
     req.user = await User.findOne({ _id: decodedPayload.id });

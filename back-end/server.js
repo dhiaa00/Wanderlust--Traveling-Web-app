@@ -13,8 +13,6 @@ import notificationRouter from "./routes/notificationRouter.js";
 import http from "http";
 import { Server as SocketIoServer } from "socket.io";
 import apiLimiter from "./middleware/ratelimiter.js";
-import passport from "passport"; // Import passport
-import "./utils/passport-setup.js"; // Import the passport setup
 
 // Load environment variables
 dotenv.config();
@@ -44,10 +42,6 @@ app.use(
     saveUninitialized: true,
   })
 );
-
-// After defining your middlewares
-app.use(passport.initialize());
-app.use(passport.session()); // Use session management for Passport
 
 // Apply the rate limit rule to all API requests
 app.use("/auth", apiLimiter, authRouter);

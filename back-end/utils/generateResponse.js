@@ -1,6 +1,9 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { Offer } from "../models/Offer.js";
+import dotenv from "dotenv";
 
+dotenv.config();
+const API_KEY = process.env.GOOGLE_API_KEY;
 // get all tours
 const getTours = async () => {
   try {
@@ -17,7 +20,6 @@ const generateResponse = async (req, res) => {
   const { question, previousConversation, preferences } = req.body;
 
   // get api key from env
-  const API_KEY = process.env.GOOGLE_API_KEY;
   const essentialContext =
     "Let's suppose you are 'Wundy', a virtual travel assistant for Wanderlust, a travel website connecting travelers and travel agencies. Respond in a short, simple, and conversational tone. and always remember to ANSWER TO THE EXTENT OF THE QUESTION ASKED AT THE END OF THIS PROMPT";
   const additionalContext = preferences
@@ -46,14 +48,11 @@ const generateResponse = async (req, res) => {
         question
       : finalPrompt;
 
-  console.log("finalPrompt:", finalPrompt);
-
   try {
     const result = await model.generateContent(finalPrompt, {
       max_tokens: 1000,
     });
     const response = result.response.text();
-    console.log("Response generated:", response);
     res.status(200).json({ response });
   } catch (error) {
     console.error("Error generating text:", error);

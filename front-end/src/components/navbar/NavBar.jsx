@@ -7,6 +7,8 @@ import settingsIcon from "/src/SVGs/settings-icon.svg";
 import menuIcon from "/src/SVGs/menu.svg";
 import closeMenuIcon from "/src/SVGs/close-menu.svg";
 import Modal from "react-modal";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 const NavBar = () => {
   const [menuOpened, setMenuOpened] = useState(false);
@@ -31,13 +33,20 @@ const NavBar = () => {
   const openLogoutModal = () => setIsModalOpen(true);
   const closeLogoutModal = () => setIsModalOpen(false);
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
     localStorage.removeItem("user");
-    setLogged(false);
-    if (path === "settings") {
-      navigate("/travels");
-    } else {
-      window.location.reload();
+    try {
+      await axios.get("/auth/logout");
+      toast.success("Logged out successfully");
+      setLogged(false);
+      if (path === "settings") {
+        navigate("/travels");
+      } else {
+        window.location.reload();
+      }
+    } catch (error) {
+      toast.error("Error logging out");
+      console.error("Error logging out:", error);
     }
   };
 

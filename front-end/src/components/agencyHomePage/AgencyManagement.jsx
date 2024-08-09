@@ -10,9 +10,10 @@ const AgencyManagement = () => {
         className="agency-management-background"
         src={agencyManagementBackground}
         alt=""
+        loading="lazy"
       />
       <div className="side-image">
-        <img src={agencyDashboardImage} alt="" />
+        <img src={agencyDashboardImage} alt="" loading="lazy" />
       </div>
       <div className="agency-management-description">
         <h2>Allocate Leads and Simplify agency Management</h2>

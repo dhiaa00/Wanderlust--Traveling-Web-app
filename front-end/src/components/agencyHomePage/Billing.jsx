@@ -10,7 +10,7 @@ const Billing = () => {
         Leverage our cutting-edge technology to stay ahead of the competition.
       </p>
       <div className="billing-plans">
-        <img src={billingBackground} alt="background" />
+        <img src={billingBackground} alt="background" loading="lazy" />
         {/* each billing plan is absolut refering to .billing-plans */}
         <div className="billing-plan">
           <h3>Free</h3>

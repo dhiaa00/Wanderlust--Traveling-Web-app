@@ -15,14 +15,14 @@ const Features = () => {
       </p>
       <div className="features-container">
         <div className="feature powerfull-settings">
-          <img src={powerfullSettings} alt="" />
+          <img src={powerfullSettings} alt="" loading="lazy" />
           <div className="feature-info">
             <h3>Powerfull Settings</h3>
             <p>Provide excellent customer service. Answer more tickets.</p>
           </div>
         </div>
         <div className="feature user-friendly">
-          <img src={userFriendly} alt="" />
+          <img src={userFriendly} alt="" loading="lazy" />
           <div className="feature-info">
             <h3>User Friendly</h3>
             <p>
@@ -31,7 +31,7 @@ const Features = () => {
           </div>
         </div>
         <div className="feature integrated-platform">
-          <img src={integratedPlatform} alt="" />
+          <img src={integratedPlatform} alt="" loading="lazy" />
           <div className="feature-info">
             <h3>Integrated Platform</h3>
             <p>

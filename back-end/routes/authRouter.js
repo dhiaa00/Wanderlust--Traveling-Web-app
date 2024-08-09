@@ -4,10 +4,11 @@ import {
   loginController,
   registerAgency,
   registerController,
-  handleGoogleSignup,
-  googleLogin, // New import for handling Google login
-} from "../controllers/authControllers.js"; // Add googleLogin if it's in your controller
+  googleSignUp,
+  logout,
+} from "../controllers/authControllers.js";
 import { verifyTokenAndAdmin, verifytoken } from "../utils/verifyToken.js";
+import { auth } from "googleapis/build/src/apis/abusiveexperiencereport/index.js";
 
 const authRouter = Router();
 
@@ -28,8 +29,8 @@ authRouter.route("/agency/register").post(registerAgency);
 // Agency login
 authRouter.route("/agency/login").post(loginAgency);
 
-authRouter.route("/google").get(googleLogin);
+authRouter.route("/google").post(googleSignUp);
 
-authRouter.route("/google/callback").get(handleGoogleSignup);
+authRouter.route("/logout").get(logout);
 
 export default authRouter;

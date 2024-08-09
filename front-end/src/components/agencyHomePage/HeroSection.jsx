@@ -23,11 +23,26 @@ const HeroSection = () => {
   return (
     <div className="hero-section">
       <div className="hero-section-left-side">
-        <img src={softStar} className="soft-star" alt="soft-star" />
-        <img src={lightElipse} className="light-elipse" alt="light-elipse" />
+        <img
+          src={softStar}
+          className="soft-star"
+          alt="soft-star"
+          loading="lazy"
+        />
+        <img
+          src={lightElipse}
+          className="light-elipse"
+          alt="light-elipse"
+          loading="lazy"
+        />
         <h1>
-          <img src={shape1} className="shape1" alt="shape1" />
-          <img src={lightning} className="lightning" alt="lightning" />
+          <img src={shape1} className="shape1" alt="shape1" loading="lazy" />
+          <img
+            src={lightning}
+            className="lightning"
+            alt="lightning"
+            loading="lazy"
+          />
           Unlock The <span>Potential of Your</span> Agency
         </h1>
         <p>
@@ -40,15 +55,16 @@ const HeroSection = () => {
             src={videoIcon}
             alt="video"
             onClick={handleClickVideo}
+            loading="lazy"
           />
           <Link to="/">Search</Link>
         </div>
       </div>
       <div className="hero-section-right-side">
-        <img src={mainImage} alt="hero-section-image" />
+        <img src={mainImage} alt="hero-section-image" loading="lazy" />
       </div>
       {/* some absolute images */}
-      <img src={leftCards} className="left-cards" alt="icon1" />
+      <img src={leftCards} className="left-cards" alt="icon1" loading="lazy" />
 
       {/* Video Modal */}
       {isVideoOpen && (

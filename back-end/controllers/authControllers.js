@@ -8,7 +8,8 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import crypto from "crypto";
 import sendVerificationCode from "../utils/sendVerificationCode.js";
-import passport from "passport";
+import oauth2Client from "../utils/oauth2client.js";
+import RevokedToken from "../models/revokedToken.js";
 
 const loginController = async (req, res) => {
   const { error } = verifyLogin(req.body);
@@ -223,46 +224,78 @@ const registerAgency = async (req, res) => {
   }
 };
 
-const googleLogin = (req, res, next) => {
-  passport.authenticate("google", { scope: ["profile", "email"] })(
-    req,
-    res,
-    next
-  );
-};
-
-// Google callback function
-const handleGoogleSignup = async (req, res) => {
-  const { email, name } = req.body; // Assuming you get email and name from Google OAuth
-
+const googleSignUp = async (req, res) => {
   try {
-    // Check if the user already exists
-    let user = await User.findOne({ email });
+    const credential = req.body.credential;
+    const ticket = await oauth2Client.verifyIdToken({
+      idToken: credential,
+      audience: process.env.GOOGLE_CLIENT_ID,
+    });
+    const payload = ticket.getPayload();
+    const userId = payload["sub"];
+    const email = payload.email;
+    const name = payload.name;
+    const picture = payload.picture;
 
+    // Find or create user based on userId or email
+    const user = await User.findOne({ email });
     if (!user) {
-      // Create a new user
-      user = new User({
+      // Create new user
+      const newUser = new User({
         email,
-        name,
+        username: name,
+        profilePhoto: picture,
+        googleId: userId,
+        verified: true,
       });
-
-      await user.save();
+      await newUser.save();
+      res.status(200).json({ message: "User signed up successfully", newUser });
+    } else {
+      // verify if he used signup email or google oauth
+      if (user.googleId) {
+        // user already signed up with google
+        // login user
+        const token = jwt.sign(
+          { id: user._id, isAdmin: user.isAdmin },
+          process.env.JWT_PASSWORD,
+          { expiresIn: "30d" }
+        );
+        res.cookie("authorization", token, {
+          secure: false,
+          httpOnly: true,
+          sameSite: "strict",
+        });
+        res.status(200).json({ message: "Login successful", user });
+      } else {
+        // user signed up with email
+        res.status(400).json({
+          message: "Email already exists, please login with email",
+        });
+      }
     }
-
-    // Generate a JWT token
-    const token = jwt.sign({ id: user._id }, process.env.JWT_PASSWORD, {
-      expiresIn: "30d",
-    });
-    res.cookie("authorization", token, {
-      secure: false,
-      httpOnly: true,
-      sameSite: "strict",
-    });
-
-    res.status(200).json({ message: "User signed up successfully", user });
   } catch (error) {
     console.error("Error signing up with Google:", error);
     res.status(500).json({ message: "Internal server error" });
+  }
+};
+
+const logout = async (req, res) => {
+  const token = req.cookies.jwt;
+
+  if (!token) {
+    return res.status(401).json({ message: "Unauthorized" });
+  }
+
+  try {
+    // Add token to revoked tokens list
+    const revokedToken = new RevokedToken({ token });
+    await revokedToken.save();
+
+    res.clearCookie("jwt");
+    res.sendStatus(200).json({ message: "Logged out successfully" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Server error" });
   }
 };
 
@@ -271,6 +304,6 @@ export {
   registerController,
   loginAgency,
   registerAgency,
-  googleLogin,
-  handleGoogleSignup,
+  googleSignUp,
+  logout,
 };

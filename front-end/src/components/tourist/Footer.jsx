@@ -14,23 +14,23 @@ const Footer = () => {
       <div className="footer-container">
         <div className="logo-and-links">
           <div className="logo">
-            <img src={footerLogo} alt="logo" />
+            <img src={footerLogo} alt="logo" loading="lazy" />
           </div>
           <nav className="footer-links">
             <a href="">
-              <img src={instagram} alt="instagram" />
+              <img src={instagram} alt="instagram" loading="lazy" />
             </a>
             <a href="">
-              <img src={facebook} alt="facebook" />
+              <img src={facebook} alt="facebook" loading="lazy" />
             </a>
             <a href="">
-              <img src={twitter} alt="twitter" />
+              <img src={twitter} alt="twitter" loading="lazy" />
             </a>
             <a href="">
-              <img src={linkedin} alt="linkedin" />
+              <img src={linkedin} alt="linkedin" loading="lazy" />
             </a>
             <a href="">
-              <img src={youtube} alt="youtube" />
+              <img src={youtube} alt="youtube" loading="lazy" />
             </a>
           </nav>
         </div>
@@ -57,7 +57,7 @@ const Footer = () => {
             <a href="/">Tipaza, Algeria</a>
           </div>
           <div className="latest-news">
-            <img src={latestNews} alt="news" />
+            <img src={latestNews} alt="news" loading="lazy" />
           </div>
         </div>
         <p className="footer-last-element">
