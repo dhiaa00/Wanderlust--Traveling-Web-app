@@ -135,7 +135,7 @@ const verifyAgency = async (req, res) => {
         data: error.message,
       });
     }
-    agency.Verified = true;
+    agency.verified = true;
     await agency.save();
     agency.password = undefined;
     res
@@ -148,10 +148,29 @@ const verifyAgency = async (req, res) => {
   }
 };
 
+const getProfileImage = async (req, res) => {
+  const agencyId = req.params.id;
+  try {
+    const agency = await Agency.findById(agencyId);
+    if (!agency) {
+      return res.status(404).json({ message: "Agency not found", data: null });
+    }
+    res.status(200).json({
+      message: "Profile image found successfully",
+      profileImage: agency.agencyPhoto,
+    });
+  } catch (error) {
+    res
+      .status(500)
+      .json({ message: "Failed to get profile image", error: error.message });
+  }
+};
+
 export {
   updateAgencyEmail,
   updateAgencyName,
   updateAgencyPassword,
   deleteAgency,
   verifyAgency,
+  getProfileImage,
 };

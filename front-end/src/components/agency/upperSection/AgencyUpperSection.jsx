@@ -17,7 +17,6 @@ const AgencyUpperSection = ({
     <div className="agency-upper-section">
       <div className="agency-upper-section-buttons">
         <ChevronButton title="My Offers" />
-        <ChevronButton title="Clients" />
         <CreateTourButton
           createTour={createTour}
           setCreateTour={setCreateTour}

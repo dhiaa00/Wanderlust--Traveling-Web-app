@@ -34,6 +34,8 @@ const createReview = async (req, res) => {
       offerId,
       rating,
       comment,
+      username: user.username,
+      profilePhoto: user.profilePhoto,
     });
 
     // Save the review to the database
@@ -61,7 +63,6 @@ const getReviewsByOffer = async (req, res) => {
     // Find all reviews for the given offer
     const reviews = await Review.find({ offerId });
 
-    console.log(reviews);
     res
       .status(200)
       .json({ message: "Reviews found successfully", data: reviews });

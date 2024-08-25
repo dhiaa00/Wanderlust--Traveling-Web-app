@@ -1,102 +1,74 @@
-import React from "react";
+import React, { Suspense, useEffect, useState } from "react";
+import axios from "axios";
 import "./messages.css";
-import searchIcon from "/src/SVGs/messageSearchIcon.svg";
+import { CircularProgress } from "@mui/material";
+import MessagesList from "../../../components/messages/MessagesList.jsx";
+import CurrentConversation from "../../../components/messages/CurrentConversation.jsx";
+import SenderInfo from "../../../components/messages/SenderInfo.jsx";
 
 const Messages = () => {
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
+  const user = JSON.parse(localStorage.getItem("user"));
+  const userId = user._id;
+  const [conversations, setConversations] = useState([]);
+  const currentConversationId = window.location.pathname.split("/").pop();
+  const [currentConversation, setCurrentConversation] = useState(null);
+
+  const getConversations = async () => {
+    try {
+      const response = await axios.get(`${backendUrl}/conversation/${userId}`);
+      setConversations(response.data.conversations);
+      const partial = response.data.conversations.find(
+        (conversation) => conversation.conversationId === currentConversationId
+      );
+      getCurrentConversation(partial);
+    } catch (error) {
+      console.error("Error fetching conversations:", error);
+    }
+  };
+
+  const getCurrentConversation = async (partial) => {
+    try {
+      const response = await axios.post(
+        `${backendUrl}/conversation/get/${partial.conversationId}`,
+        {
+          userId: userId,
+          withCredentials: true,
+        }
+      );
+      setCurrentConversation(response.data.conversation);
+    } catch (error) {
+      console.error("Error fetching conversation:", error);
+    }
+  };
+
+  console.log("Messages currentConversation", currentConversation);
+
+  useEffect(() => {
+    getConversations();
+  }, []);
+
   return (
     <div className="messages">
-      <div className="message-list">
-        <h1>Messages</h1>
-        <div className="messages-search">
-          <img src={searchIcon} alt="search icon" />
-          <input
-            type="text"
-            placeholder="Search for messages"
-            className="search-input"
+      <Suspense fallback={CircularProgress}>
+        {conversations && <MessagesList conversations={conversations} />}
+
+        {currentConversation && (
+          <CurrentConversation
+            conversation={currentConversation}
+            setCurrentConversation={setCurrentConversation}
+            otherParticipant={
+              currentConversation ? currentConversation.otherParticipant : {}
+            }
           />
-        </div>
-        <div className="message-list-container">
-          <div className="message active">
-            <img
-              src="https://www.w3schools.com/howto/img_avatar.png"
-              alt="sender"
-              className="message-sender-img"
-            />
-            <div className="message-sender">
-              <div className="message-sender-name">Sender Name</div>
-              <p>Message text text</p>
-            </div>
-          </div>
-          <div className="message">
-            <img
-              src="https://www.w3schools.com/howto/img_avatar.png"
-              alt="sender"
-              className="message-sender-img"
-            />
-            <div className="message-sender">
-              <div className="message-sender-name">Sender Name</div>
-              <p>Message text text</p>
-            </div>
-          </div>
-          <div className="message">
-            <img
-              src="https://www.w3schools.com/howto/img_avatar.png"
-              alt="sender"
-              className="message-sender-img"
-            />
-            <div className="message-sender">
-              <div className="message-sender-name">Sender Name</div>
-              <p>Message text text</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="current-opened-message">
-        <div className="upper-section">
-          <div className="sender-name">
-            <h2>Sender Name</h2>
-            <p>Online</p>
-          </div>
-          <p>...</p>
-        </div>
-        <div className="messages-content">
-          <div className="current-messages-list">
-            <p className="message-item">Message text text text</p>
-            <p className="own-message-item">Message text</p>
-            <p className="message-item">Message text text</p>
-            <p className="own-message-item">Message text text text text</p>
-            <p className="message-item">Message text</p>
-            <p className="own-message-item">Message text text</p>
-          </div>
-        </div>
-        <div className="bottom-section">
-          <input
-            type="text"
-            placeholder="Type a message"
-            className="message-input"
-          />
-          <button className="send-message-btn">Send</button>
-        </div>
-      </div>
-      <div className="sender-info">
-        <div className="sender-info-container">
-          <img
-            src="https://www.w3schools.com/howto/img_avatar.png"
-            alt="sender"
-            className="sender-info-img"
-          />
-          <div className="sender-info-text">
-            <div className="sender-info-text-item">
-              <h3>Email</h3>
-              <p>example@gmail.com</p>
-            </div>
-            <div className="sender-info-text-item">
-              <h3>Phone Number</h3>
-              <p>0564729120</p>
-            </div>
-          </div>
-        </div>
-      </div>
+        )}
+
+        <SenderInfo
+          sender={
+            currentConversation ? currentConversation.otherParticipant : {}
+          }
+        />
+      </Suspense>
     </div>
   );
 };

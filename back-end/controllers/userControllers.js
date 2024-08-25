@@ -139,7 +139,7 @@ const verifyUser = async (req, res) => {
         },
       });
     }
-    user.Verified = true;
+    user.verified = true;
     await user.save();
     res.status(200).json({ message: "User verified successfully", data: user });
   } catch (error) {

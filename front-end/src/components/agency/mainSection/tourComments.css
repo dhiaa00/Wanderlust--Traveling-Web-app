@@ -1,0 +1,74 @@
+.tour-comments {
+  margin-top: 20px;
+  width: 100%;
+}
+
+.tour-comments h2 {
+  font-size: 24px;
+  color: #333;
+}
+
+.comments-container {
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  max-height: 300px;
+  gap: 10px;
+}
+
+/* Style for TourComment component */
+.tour-review {
+  background-color: #f5f5f5;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.tour-review .review-user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.tour-review .review-user img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.tour-review .review-user h3 {
+  font-size: 18px;
+  color: #555;
+}
+
+.tour-review .comment-container {
+  display: flex;
+  gap: 5px;
+  width: 100%;
+}
+
+.tour-review .rating-container {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.tour-review .rating-container p {
+  font-size: 14px;
+  color: #777;
+}
+
+.tour-review .rating-container img {
+  width: 16px;
+  height: 16px;
+}
+
+.tour-review p {
+  font-size: 14px;
+  color: #777;
+}
+
+.review-comment {
+  flex: 1;
+}

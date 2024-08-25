@@ -7,12 +7,16 @@ import agencyRouter from "./routes/agencyRouter.js";
 import reviewRouter from "./routes/reviewRouter.js";
 import offerRouter from "./routes/offerRouter.js";
 import cookieParser from "cookie-parser";
+import bodyParser from "body-parser";
 import cors from "cors";
 import connectToDb from "./lib/connectToDb.js";
 import notificationRouter from "./routes/notificationRouter.js";
 import http from "http";
 import { Server as SocketIoServer } from "socket.io";
 import apiLimiter from "./middleware/ratelimiter.js";
+import socketHandler from "./sockets/socketHandler.js";
+import messageRouter from "./routes/messageRouter.js";
+import conversationRouter from "./routes/conversationRouter.js";
 
 // Load environment variables
 dotenv.config();
@@ -50,6 +54,8 @@ app.use("/agency", apiLimiter, agencyRouter);
 app.use("/offer", apiLimiter, offerRouter);
 app.use("/offer/review", apiLimiter, reviewRouter);
 app.use("/notifications", apiLimiter, notificationRouter);
+app.use("/message", apiLimiter, messageRouter);
+app.use("/conversation", apiLimiter, conversationRouter);
 
 // Connect to MongoDB
 const DB_STRING_URL = process.env.DB_STRING_URL;
@@ -59,13 +65,16 @@ connectToDb(DB_STRING_URL);
 const server = http.createServer(app);
 
 // Set up socket.io
-const io = new SocketIoServer(server);
-io.on("connection", (socket) => {
-  console.log("A user connected");
-  socket.on("disconnect", () => {
-    console.log("A user disconnected");
-  });
+const io = new SocketIoServer(server, {
+  cors: {
+    origin: [
+      "https://wanderlust-e-travelling.netlify.app",
+      "http://localhost:5173",
+    ],
+    credentials: true,
+  },
 });
+socketHandler(io);
 
 // Start the server
 const PORT = process.env.PORT || 5000;

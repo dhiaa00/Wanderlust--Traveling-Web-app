@@ -62,7 +62,6 @@ const AgencyTours = ({
     handleSearch();
   }, [seachInput]);
 
-  console.log("agencyTours", agencyTours.length);
   return (
     <>
       {agencyTours.length != 0 && (

@@ -1,21 +1,49 @@
 import "./agencyNavbar.css";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import MenuIcon from "../../../SVGs/menu icon.svg";
 import HelpIcon from "../../../SVGs/help.svg";
+import axios from "axios";
 
-const AgencyNavbar = ({
-  profileImage = "https://static.vecteezy.com/system/resources/thumbnails/020/765/399/small/default-profile-account-unknown-icon-black-silhouette-free-vector.jpg",
-}) => {
+const AgencyNavbar = () => {
   const [displayMenu] = useState(false);
+  const [profileImage, setProfileImage] = useState("");
+
+  const getProfileImage = async () => {
+    const response = await axios.get(
+      `${import.meta.env.VITE_BACKEND_URL}/agency/profileImage/${
+        window.location.pathname.split("/")[2]
+      }`,
+      {
+        withCredentials: true,
+      }
+    );
+    setProfileImage(response.data.profileImage);
+  };
+
+  useEffect(() => {
+    getProfileImage();
+  }, []);
+
   return (
     <div className="agency-navbar-container">
       <div className="agency-navbar">
         <div className="logo-container">
-          <img
-            className="agency-navbar__logo"
-            src={profileImage}
-            alt="profile photo"
-          />
+          {
+            // if there is a profile image, display it, otherwise display the agency's initials
+            profileImage !== "" ? (
+              <img
+                className="agency-navbar__logo"
+                src={profileImage}
+                alt="profile photo"
+              />
+            ) : (
+              <img
+                className="agency-navbar__logo"
+                src="https://www.w3schools.com/w3images/avatar2.png"
+                alt="profile photo"
+              />
+            )
+          }
         </div>
         <div className="agency-navbar__links">
           <p>Menu</p>

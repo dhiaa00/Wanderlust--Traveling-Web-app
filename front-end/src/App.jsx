@@ -98,6 +98,10 @@ function App() {
             element={<ConfirmYourEmail />}
           />
           <Route path="/login" element={<Login />} />
+          <Route
+            path="/user/:userId/messages/:conversationId?"
+            element={<Messages />}
+          />
         </Route>
 
         <Route
@@ -157,7 +161,7 @@ function App() {
           <Route path="settings/transactions" element={<Transactions />} />
           <Route path="settings/deleteAccount" element={<DeleteAccount />} />
           <Route path="settings/changePassword" element={<ChangePassword />} />
-          <Route path="messages" element={<Messages />} />
+          <Route path="messages/:conversationId?" element={<Messages />} />
         </Route>
         <Route path="/tours/:travelId" element={<SingleTravelPage />} />
       </Routes>

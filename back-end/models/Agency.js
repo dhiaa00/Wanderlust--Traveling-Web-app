@@ -57,7 +57,7 @@ const agencySchema = new mongoose.Schema(
       trim: true,
       unique: true,
     },
-    Verified: {
+    verified: {
       type: Boolean,
       default: false,
     },

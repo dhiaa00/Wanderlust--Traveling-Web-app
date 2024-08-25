@@ -41,6 +41,7 @@ const Login = () => {
         }
         if (accountType == "user") {
           navigate(`/`);
+          location.reload();
         }
       } else {
         toast.error(response.data.message);

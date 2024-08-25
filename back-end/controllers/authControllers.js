@@ -125,7 +125,7 @@ const loginAgency = async (req, res) => {
         .json({ message: "Invalid email or password", data: null });
     }
 
-    if (!agency.Verified) {
+    if (!agency.verified) {
       // resend a verification code
       const verificationCode = Math.floor(100000 + Math.random() * 900000); // generates a six digit number
       agency.verificationCode = verificationCode;

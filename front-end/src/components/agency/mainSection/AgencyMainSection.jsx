@@ -10,6 +10,7 @@ import Expenses from "./Expenses";
 import EditTourButton from "../buttons/EditTourButton";
 import Collaborations from "./Collaborations";
 import Timeline from "./Timeline";
+import TourComments from "./TourComments";
 
 const AgencyMainSection = ({
   editTourOpen,
@@ -49,6 +50,7 @@ const AgencyMainSection = ({
           />
           <div className="right-side-upper-section">
             <Timeline tour={tour} />
+            <TourComments />
           </div>
         </div>
       </div>

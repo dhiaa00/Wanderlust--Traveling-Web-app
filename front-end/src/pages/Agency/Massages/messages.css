@@ -6,10 +6,13 @@
 }
 
 .message-list {
-  width: 30%;
+  width: 32%;
   background-color: #f4f4f4;
   padding: 20px;
   position: relative;
+  max-height: 100vh;
+  overflow-y: scroll;
+  scrollbar-width: none;
   &::after {
     content: "";
     position: absolute;
@@ -53,6 +56,8 @@
     background-color: transparent;
     display: flex;
     align-items: center;
+    cursor: pointer;
+    transition: 0.2s;
     .message-sender {
       display: flex;
       flex-direction: column;
@@ -62,9 +67,21 @@
         font-weight: bold;
       }
     }
+    &:hover {
+      background-color: rgba(0, 123, 255, 0.3);
+    }
   }
   .message.active {
     background-color: rgba(0, 123, 255, 0.3);
+  }
+}
+
+.message-sender {
+  overflow: hidden;
+  p {
+    /* prevent it from get outside the div (cut the text) */
+    white-space: nowrap;
+    overflow: hidden;
   }
 }
 
@@ -86,6 +103,9 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  max-height: 100vh;
+  overflow-y: scroll;
+  scrollbar-width: none;
 }
 
 .upper-section {
@@ -197,6 +217,7 @@
     filter: blur(2px);
   }
   .sender-info-container {
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -211,6 +232,7 @@
   }
 
   .sender-info-text {
+    width: 100%;
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
@@ -219,14 +241,14 @@
       align-items: center;
       justify-content: flex-start;
       h3 {
-        width: 50%;
-        font-size: 0.8rem;
+        width: 45%;
+        font-size: 0.9rem;
         margin-bottom: 5px;
         font-weight: 800;
       }
       p {
-        width: 50%;
-        font-size: 0.6rem;
+        width: 45%;
+        font-size: 0.8rem;
         font-weight: 600;
         margin-bottom: 5px;
       }

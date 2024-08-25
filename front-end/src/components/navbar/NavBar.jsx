@@ -39,7 +39,7 @@ const NavBar = () => {
       await axios.get("/auth/logout");
       toast.success("Logged out successfully");
       setLogged(false);
-      if (path === "settings") {
+      if (path !== "/travels") {
         navigate("/travels");
       } else {
         window.location.reload();

@@ -1,6 +1,7 @@
 import { Router } from "express";
 import {
   deleteAgency,
+  getProfileImage,
   updateAgencyEmail,
   updateAgencyName,
   updateAgencyPassword,
@@ -27,5 +28,9 @@ agencyRouter
 agencyRouter
   .route("/delete/:id")
   .delete(verifytoken, verifyTokenAndAgency, deleteAgency);
+
+agencyRouter
+  .route("/profileImage/:id")
+  .get(verifytoken, verifyTokenAndAgency, getProfileImage);
 
 export default agencyRouter;
