@@ -4,12 +4,12 @@ import {
   verifyAgencyLogin,
   verifyAgencySignUp,
 } from "../models/Agency.js";
+import { RevokedToken } from "../models/RevokedToken.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import crypto from "crypto";
 import sendVerificationCode from "../utils/sendVerificationCode.js";
 import oauth2Client from "../utils/oauth2client.js";
-import RevokedToken from "../models/RevokedToken.js";
 
 const loginController = async (req, res) => {
   const { error } = verifyLogin(req.body);
@@ -288,8 +288,8 @@ const logout = async (req, res) => {
 
   try {
     // Add token to revoked tokens list
-    const revokedToken = new RevokedToken({ token });
-    await revokedToken.save();
+    const revokedT = new RevokedToken({ token });
+    await revokedT.save();
 
     res.clearCookie("jwt");
     res.sendStatus(200).json({ message: "Logged out successfully" });
