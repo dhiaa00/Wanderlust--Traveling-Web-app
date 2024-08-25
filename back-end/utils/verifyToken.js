@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken";
 import { User } from "../models/User.js";
 import { Agency } from "../models/Agency.js";
-import RevokedToken from "../models/revokedToken.js";
+import { RevokedToken } from "../models/RevokedToken.js";
 
 const verifytoken = async (req, res, next) => {
   const token = req.cookies.authorization;
@@ -9,8 +9,8 @@ const verifytoken = async (req, res, next) => {
     return res.status(401).json({ message: "acces denied,no token provided" });
   }
   // check if it is revoked
-  const revokedToken = await RevokedToken.findOne({ token });
-  if (revokedToken) {
+  const revokedT = await RevokedToken.findOne({ token });
+  if (revokedT) {
     return res.status(401).json({ message: "acces denied" });
   }
 
