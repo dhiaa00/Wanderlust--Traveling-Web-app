@@ -9,7 +9,7 @@ import jwt from "jsonwebtoken";
 import crypto from "crypto";
 import sendVerificationCode from "../utils/sendVerificationCode.js";
 import oauth2Client from "../utils/oauth2client.js";
-import RevokedToken from "../models/revokedToken.js";
+import RevokedToken from "../models/RevokedToken.js";
 
 const loginController = async (req, res) => {
   const { error } = verifyLogin(req.body);
