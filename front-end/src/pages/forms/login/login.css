@@ -140,3 +140,17 @@
     font-size: 0.8rem;
   }
 }
+
+@media screen and (max-width: 768px) {
+  .login-page {
+    display: flex;
+    justify-content: unset;
+    align-items: unset;
+  }
+  .sign-up-container {
+    width: 90%;
+    padding: 2rem 1rem;
+    margin: 0;
+    max-width: 100%;
+  }
+}

@@ -24,6 +24,12 @@
   padding-bottom: 1.5rem;
   display: flex;
   gap: 3.5rem;
+
+  img {
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+  }
 }
 
 :root {
@@ -147,6 +153,16 @@
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  width: 30%;
+}
+input.the-infomation-itself {
+  border: 1px solid black;
+  border-radius: 10px;
+  background: none;
+  font-weight: 600;
+  padding: 3px 5px;
+  width: 100%;
+  text-align: start;
 }
 .location {
   border: solid;
@@ -207,6 +223,20 @@
   font-family: inherit;
   font-size: 17px;
   border: none;
+}
+.savechange-button-active {
+  background: var(--main-gradient);
+  padding: 0.4rem 2rem;
+  border-radius: 10px;
+  color: white;
+  font-family: inherit;
+  font-size: 17px;
+  border: none;
+  cursor: pointer;
+  &:hover {
+    background: var(--main-gradient);
+    filter: brightness(0.9);
+  }
 }
 .location-input:focus {
   outline: none;

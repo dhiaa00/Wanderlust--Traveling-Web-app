@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import "./navbar.css";
 import MainButton from "../buttons/MainButton";
 import logo from "/src/SVGs/HomePage/Wanderlust-logo.svg";
@@ -12,8 +12,10 @@ import toast from "react-hot-toast";
 
 const NavBar = () => {
   const [menuOpened, setMenuOpened] = useState(false);
+  const [profileClick, setProfileClick] = useState(false);
   const [logged, setLogged] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
   const onClickFunc = () => {
     navigate("/login");
   };
@@ -37,10 +39,13 @@ const NavBar = () => {
     localStorage.removeItem("user");
     try {
       await axios.get("/auth/logout");
+      // clear cookies.authorization
+      document.cookgie =
+        "authorization=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
       toast.success("Logged out successfully");
       setLogged(false);
-      if (path !== "/travels") {
-        navigate("/travels");
+      if (path !== "/") {
+        navigate("/");
       } else {
         window.location.reload();
       }
@@ -52,17 +57,15 @@ const NavBar = () => {
 
   const User = JSON.parse(localStorage.getItem("user"));
 
-  const handleGoToSettings = () => {
-    if (User.agencyName) {
-      navigate(`/agency/${User._id}/settings/info`);
-    } else {
-      navigate(`/user/settings`);
-    }
+  const handleProfileClick = () => {
+    setMenuOpened(false);
+    setProfileClick(!profileClick);
   };
 
   // handle menu opening
 
   const handleMenuOpen = () => {
+    setProfileClick(false);
     setMenuOpened(!menuOpened);
   };
 
@@ -70,6 +73,16 @@ const NavBar = () => {
     menuOpened && window.innerWidth < 768
       ? { clipPath: "polygon(100% 0, 0 0, 0 100%, 100% 100%)" }
       : {};
+
+  const profileStyle = profileClick
+    ? { clipPath: "polygon(100% 0, 0 0, 0 100%, 100% 100%)" }
+    : {};
+
+  // close menu when location changes
+  useEffect(() => {
+    setMenuOpened(false);
+    setProfileClick(false);
+  }, [location]);
 
   return (
     <div className="navbar">
@@ -103,10 +116,11 @@ const NavBar = () => {
         <MainButton text="Log in" onClickFunc={onClickFunc} />
       ) : (
         <div className="log-out-container">
-          <img src={settingsIcon} alt="settings" onClick={handleGoToSettings} />
-          <button className="main-button" onClick={openLogoutModal}>
-            <p>Log out</p>
-          </button>
+          <img
+            src={User.profilePhoto ? User.profilePhoto : ""}
+            alt="profile"
+            onClick={handleProfileClick}
+          />
           <LogoutModal
             isOpen={isModalOpen}
             onClose={closeLogoutModal}
@@ -128,6 +142,45 @@ const NavBar = () => {
           alt="menu"
           onClick={handleMenuOpen}
         />
+      )}
+      {User && (
+        <nav className="profile-links" style={profileStyle}>
+          <Link
+            to={
+              User.agencyName
+                ? `/agency/${User._id}/tours`
+                : `/user/${User._id}/info`
+            }
+            className={path === `/user/${User._id}` ? "active-navlink" : ""}>
+            Profile
+          </Link>
+          <Link
+            to={
+              User.agencyName
+                ? `/agency/${User._id}/messages`
+                : `/user/${User._id}/messages`
+            }
+            className={
+              path === `/user/${User._id}/messages` ? "active-navlink" : ""
+            }>
+            Messages
+          </Link>
+
+          <Link
+            to={
+              User.agencyName
+                ? `/agency/${User._id}/notifications`
+                : `/user/${User._id}/notifications`
+            }
+            className={
+              path === `/user/${User._id}/notifications` ? "active-navlink" : ""
+            }>
+            Notifications
+          </Link>
+          <button className="main-button" onClick={openLogoutModal}>
+            <p>Log out</p>
+          </button>
+        </nav>
       )}
     </div>
   );

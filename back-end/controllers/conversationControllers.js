@@ -2,8 +2,65 @@ import { Agency } from "../models/Agency.js";
 import Conversation from "../models/Conversation.js";
 import { User } from "../models/User.js";
 
+const createConversation = async (req, res) => {
+  const { sender, senderType, receiver, text } = req.body;
+  console.log("params", req.body);
+  try {
+    if (senderType === "agency") {
+      return;
+    }
+    const existingConversation = await Conversation.findOne({
+      participants: { $all: [sender, receiver] },
+    });
+    if (existingConversation) {
+      return res.status(200).json({
+        message: "Conversation already exists",
+        conversation: existingConversation,
+      });
+    }
+    if (text.trim() === "") {
+      const conversation = new Conversation({
+        participants: [sender, receiver],
+        messages: [
+          {
+            sender: receiver,
+            senderType: "agency",
+            content: "Hi, how can we help you?",
+          },
+        ],
+      });
+      await conversation.save();
+      return res.status(201).json({
+        message: "Conversation created successfully",
+        conversation,
+      });
+    }
+    const conversation = new Conversation({
+      participants: [sender, receiver],
+      messages: [
+        {
+          sender,
+          senderType,
+          content: text,
+          createdAt: new Date(),
+          readStatus: false,
+        },
+      ],
+    });
+    await conversation.save();
+    res.status(201).json({
+      message: "Conversation created successfully",
+      conversation,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: error.message });
+  }
+};
+
 const getConversations = async (req, res) => {
   const { userId } = req.params;
+  console.log(userId);
   try {
     const conversations = await Conversation.find({
       participants: userId,
@@ -19,6 +76,7 @@ const getConversations = async (req, res) => {
         const latestMessage =
           conversation.messages[conversation.messages.length - 1];
         let otherParticipant = await User.findById(otherParticipantId);
+        console.log("conversation", conversation);
         if (!otherParticipant) {
           otherParticipant = await Agency.findById(otherParticipantId);
           return {
@@ -29,8 +87,8 @@ const getConversations = async (req, res) => {
               profilePhoto: otherParticipant.agencyPhoto,
             },
             latestMessage: {
-              content: latestMessage.content,
-              timestamp: latestMessage.timestamp,
+              content: latestMessage ? latestMessage.content : "",
+              timestamp: latestMessage ? latestMessage.timestamp : null,
             },
           };
         }
@@ -55,7 +113,7 @@ const getConversations = async (req, res) => {
       conversations: conversationsWithInfo,
     });
   } catch (error) {
-    console.log("getConversations", error);
+    console.error(error);
     res.status(500).json({ message: error.message });
   }
 };
@@ -91,9 +149,8 @@ const getConversationById = async (req, res) => {
       conversation: { ...conversation._doc, otherParticipant },
     });
   } catch (error) {
-    console.log(error);
     res.status(500).json({ message: error.message });
   }
 };
 
-export { getConversations, getConversationById };
+export { createConversation, getConversations, getConversationById };

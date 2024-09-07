@@ -33,6 +33,8 @@ const Messages = () => {
         `${backendUrl}/conversation/get/${partial.conversationId}`,
         {
           userId: userId,
+        },
+        {
           withCredentials: true,
         }
       );

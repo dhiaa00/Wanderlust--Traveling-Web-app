@@ -17,6 +17,7 @@ const SingleTravelPage = () => {
   const [reviews, setReviews] = useState([]);
 
   const id = window.location.pathname.split("/").pop();
+  const user = JSON.parse(localStorage.getItem("user"));
 
   const getTravel = async () => {
     try {
@@ -30,7 +31,6 @@ const SingleTravelPage = () => {
   };
 
   const collectPreferences = () => {
-    const user = JSON.parse(localStorage.getItem("user"));
     if (!user) return;
 
     const travelTags =
@@ -63,15 +63,33 @@ const SingleTravelPage = () => {
     );
   };
 
+  // handling reviews
+  const [currentReviewSlice, setCurrentReviewSlice] = useState(0);
+  const [hasMoreReviews, setHasMoreReviews] = useState(false);
+  const [userReviewed, setUserReviewed] = useState(false);
+
   const getReviews = async () => {
     try {
-      const response = await axios.get(`${backendUrl}/offer/review/get/${id}`);
+      const response = await axios.post(
+        `${backendUrl}/offer/review/get/${id}`,
+        {
+          userId: user._id,
+          reviewSlice: currentReviewSlice,
+        }
+      );
       setReviews(response.data.data);
-      console.log(response.data.data);
+      setHasMoreReviews(response.data.hasMore);
+      setUserReviewed(response.data.userReviewed);
     } catch (err) {
       console.log(err);
     }
   };
+
+  useEffect(() => {
+    currentReviewSlice !== 0 && getReviews();
+  }, [currentReviewSlice]);
+
+  //
 
   useEffect(() => {
     getTravel();
@@ -103,7 +121,14 @@ const SingleTravelPage = () => {
           <TravelPageHeader travel={travel} reviews={reviews} />
           <TravelPagePictures travel={travel} />
           <TravelPageDescription description={travel.description} />
-          <TravelPageEvaluation travel={travel} reviews={reviews} />
+          <TravelPageEvaluation
+            travel={travel}
+            reviews={reviews}
+            currentReviewSlice={currentReviewSlice}
+            setCurrentReviewSlice={setCurrentReviewSlice}
+            hasMoreReviews={hasMoreReviews}
+            userReviewed={userReviewed}
+          />
           <TravelPagePrice travel={travel} />
         </div>
       )}

@@ -217,7 +217,6 @@ const registerAgency = async (req, res) => {
     });
     // send verification code to email
   } catch (error) {
-    console.log(error);
     return res
       .status(500)
       .json({ message: "Internal server error", error: error });

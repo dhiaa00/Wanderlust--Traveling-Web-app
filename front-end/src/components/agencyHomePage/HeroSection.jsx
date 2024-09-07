@@ -57,7 +57,7 @@ const HeroSection = () => {
             onClick={handleClickVideo}
             loading="lazy"
           />
-          <Link to="/">Search</Link>
+          <Link to="/travels">Search</Link>
         </div>
       </div>
       <div className="hero-section-right-side">

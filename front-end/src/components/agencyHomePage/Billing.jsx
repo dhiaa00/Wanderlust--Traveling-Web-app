@@ -1,5 +1,6 @@
 import React from "react";
 import billingBackground from "/src/SVGs/HomePage/billing-background.svg";
+import { Link } from "react-router-dom";
 import "./billing.css";
 
 const Billing = () => {
@@ -27,7 +28,9 @@ const Billing = () => {
               <li>No Featured Listings</li>
             </ul>
           </div>
-          <button className="choose-plan-button">Get Started</button>
+          <Link className="choose-plan-button" to="/signup/agency">
+            Get Started
+          </Link>
         </div>
         <div className="billing-plan">
           <h3>$30/Mo</h3>

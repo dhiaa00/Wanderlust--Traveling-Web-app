@@ -8,6 +8,7 @@ import {
   updatePassword,
   updatePreferences,
   updateUser,
+  updateUserprofilePhoto,
   verifyUser,
   searchTravels,
 } from "../controllers/userControllers.js";
@@ -17,6 +18,8 @@ const userRouter = Router();
 userRouter.route("/verify/:confirmationId").post(verifyUser);
 
 userRouter.route("/update/username/:id").put(updateUser);
+
+userRouter.route("/update/profilePhoto/:id").put(updateUserprofilePhoto);
 
 userRouter.route("/update/email/:id").put(updateEmail);
 

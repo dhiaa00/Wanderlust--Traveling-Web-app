@@ -1,7 +1,7 @@
 import "./chatbot.css";
 import chatbotIcon from "../../SVGs/chatbot/chatbot.svg";
 import sendIcon from "../../SVGs/chatbot/send.svg";
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { marked } from "marked";
@@ -86,6 +86,15 @@ const Chatbot = ({ chatbotOpened, setChatbotOpened }) => {
                 onChange={(e) => setUserInput(e.target.value)}
                 type="text"
                 placeholder="Type your message here"
+                onKeyUp={(e) => {
+                  if (e.key === "Enter") {
+                    setMessages([
+                      ...messages,
+                      { message: userInput, type: "user" },
+                    ]);
+                    handleGenerateResponse();
+                  }
+                }}
               />
               <img
                 src={sendIcon}

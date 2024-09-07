@@ -3,7 +3,7 @@ import PaymentPageSideBar from "../../../components/payment/PaymentPageSideBar";
 import EditProfileInfo from "../../../components/payment/EditProfileInfo";
 import "./agencyinfopage.css";
 
-const AgencyInfoPage = () => {
+const ProfilePage = () => {
   return (
     <div className="payment-page-content">
       <PaymentPageSideBar />
@@ -14,4 +14,4 @@ const AgencyInfoPage = () => {
   );
 };
 
-export default AgencyInfoPage;
+export default ProfilePage;

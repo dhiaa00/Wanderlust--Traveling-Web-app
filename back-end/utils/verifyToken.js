@@ -35,7 +35,6 @@ const verifyTokenAndUser = (req, res, next) => {
 };
 const verifyTokenAndAdmin = (req, res, next) => {
   try {
-    console.log(req.user.isAdmin);
     if (req.user.isAdmin == false) {
       return res.status(403).json({ message: "forbidden only admin himself" });
     }

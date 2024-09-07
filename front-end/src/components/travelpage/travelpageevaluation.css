@@ -137,6 +137,20 @@
   );
   font-weight: 600;
   font-size: 20px;
+  button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translate(-10px, 10px);
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    &:hover {
+      transform: translate(-10px, 10px) scale(1.1);
+    }
+  }
 }
 .button-left {
   position: absolute;

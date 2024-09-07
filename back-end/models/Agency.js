@@ -1,6 +1,7 @@
 import Joi from "joi";
 import mongoose from "mongoose";
 import joiPasswordComplexity from "joi-password-complexity";
+import { type } from "os";
 
 const agencySchema = new mongoose.Schema(
   {
@@ -36,6 +37,7 @@ const agencySchema = new mongoose.Schema(
       required: true,
       trim: true,
     },
+    bio: { type: String, default: "No bio entered" },
     preferences: {
       type: Array,
       default: [],

@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import MenuIcon from "../../../SVGs/menu icon.svg";
 import HelpIcon from "../../../SVGs/help.svg";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const AgencyNavbar = () => {
   const [displayMenu] = useState(false);
@@ -46,15 +47,10 @@ const AgencyNavbar = () => {
           }
         </div>
         <div className="agency-navbar__links">
-          <p>Menu</p>
-          {displayMenu ? (
-            <div className="agency-navbar__menu">
-              {/* waiting for design */}
-            </div>
-          ) : (
-            // svg element for the menu icon
+          <p>Home</p>
+          <Link to="/">
             <img src={MenuIcon}></img>
-          )}
+          </Link>
         </div>
         {/* help icon */}
         <img src={HelpIcon}></img>

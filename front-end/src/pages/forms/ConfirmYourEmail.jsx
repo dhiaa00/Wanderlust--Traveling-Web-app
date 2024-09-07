@@ -43,6 +43,7 @@ const ConfirmYourEmail = () => {
         type == "agency"
           ? navigate(`/agency/${response.data.data._id}/tours`)
           : navigate(`/`);
+        location.reload();
       } else {
         toast.error(response.data.message);
       }

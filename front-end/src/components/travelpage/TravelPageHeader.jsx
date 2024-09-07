@@ -1,7 +1,42 @@
 import React from "react";
 import "./travelpageheader.css";
-import travelpageimages from "/src/images/travelpage/Travelpageheader/sahitmamaas.png";
+import chatIcon from "/src/SVGs/chat-icon.svg";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+
 const TravelPageHeader = ({ travel, reviews }) => {
+  const navigate = useNavigate();
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
+
+  const handleStartChat = async () => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    const agencyId = travel.agency;
+    if (!user._id) {
+      toast.error("You must be logged in to start a chat");
+      return;
+    }
+    if (user.agencyName) {
+      toast.error("Agencies can't start chats");
+      return;
+    }
+    // create conversation
+    const result = await axios.post(`${backendUrl}/conversation/`, {
+      sender: user._id,
+      receiver: agencyId,
+      senderType: "user",
+      text: "",
+    });
+    if (result.status !== 201) {
+      toast.error(result.data.message);
+      return;
+    }
+    toast.success(result.data.message);
+
+    // redirect to messages page
+    navigate(`/user/${user._id}/messages`);
+    location.reload();
+  };
   return (
     <div className="travelpageheader">
       <div className="logo-container">
@@ -11,6 +46,13 @@ const TravelPageHeader = ({ travel, reviews }) => {
           className="i-dont-know-whatthehellisthat"
         />
       </div>
+      <img
+        className="travelpage-chat-icon"
+        src={chatIcon}
+        alt="chat"
+        onClick={handleStartChat}
+      />
+      <p className="chat-icon-paragraph">Start Chat</p>
       <img
         className="image-travelpageheader"
         src={travel.thumbImageUrl}

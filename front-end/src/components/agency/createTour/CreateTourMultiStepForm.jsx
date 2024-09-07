@@ -33,7 +33,6 @@ const CreateTourMultiStepForm = ({ setCreateTour, setTourCreated }) => {
     flightDuration: "",
     agencyId: agencyId,
   });
-  console.log(formData);
   const handleInputChange = (event, url) => {
     const { name, value } = event.target;
     if (name === "thumbImageUrl" || name === "videoUrl") {

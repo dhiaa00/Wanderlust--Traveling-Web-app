@@ -2,27 +2,22 @@ import Conversation from "../models/Conversation.js";
 
 const socketHandler = (io) => {
   io.on("connection", (socket) => {
-    console.log("A user connected:", socket.id);
-
     // Join a conversation room
     socket.on("joinConversation", (conversationId) => {
       socket.join(conversationId);
-      console.log(`User joined conversation: ${conversationId}`);
     });
 
     // Send a message
     socket.on(
       "sendMessage",
-      async ({ conversationId, sender, senderType, text }) => {
+      async ({ conversationId, sender, receiver, senderType, text }) => {
+        console.log("sendMessage", conversationId, sender, receiver, text);
         try {
+          if (text.trim() === "") {
+            return;
+          }
           const conversation = await Conversation.findById(conversationId);
-          console.log({
-            conversationId,
-            sender,
-            senderType,
-            text,
-            conversation,
-          });
+          console.log("conversation", conversation);
           if (conversation) {
             const newMessage = {
               sender,
@@ -39,12 +34,37 @@ const socketHandler = (io) => {
           }
           // if the conversation does not exist, create a new one
           else {
-            const newConversation = new Conversation({
-              participants: [sender],
-              messages: [
-                { sender, text, createdAt: new Date(), readStatus: false },
-              ],
-            });
+            console.log("else");
+            if (senderType === "agency") {
+              return;
+            }
+            const newConversation =
+              text !== ""
+                ? new Conversation({
+                    participants: [sender, receiver],
+                    messages: [
+                      {
+                        sender,
+                        senderType,
+                        text,
+                        createdAt: new Date(),
+                        readStatus: false,
+                      },
+                    ],
+                  })
+                : new Conversation({
+                    participants: [sender, receiver],
+                    messages: [
+                      {
+                        receiver,
+                        senderType: "agency",
+                        content: "Hi, how can we help you?",
+                        createdAt: new Date(),
+                        readStatus: false,
+                      },
+                    ],
+                  });
+            console.log("newConversation", newConversation);
             await newConversation.save();
             io.to(newConversation._id).emit(
               "newMessage",
@@ -78,9 +98,7 @@ const socketHandler = (io) => {
       }
     );
 
-    socket.on("disconnect", () => {
-      console.log("User disconnected:", socket.id);
-    });
+    socket.on("disconnect", () => {});
   });
 };
 

@@ -14,12 +14,17 @@ const TourListItem = ({ order, tour, setAgencyTours }) => {
   const handleDeleteOffer = (event) => {
     event.stopPropagation();
     try {
-      const response = axios.delete(`${backendUrl}/offer/delete/${tour.id}`, {
-        agency: {
-          _id: tour.agency,
+      const response = axios.delete(
+        `${backendUrl}/offer/delete/${tour.id}`,
+        {
+          agency: {
+            _id: tour.agency,
+          },
         },
-        withCredentials: true,
-      });
+        {
+          withCredentials: true,
+        }
+      );
       setAgencyTours((prev) => prev.filter((item) => item.id !== tour.id));
     } catch (error) {
       console.log(error);

@@ -8,10 +8,15 @@ const backendUrl = import.meta.env.VITE_BACKEND_URL;
 export const handleGoogleResponse = async (response) => {
   console.log("Google login response:", response);
   try {
-    const res = await axios.post(`${backendUrl}/auth/google`, {
-      credential: response.credential,
-      withCredentials: true,
-    });
+    const res = await axios.post(
+      `${backendUrl}/auth/google`,
+      {
+        credential: response.credential,
+      },
+      {
+        withCredentials: true,
+      }
+    );
     console.log("Google login response:", res.data.user);
     // Set user in local storage
     const newData = JSON.stringify(res.data.user);

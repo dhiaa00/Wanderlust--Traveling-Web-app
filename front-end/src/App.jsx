@@ -43,9 +43,7 @@ const EditProfilePayment = lazy(() =>
 );
 const Login = lazy(() => import("./pages/forms/login/Login"));
 const Messages = lazy(() => import("./pages/Agency/Massages/Messages"));
-const AgencyInfoPage = lazy(() =>
-  import("./pages/Tourist/PaymentS/AgencyInfoPage")
-);
+const ProfilePage = lazy(() => import("./pages/Tourist/PaymentS/ProfilePage"));
 const SingleTravelPage = lazy(() =>
   import("./pages/Tourist/Travels/SingleTravelPage")
 );
@@ -98,6 +96,24 @@ function App() {
             element={<ConfirmYourEmail />}
           />
           <Route path="/login" element={<Login />} />
+          <Route path="user/:userId/info" element={<ProfilePage />} />
+          <Route
+            path="user/:userId/notifications"
+            element={<EditProfileNotificationsPage />}
+          />
+          <Route path="user/:userId/payment" element={<EditProfilePayment />} />
+          <Route
+            path="user/:userId/language"
+            element={<EditProfileLanguagePage />}
+          />
+          <Route
+            path="user/:userId/deleteAccount"
+            element={<DeleteAccount />}
+          />
+          <Route
+            path="user/:userId/changePassword"
+            element={<ChangePassword />}
+          />
           <Route
             path="/user/:userId/messages/:conversationId?"
             element={<Messages />}
@@ -148,7 +164,7 @@ function App() {
               />
             }
           />
-          <Route path="settings/info" element={<AgencyInfoPage />} />
+          <Route path="settings/info" element={<ProfilePage />} />
           <Route
             path="settings/notifications"
             element={<EditProfileNotificationsPage />}
@@ -158,7 +174,6 @@ function App() {
             path="settings/language"
             element={<EditProfileLanguagePage />}
           />
-          <Route path="settings/transactions" element={<Transactions />} />
           <Route path="settings/deleteAccount" element={<DeleteAccount />} />
           <Route path="settings/changePassword" element={<ChangePassword />} />
           <Route path="messages/:conversationId?" element={<Messages />} />

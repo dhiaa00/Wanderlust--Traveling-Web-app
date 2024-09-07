@@ -6,7 +6,8 @@ import { useNavigate } from "react-router-dom";
 
 const PaymentPageSideBar = () => {
   const navigate = useNavigate();
-  const agencyId = JSON.parse(localStorage.getItem("user"))._id;
+  const user = JSON.parse(localStorage.getItem("user"));
+  const agencyId = user._id;
 
   const activeElement = window.location.pathname.split("/").pop();
 
@@ -16,6 +17,10 @@ const PaymentPageSideBar = () => {
   };
 
   const handleNavigate = (path) => {
+    if (!user.agencyName) {
+      navigate("/user/" + agencyId + "/" + path);
+      return;
+    }
     navigate("/agency/" + agencyId + "/settings/" + path);
   };
   return (
@@ -37,7 +42,6 @@ const PaymentPageSideBar = () => {
                 alt="menu"
                 onClick={handleToggle}
               />
-              <p className="title">Profile</p>
             </div>
             <div className="categories-container">
               <p
@@ -98,19 +102,6 @@ const PaymentPageSideBar = () => {
                   className="payment-page-category-icon"
                 />
                 Payments
-              </p>
-              <p
-                onClick={() => handleNavigate("transactions")}
-                className={
-                  "paymet-page-category " +
-                  (activeElement == "transactions" ? "active" : "")
-                }>
-                <img
-                  src="/src/SVGs/Layer 3.svg"
-                  alt=""
-                  className="payment-page-category-icon"
-                />
-                Transactions
               </p>
             </div>
           </div>

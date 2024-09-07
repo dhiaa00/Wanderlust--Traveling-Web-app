@@ -9,8 +9,16 @@ import "swiper/swiper-bundle.css";
 import SwiperCore from "swiper/core";
 SwiperCore.use([Pagination]);
 import "./travelpageevaluation.css";
+import deleteIcon from "/src/SVGs/delete.svg";
 
-const TravelPageEvaluation = ({ travel, reviews }) => {
+const TravelPageEvaluation = ({
+  travel,
+  reviews,
+  currentReviewSlice,
+  setCurrentReviewSlice,
+  hasMoreReviews,
+  userReviewed,
+}) => {
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
   const [rate, setRate] = useState(0);
   const [comment, setComment] = useState("");
@@ -50,6 +58,31 @@ const TravelPageEvaluation = ({ travel, reviews }) => {
     },
     [0, 0, 0, 0, 0, 0]
   );
+
+  // handle deleting a review
+
+  const deleteReview = async () => {
+    try {
+      const user = JSON.parse(localStorage.getItem("user"));
+      if (!user) {
+        toast.error("You need to be logged in to delete a review");
+        return;
+      } else {
+        const response = await axios.delete(
+          `${backendUrl}/offer/review/delete/${reviews[0]._id}`
+        );
+        if (response.status === 200) {
+          toast.success("Review deleted successfully");
+          setCurrentReviewSlice(0);
+          location.reload();
+        } else {
+          toast.error("Failed to delete review");
+        }
+      }
+    } catch (err) {
+      toast.error(err.response.data.message);
+    }
+  };
 
   return (
     reviews && (
@@ -120,9 +153,32 @@ const TravelPageEvaluation = ({ travel, reviews }) => {
                   className="feedback-comment-swiper">
                   {reviews.map((review, index) => (
                     <SwiperSlide key={index}>
-                      <p className="feedback-comment">{review.comment}</p>
+                      <p className="feedback-comment">
+                        {review.comment}
+                        {index === 0 &&
+                          currentReviewSlice === 0 &&
+                          userReviewed && (
+                            <button
+                              className="delete-review-button"
+                              onClick={deleteReview}>
+                              <img src={deleteIcon} alt="Delete" />
+                            </button>
+                          )}
+                      </p>
                     </SwiperSlide>
                   ))}
+                  {hasMoreReviews && (
+                    <SwiperSlide>
+                      <p className="feedback-comment">
+                        <button
+                          onClick={() => {
+                            setCurrentReviewSlice(currentReviewSlice + 1);
+                          }}>
+                          Load More
+                        </button>
+                      </p>
+                    </SwiperSlide>
+                  )}
                 </Swiper>
               )}
             </div>

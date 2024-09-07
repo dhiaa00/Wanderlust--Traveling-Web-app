@@ -58,14 +58,38 @@ const createReview = async (req, res) => {
 
 const getReviewsByOffer = async (req, res) => {
   const offerId = req.params.offerId;
-
+  const userId = req.body.userId;
+  const reviewSlice = req.body.reviewSlice;
   try {
     // Find all reviews for the given offer
     const reviews = await Review.find({ offerId });
 
-    res
-      .status(200)
-      .json({ message: "Reviews found successfully", data: reviews });
+    // put the user's review first one if it exist
+    if (userId) {
+      const userReviewIndex = reviews.findIndex(
+        (review) => review.userId.toString() == userId
+      );
+      if (userReviewIndex !== -1) {
+        const userReview = reviews.splice(userReviewIndex, 1);
+        reviews.unshift(userReview[0]);
+      }
+    }
+
+    // Slice the reviews array to return only the requested reviews
+    const slicedReviews = reviews.slice(
+      reviewSlice * 10,
+      reviewSlice * 10 + 10
+    );
+    const hasMore = reviews.length > reviewSlice * 10 + 10;
+
+    const userReviewed = reviews[0]?.userId.toString() === userId;
+
+    res.status(200).json({
+      message: "Reviews found successfully",
+      data: slicedReviews,
+      hasMore,
+      userReviewed,
+    });
   } catch (error) {
     res
       .status(500)

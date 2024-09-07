@@ -37,6 +37,30 @@ const updateUser = async (req, res) => {
   }
 };
 
+const updateUserprofilePhoto = async (req, res) => {
+  const userid = req.params.id;
+  try {
+    let user = await User.findById(userid);
+    if (!user) {
+      return res.status(404).json({ message: "User not found", data: null });
+    }
+    const newPhotoLink = req.body.profilePhoto;
+    user = await User.findByIdAndUpdate(
+      userid,
+      { profilePhoto: newPhotoLink },
+      { new: true }
+    );
+    return res
+      .status(200)
+      .json({ message: "Profile photo updated successfully", data: user });
+  } catch (error) {
+    console.error(error);
+    return res
+      .status(500)
+      .json({ message: "Internal server error", data: null });
+  }
+};
+
 const updatePassword = async (req, res) => {
   const userid = req.params.id;
   let user = await User.findById(userid);
@@ -201,7 +225,6 @@ const searchTravels = async (req, res) => {
     // get query from the link
     const { destination, budget, startDate, endDate } = req.query;
     // the user is not required to enter all the fields
-    console.log(req.query);
     let query = {};
     if (destination)
       query.$or = [
@@ -211,7 +234,6 @@ const searchTravels = async (req, res) => {
     if (startDate) query.startDate = { $gte: startDate };
     if (endDate) query.endDate = { $lte: endDate };
     if (budget) query.price = { $lte: budget };
-    console.log(query);
 
     const offers = await Offer.find(query);
     res.status(200).json({
@@ -311,6 +333,7 @@ const getRecommendation = async (req, res) => {
 export {
   updateEmail,
   updateUser,
+  updateUserprofilePhoto,
   updatePassword,
   deleteUser,
   verifyUser,

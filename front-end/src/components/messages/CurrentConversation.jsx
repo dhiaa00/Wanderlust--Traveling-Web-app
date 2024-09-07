@@ -22,9 +22,6 @@ const CurrentConversation = ({
 
   useEffect(() => {
     const handleNewMessage = (newMessage) => {
-      console.log("new message", newMessage);
-      console.log(otherParticipant);
-
       setCurrentConversation((prevConversation) => ({
         ...prevConversation,
         messages: [...prevConversation.messages, newMessage],
@@ -44,6 +41,7 @@ const CurrentConversation = ({
     socket.emit("sendMessage", {
       conversationId,
       sender: userId,
+      receiver: otherParticipant.id,
       senderType,
       text: message,
     });

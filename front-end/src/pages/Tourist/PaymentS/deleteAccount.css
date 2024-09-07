@@ -24,13 +24,88 @@
   }
 
   .button-deletion {
+    margin-top: 2rem;
     padding: 1rem 1.5rem;
     border-radius: 10px;
-    background-color: rgba(14, 153, 215, 1);
+    background-color: rgb(215, 2, 37);
     color: white;
     font-size: 18px;
     font-weight: 500;
     border: none;
     cursor: pointer;
+  }
+
+  .delete-account-confirmation {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    h2 {
+      color: white;
+      font-size: 2rem;
+      font-weight: 900;
+    }
+
+    .delete-account-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-top: 1rem;
+      label {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: white;
+        span {
+          color: rgb(215, 2, 37);
+          background-color: white;
+        }
+      }
+
+      input {
+        margin-top: 0.5rem;
+        padding: 0.5rem;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        font-size: 16px;
+      }
+
+      .deletion-buttons {
+        display: flex;
+        gap: 1rem;
+        margin-top: 1rem;
+        justify-content: center;
+        button {
+          padding: 0.5rem 1rem;
+          border-radius: 5px;
+          background-color: rgb(215, 2, 37);
+          color: white;
+          font-size: 16px;
+          font-weight: 500;
+          border: none;
+          cursor: pointer;
+        }
+      }
+
+      button {
+        margin-top: 1rem;
+        padding: 1rem 1.5rem;
+        border-radius: 10px;
+        background-color: rgb(215, 2, 37);
+        color: white;
+        font-size: 18px;
+        font-weight: 500;
+        border: none;
+        cursor: pointer;
+        &:hover {
+          background-color: rgb(215, 2, 37, 0.8);
+        }
+      }
+    }
   }
 }
