@@ -1,6 +1,7 @@
 import { User } from "../models/User.js";
 import { Review } from "../models/Review.js";
 import { Offer } from "../models/Offer.js";
+import { Notification } from "../models/Notification.js";
 
 const createReview = async (req, res) => {
   const { userId, offerId, rating, comment } = req.body;
