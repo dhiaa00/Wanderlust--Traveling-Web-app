@@ -6,6 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { saveToLocalStorage } from "../../../utils/localStorageOp";
 import toast from "react-hot-toast";
 import GoogleAuth from "../../../components/Sign/GoogleAuth";
+import { socket } from "../../../socket";
 
 const Login = () => {
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
@@ -43,6 +44,7 @@ const Login = () => {
           navigate(`/`);
           location.reload();
         }
+        socket.emit("joinNotifications", response.data.data._id);
       } else {
         toast.error(response.data.message);
         console.log("Login failed");

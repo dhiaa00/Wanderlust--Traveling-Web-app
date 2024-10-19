@@ -4,7 +4,6 @@ import { User } from "../models/User.js";
 
 const createConversation = async (req, res) => {
   const { sender, senderType, receiver, text } = req.body;
-  console.log("params", req.body);
   try {
     if (senderType === "agency") {
       return;
@@ -60,7 +59,6 @@ const createConversation = async (req, res) => {
 
 const getConversations = async (req, res) => {
   const { userId } = req.params;
-  console.log(userId);
   try {
     const conversations = await Conversation.find({
       participants: userId,
@@ -76,7 +74,6 @@ const getConversations = async (req, res) => {
         const latestMessage =
           conversation.messages[conversation.messages.length - 1];
         let otherParticipant = await User.findById(otherParticipantId);
-        console.log("conversation", conversation);
         if (!otherParticipant) {
           otherParticipant = await Agency.findById(otherParticipantId);
           return {

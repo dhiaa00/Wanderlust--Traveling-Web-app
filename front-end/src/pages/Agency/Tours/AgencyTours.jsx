@@ -14,6 +14,7 @@ const AgencyTours = ({
   setTourCreated,
   notificationsOpen,
   seachInput,
+  notificationsList,
 }) => {
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
   const [agencyTours, setAgencyTours] = useState([]);
@@ -115,7 +116,12 @@ const AgencyTours = ({
             ariaHideApp={false}
           />
         )}
-        {notificationsOpen && <Notifications ariaHideApp={false} />}
+        {notificationsOpen && notificationsList && (
+          <Notifications
+            notifications={notificationsList}
+            ariaHideApp={false}
+          />
+        )}
       </Suspense>
     </>
   );

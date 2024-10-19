@@ -1,7 +1,17 @@
+import { Agency } from "../models/Agency.js";
 import Conversation from "../models/Conversation.js";
+import { Notification } from "../models/Notification.js";
+import { User } from "../models/User.js";
 
 const socketHandler = (io) => {
   io.on("connection", (socket) => {
+    // Join a notification room by userid
+    socket.on("joinNotifications", (userId) => {
+      socket.join(userId);
+    });
+    socket.on("newReview", (notification) => {
+      io.to(notification.userId).emit("newNotification", notification);
+    });
     // Join a conversation room
     socket.on("joinConversation", (conversationId) => {
       socket.join(conversationId);
@@ -11,13 +21,25 @@ const socketHandler = (io) => {
     socket.on(
       "sendMessage",
       async ({ conversationId, sender, receiver, senderType, text }) => {
-        console.log("sendMessage", conversationId, sender, receiver, text);
         try {
           if (text.trim() === "") {
             return;
           }
           const conversation = await Conversation.findById(conversationId);
-          console.log("conversation", conversation);
+          const senderOb =
+            senderType == "user"
+              ? await User.findById(sender)
+              : await Agency.findById(sender);
+          const senderName =
+            senderType == "user" ? senderOb.username : senderOb.agencyName;
+
+          const notification = new Notification({
+            type: "NEW_MESSAGE",
+            userId: receiver,
+            message: `${senderName} sent you a message`,
+            link: `conversation/${conversationId}`,
+          });
+          await notification.save();
           if (conversation) {
             const newMessage = {
               sender,
@@ -31,10 +53,19 @@ const socketHandler = (io) => {
 
             // broadcast the new message to all participants except the sender
             socket.broadcast.to(conversationId).emit("newMessage", newMessage);
+
+            if (receiver) {
+              // get username
+              socket.to(receiver).emit("newNotification", notification);
+            } else {
+              const rec = conversation.participants.find(
+                (participant) => participant !== sender
+              );
+              socket.to(rec).emit("newNotification", notification);
+            }
           }
           // if the conversation does not exist, create a new one
           else {
-            console.log("else");
             if (senderType === "agency") {
               return;
             }
@@ -64,13 +95,15 @@ const socketHandler = (io) => {
                       },
                     ],
                   });
-            console.log("newConversation", newConversation);
+            text !== "" &&
+              socket.to(receiver).emit("newNotification", notification);
             await newConversation.save();
             io.to(newConversation._id).emit(
               "newMessage",
               newConversation.messages[0]
             );
           }
+          console.log(`${senderName} sent a message`);
         } catch (error) {
           console.error("Error sending message:", error);
         }

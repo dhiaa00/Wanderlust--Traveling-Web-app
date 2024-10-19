@@ -144,6 +144,7 @@ const loginAgency = async (req, res) => {
       secure: false,
       httpOnly: true,
       sameSite: "strict",
+      maxAge: 1000 * 60 * 60 * 24 * 30,
     });
     const { agencyPassword, ...agencyDataWithoutPassword } = agency._doc;
     return res
@@ -248,7 +249,20 @@ const googleSignUp = async (req, res) => {
         verified: true,
       });
       await newUser.save();
-      res.status(200).json({ message: "User signed up successfully", newUser });
+      console.log("New user created:", newUser._id);
+      const token = jwt.sign(
+        { id: newUser._id, isAdmin: newUser.isAdmin },
+        process.env.JWT_PASSWORD,
+        { expiresIn: "30d" }
+      );
+      res.cookie("authorization", token, {
+        secure: false,
+        httpOnly: true,
+        sameSite: "strict",
+      });
+      res
+        .status(200)
+        .json({ message: "User signed up successfully", user: newUser });
     } else {
       // verify if he used signup email or google oauth
       if (user.googleId) {

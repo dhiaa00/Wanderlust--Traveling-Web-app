@@ -12,6 +12,7 @@ const AgencyUpperSection = ({
   setNotificationsOpen,
   setTourCreated,
   setSearchInput,
+  newNotification,
 }) => {
   return (
     <div className="agency-upper-section">
@@ -28,6 +29,7 @@ const AgencyUpperSection = ({
         <ManagementButtons
           notificationsOpen={notificationsOpen}
           setNotificationsOpen={setNotificationsOpen}
+          newNotification={newNotification}
         />
       </div>
     </div>

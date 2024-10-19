@@ -78,9 +78,7 @@ const verifyAgencyLogin = (body) => {
     password: joiPasswordComplexity({
       min: 8,
       max: 100,
-      upperCase: 1,
       lowerCase: 1,
-      numeric: 1,
     }).required(),
   });
   return schema.validate(body);

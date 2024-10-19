@@ -24,7 +24,6 @@ const Schema = new mongoose.Schema(
       type: String,
       minlength: 8,
       maxlength: 100,
-      required: true,
       trim: true,
     },
     verificationCode: {
@@ -63,7 +62,7 @@ const Schema = new mongoose.Schema(
       },
     ],
 
-    googleId: String,
+    googleId: { type: String, unique: true },
 
     // isAccountVerified: {
     //   type: Boolean,
@@ -124,6 +123,13 @@ const verifyUpdateUser = (obj) => {
   });
   return schema.validate(obj);
 };
+
+Schema.pre("save", function (next) {
+  if (!this.googleId && !this.password) {
+    throw new Error("Password is required for non-OAuth users");
+  }
+  next();
+});
 
 const User = mongoose.model("user", Schema); // mongo db will add s and make it in small case and add document with the name users that have UserSchema
 export { User, verifySignUp, verifyUpdateUser, verifyLogin };

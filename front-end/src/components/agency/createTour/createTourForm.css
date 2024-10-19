@@ -4,7 +4,8 @@
 }
 
 .ReactModal__Content {
-  width: 80%;
+  width: 80% !important;
+  max-width: unset;
   height: 85%;
   top: 50% !important;
   left: 50% !important;

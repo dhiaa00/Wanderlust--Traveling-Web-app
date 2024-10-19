@@ -101,7 +101,7 @@ const TravelPageHeader = ({ travel, reviews }) => {
         </div>
         <div className="description-reservation-button">
           <button className="reservation-button">
-            <p className="reservation-button-text">Reservation</p>
+            <p className="reservation-button-text">Reserve</p>
           </button>
         </div>
       </div>

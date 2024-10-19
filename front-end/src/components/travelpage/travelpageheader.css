@@ -110,6 +110,7 @@
     h1 {
       font-size: 40px;
       font-weight: 600;
+      max-width: 800px;
     }
     p {
       font-size: 1.2rem;
@@ -140,7 +141,6 @@
     cursor: pointer;
     --border-width: 1px;
     --border-radius: 10px;
-    position: relative;
     padding: 0.6rem 3.3rem;
     background: var(--gradient);
     font-size: 16px;
@@ -149,8 +149,11 @@
     border: 0;
     border-radius: var(--border-radius);
     z-index: 1;
+    background-color: var(--main-gradient);
+    color: black;
+    transition: 0.3s;
   }
-  .reservation-button::before {
+  /* .reservation-button::before {
     content: "";
     display: block;
 
@@ -163,15 +166,14 @@
     left: var(--border-width);
     border-radius: calc(var(--border-radius) - var(--border-width));
     z-index: -1;
-  }
+  } */
   .reservation-button-text {
-    color: transparent;
+    color: whitesmoke;
     font-size: 21px;
     font-weight: 600;
-    background: var(--gradient);
-    -webkit-background-clip: text;
+    z-index: 2;
   }
-  .reservation-button::after {
+  /* .reservation-button::after {
     content: "";
     position: absolute;
     width: 0%;
@@ -182,9 +184,12 @@
     border-radius: 9.8px;
     z-index: 0;
     transition: 0.6s;
+  } */
+  .reservation-button:hover .reservation-button-text {
+    color: black;
   }
-  .reservation-button:hover::after {
-    width: 100%;
+  .reservation-button:hover {
+    transform: scale(1.05);
   }
   .reservation-button .reservation-button-text {
     transition: 0.6s;

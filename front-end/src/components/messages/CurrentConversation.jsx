@@ -14,8 +14,6 @@ const CurrentConversation = ({
   const userId = user._id;
   const senderType = user.agencyName ? "agency" : "user";
 
-  console.log("conversation currentConversation", conversation);
-
   useEffect(() => {
     socket.emit("joinConversation", conversationId);
   }, [conversationId]);

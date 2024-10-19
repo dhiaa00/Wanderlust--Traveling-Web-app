@@ -6,7 +6,6 @@ const backendUrl = import.meta.env.VITE_BACKEND_URL;
 // Function to handle Google login response
 
 export const handleGoogleResponse = async (response) => {
-  console.log("Google login response:", response);
   try {
     const res = await axios.post(
       `${backendUrl}/auth/google`,
@@ -17,10 +16,8 @@ export const handleGoogleResponse = async (response) => {
         withCredentials: true,
       }
     );
-    console.log("Google login response:", res.data.user);
     // Set user in local storage
     const newData = JSON.stringify(res.data.user);
-    console.log("New data:", newData);
     if (newData) {
       window.localStorage.setItem("user", newData);
     }

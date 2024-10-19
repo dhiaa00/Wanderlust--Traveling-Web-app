@@ -44,6 +44,7 @@ const ConfirmYourEmail = () => {
           ? navigate(`/agency/${response.data.data._id}/tours`)
           : navigate(`/`);
         location.reload();
+        socket.emit("joinNotifications", response.data.data._id);
       } else {
         toast.error(response.data.message);
       }

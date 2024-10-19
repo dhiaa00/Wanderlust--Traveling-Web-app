@@ -46,6 +46,16 @@ const createReview = async (req, res) => {
     offer.rating = newRating;
     await offer.save();
 
+    // trigger a notification
+    const notification = new Notification({
+      type: "NEW_REVIEW",
+      userId: offer.userId,
+      message: `${user.username} reviewed your offer`,
+      link: `offer/${offerId}`,
+    });
+
+    await notification.save();
+
     res
       .status(201)
       .json({ message: "Review created successfully", data: review });

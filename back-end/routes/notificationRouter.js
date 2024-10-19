@@ -15,7 +15,7 @@ import authenticate from "../middleware/authenticate.js";
 const notificationRouter = express.Router();
 
 notificationRouter
-  .route("/")
+  .route("/:id")
   .get(authenticate, getNotifications)
   .post(
     authenticate,

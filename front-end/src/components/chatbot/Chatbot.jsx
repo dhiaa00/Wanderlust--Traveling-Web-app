@@ -5,6 +5,7 @@ import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { marked } from "marked";
+import { set } from "lodash";
 
 const Chatbot = ({ chatbotOpened, setChatbotOpened }) => {
   const endOfMessagesRef = useRef(null);
@@ -17,18 +18,22 @@ const Chatbot = ({ chatbotOpened, setChatbotOpened }) => {
     : "[]";
 
   const handleGenerateResponse = async () => {
-    const backendUrl = import.meta.env.VITE_BACKEND_URL;
+    // const backendUrl = import.meta.env.VITE_BACKEND_URL;
     try {
-      const response = await axios.post(`${backendUrl}/user/generateResponse`, {
-        question: userInput,
-        previousConversation: messages[messages.length - 1].message,
-        preferences: preferences,
-      });
+      // const response = await axios.post(`${backendUrl}/user/generateResponse`, {
+      //   question: userInput,
+      //   previousConversation: messages[messages.length - 1].message,
+      //   preferences: preferences,
+      // });
       setMessages([
         ...messages,
         { message: userInput, type: "user" },
-        { message: response.data.response, type: "chatbot" },
+        {
+          message: "Chatbot Desactivated due to personal problems",
+          type: "chatbot",
+        },
       ]);
+      setUserInput("");
     } catch (error) {
       console.error("Error generating response:", error);
       toast.error("Failed to generate response");

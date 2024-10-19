@@ -1,6 +1,5 @@
 import React, { lazy, Suspense } from "react";
 import "./agencyMainSection.css";
-import AgencyUpperSection from "../upperSection/AgencyUpperSection";
 import ImageSwiper from "./ImageSwiper";
 import TravelDateInfoCard from "./infoCards/TravelDateInfoCard";
 import ClientInfoCard from "./infoCards/ClientInfoCard";

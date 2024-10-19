@@ -1,17 +1,17 @@
 import { Routes, Route, Outlet } from "react-router-dom";
-import React, { Suspense, lazy, useState } from "react";
+import React, { Suspense, lazy, useEffect, useState } from "react";
 import Modal from "react-modal";
 import CircularProgress from "@mui/material/CircularProgress";
 import SearchPage from "./pages/Tourist/SearchPage/SearchPage";
 import About from "./pages/About/About";
 import Contact from "./pages/Contact/Contact";
+import { socket } from "./socket";
+import axios from "axios";
+import Notifications from "./components/notifications/Notifications";
 const AgencyUpperSection = lazy(() =>
   import("./components/agency/upperSection/AgencyUpperSection")
 );
 import("/src/pages/Agency/Tours/agencyTours.css");
-const Transactions = lazy(() =>
-  import("./pages/Tourist/PaymentS/Transactions")
-);
 const DeleteAccount = lazy(() =>
   import("./pages/Tourist/PaymentS/DeleteAccount")
 );
@@ -61,6 +61,40 @@ function App() {
   const [seachInput, setSearchInput] = useState("");
   const [chatbotOpened, setChatbotOpened] = useState(false);
 
+  // handling notifications
+
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
+  const user = JSON.parse(localStorage.getItem("user"));
+  const [notifications, setNotifications] = useState([]);
+  const [newNotification, setNewNotification] = useState(false);
+
+  const getNotifications = async () => {
+    try {
+      const response = await axios.get(
+        `${backendUrl}/notifications/${user._id}`,
+        {
+          withCredentials: true,
+        }
+      );
+      setNotifications(response.data.notifications);
+      setNewNotification(response.data.newNotifications);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    user && getNotifications();
+    user && socket.emit("joinNotifications", user._id);
+    user &&
+      socket.on("newNotification", (notification) => {
+        console.log("nooti", notification);
+        setNewNotification(true);
+        notification.message &&
+          setNotifications([...notifications, notification]);
+      });
+  }, []);
+
   return (
     <Suspense
       fallback={
@@ -75,12 +109,19 @@ function App() {
           path="/"
           element={
             <>
-              <NavBar />
+              <NavBar
+                setNotificationsOpen={setNotificationsOpen}
+                notificationsOpen={notificationsOpen}
+                newNotification={newNotification}
+              />
               <Chatbot
                 chatbotOpened={chatbotOpened}
                 setChatbotOpened={setChatbotOpened}
               />
               <Outlet />
+              {notificationsOpen && (
+                <Notifications notifications={notifications} />
+              )}
             </>
           }>
           <Route index element={<AgenciesHomePage />} />
@@ -133,6 +174,7 @@ function App() {
                   notificationsOpen={notificationsOpen}
                   setNotificationsOpen={setNotificationsOpen}
                   setSearchInput={setSearchInput}
+                  newNotification={newNotification}
                 />
 
                 <Outlet />
@@ -150,6 +192,7 @@ function App() {
                 notificationsOpen={notificationsOpen}
                 setNotificationsOpen={setNotificationsOpen}
                 seachInput={seachInput}
+                notificationsList={notifications}
               />
             }
           />

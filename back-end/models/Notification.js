@@ -1,9 +1,10 @@
 import mongoose from "mongoose";
 
 const notificationSchema = new mongoose.Schema({
-  type: String,
+  type: ["NEW_MESSAGE", "NEW_REVIEW"],
   message: String,
   userId: String,
+  link: String,
   createdAt: { type: Date, default: Date.now },
   isRead: { type: Boolean, default: false },
 });

@@ -3,14 +3,19 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import "./navbar.css";
 import MainButton from "../buttons/MainButton";
 import logo from "/src/SVGs/HomePage/Wanderlust-logo.svg";
-import settingsIcon from "/src/SVGs/settings-icon.svg";
+import notificationIcon from "/src/SVGs/notification-icon.svg";
 import menuIcon from "/src/SVGs/menu.svg";
 import closeMenuIcon from "/src/SVGs/close-menu.svg";
 import Modal from "react-modal";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { set } from "lodash";
 
-const NavBar = () => {
+const NavBar = ({
+  setNotificationsOpen,
+  notificationsOpen,
+  newNotification,
+}) => {
   const [menuOpened, setMenuOpened] = useState(false);
   const [profileClick, setProfileClick] = useState(false);
   const [logged, setLogged] = useState(false);
@@ -36,19 +41,22 @@ const NavBar = () => {
   const closeLogoutModal = () => setIsModalOpen(false);
 
   const handleLogout = async () => {
-    localStorage.removeItem("user");
     try {
       await axios.get("/auth/logout");
       // clear cookies.authorization
-      document.cookgie =
+      document.cookie =
         "authorization=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+      localStorage.removeItem("user");
+      setTimeout(() => {
+        if (path !== "/") {
+          navigate("/");
+          window.location.reload();
+        } else {
+          window.location.reload();
+        }
+      }, 1000);
       toast.success("Logged out successfully");
       setLogged(false);
-      if (path !== "/") {
-        navigate("/");
-      } else {
-        window.location.reload();
-      }
     } catch (error) {
       toast.error("Error logging out");
       console.error("Error logging out:", error);
@@ -59,6 +67,7 @@ const NavBar = () => {
 
   const handleProfileClick = () => {
     setMenuOpened(false);
+    setNotificationsOpen(false);
     setProfileClick(!profileClick);
   };
 
@@ -66,6 +75,7 @@ const NavBar = () => {
 
   const handleMenuOpen = () => {
     setProfileClick(false);
+    setNotificationsOpen(false);
     setMenuOpened(!menuOpened);
   };
 
@@ -82,7 +92,15 @@ const NavBar = () => {
   useEffect(() => {
     setMenuOpened(false);
     setProfileClick(false);
+    setNotificationsOpen(false);
   }, [location]);
+
+  // handle notifications
+  const handleClickNotification = () => {
+    setNotificationsOpen(!notificationsOpen);
+    setMenuOpened(false);
+    setProfileClick(false);
+  };
 
   return (
     <div className="navbar">
@@ -112,6 +130,16 @@ const NavBar = () => {
           Contact
         </Link>
       </nav>
+      {logged && (
+        <button className="management-button" onClick={handleClickNotification}>
+          <img
+            className="notification-img"
+            src={notificationIcon}
+            alt="notification icon"
+          />
+          {newNotification && <div className="new-notification"></div>}
+        </button>
+      )}
       {!logged ? (
         <MainButton text="Log in" onClickFunc={onClickFunc} />
       ) : (

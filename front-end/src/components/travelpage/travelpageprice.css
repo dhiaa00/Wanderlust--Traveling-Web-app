@@ -33,7 +33,7 @@
   display: flex;
   --border-radius: 10px;
   --border-width: 1px;
-  background: var(--gradient);
+  background: black;
   position: relative;
   flex-direction: column;
   justify-content: center;
@@ -85,13 +85,19 @@
   padding: 10px 0;
   --border-radius: 7px;
   --border-width: 1px;
-  background: var(--gradient);
+  background: black;
   position: relative;
   border: none;
   border-radius: var(--border-radius);
   font-family: inherit;
   font-weight: 600;
   z-index: 1;
+  cursor: pointer;
+  transition: 0.3s;
+  &:hover {
+    transform: scale(1.05);
+    background: var(--main-gradient);
+  }
 }
 .travelpage-class-getstarted::before {
   content: "";

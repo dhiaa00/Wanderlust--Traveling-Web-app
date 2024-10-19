@@ -1,9 +1,8 @@
-import { useState } from "react";
+import React from "react";
 import "./notifications.css";
 import Notification from "./Notification";
 
-const Notifications = () => {
-  const [notificationRead, setNotificationRead] = useState(false);
+const Notifications = (notifications) => {
   return (
     <div className="notifications">
       <div className="notifications-upper-section">
@@ -11,18 +10,13 @@ const Notifications = () => {
         <button className="mark-as-read">Mark All As Read</button>
       </div>
       <div className="notifications-container">
-        <Notification
-          notificationRead={notificationRead}
-          pictureLink="/src/images/testing/profile-picture.png"
-        />
-        <Notification
-          notificationRead={notificationRead}
-          pictureLink="/src/images/testing/profile-picture.png"
-        />
-        <Notification
-          notificationRead={notificationRead}
-          pictureLink="/src/images/testing/profile-picture.png"
-        />
+        {notifications &&
+          notifications.notifications.map((notification) => (
+            <Notification key={notification._id} notification={notification} />
+          ))}
+        {(!notifications || notifications.notifications.length === 0) && (
+          <p style={{ padding: "1rem 0" }}>No notifications</p>
+        )}
       </div>
     </div>
   );

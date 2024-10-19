@@ -1,16 +1,34 @@
+import { chat } from "googleapis/build/src/apis/chat/index.js";
 import {
   Message,
   Notification,
   Comment,
   Post,
 } from "../models/Notification.js";
+import { User } from "../models/User.js";
 import { io } from "../server.js";
-import { validationResult } from "express-validator";
+import { Agency } from "../models/Agency.js";
 
 const getNotifications = async (req, res) => {
-  const userId = req.query.userId;
-  const notifications = await Notification.find({ userId });
-  res.json(notifications);
+  const userId = req.params.id;
+  const notifications = await Notification.find({ userId })
+    .sort({ createdAt: -1 })
+    .limit(10);
+  let newNotifications = false;
+  // replace userId with the user's name
+  notifications.forEach(async (notification) => {
+    if (notification.isRead === false) {
+      newNotifications = true;
+    }
+    let user = await User.findById(notification.userId);
+    if (!user) {
+      user = await Agency.findById(notification.userId);
+      notification.userId = user.agencyName;
+    } else {
+      notification.userId = user.username;
+    }
+  });
+  res.status(200).json({ notifications, newNotifications });
 };
 
 const createNotification = async (req, res) => {
@@ -28,15 +46,19 @@ const getUnreadNotifications = async (req, res) => {
 };
 
 const markNotificationAsRead = async (req, res) => {
-  const id = req.params.id;
-  await Notification.findByIdAndUpdate(id, { isRead: true });
-  res.json({ message: "Notification marquée comme lue" });
+  try {
+    const id = req.params.id;
+    await Notification.findByIdAndUpdate(id, { isRead: true });
+    res.status(201).json({ message: "Notification Read" });
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 const deleteNotification = async (req, res) => {
   const id = req.params.id;
   await Notification.findByIdAndDelete(id);
-  res.json({ message: "Notification supprimée" });
+  res.json({ message: "Notification deleted" });
 };
 
 const createMessage = async (req, res) => {
